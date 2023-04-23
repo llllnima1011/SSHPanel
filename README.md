@@ -25,13 +25,15 @@ https://t.me/Xpanelssh
 Tether TRC20 USDT: `TYQraQ5JJXKyVD6BpTGoDYNhiLbFRfzVtV`<br>
 ETH: `0x6cc08b2057EfAe4d76Af531e145DeEd4B73c9D7e`
 
+# نصب
+
+
 **سیستم عامل مورد نیاز**
 
 CentOS 7+ <br>
 Ubuntu 18+ <br>
 Debian 8+ <br>
 
-# نصب
 برای نصب و بروز رسانی می توانید از دستور زیر  استفاده کنید
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/master/install.sh --ipv4)
