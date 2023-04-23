@@ -20,6 +20,11 @@
 ## Telegram Channel:
 https://t.me/Xpanelssh
 
+## حمایت از ما
+حمایت های شما برای ما دلگرمی بزرگی است 
+Address Tether TRC20 USDT: TYQraQ5JJXKyVD6BpTGoDYNhiLbFRfzVtV
+Address Receive ETH: 0x6cc08b2057EfAe4d76Af531e145DeEd4B73c9D7e
+
 **سیستم عامل مورد نیاز**
 
 CentOS 7+ <br>
