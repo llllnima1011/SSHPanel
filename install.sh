@@ -95,7 +95,7 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/iptables' | sudo EDITOR='tee -a'
 wait
 
 sudo service apache2 restart
-chown www-data:www-data /var/www/html/p/* &
+chown www-data:www-data /var/www/html/cp/* &
 wait
 systemctl restart mariadb &
 wait
@@ -175,9 +175,9 @@ port=$(echo "$po" | sed "s/Port //g")
 
 systemctl restart httpd
 systemctl enable httpd
-chown apache:apache /var/www/html/p/* &
+chown apache:apache /var/www/html/cp/* &
 wait
-sudo sed -i "s/apache2/httpd/g" /var/www/html/p/setting.php &
+sudo sed -i "s/apache2/httpd/g" /var/www/html/cp/setting.php &
 wait
 chmod 644 /etc/ssh/sshd_config &
 wait
@@ -193,23 +193,23 @@ mysql -e "CREATE USER '${adminusername}'@'localhost' IDENTIFIED BY '${adminpassw
 wait
 mysql -e "GRANT ALL ON *.* TO '${adminusername}'@'localhost';" &
 wait
-sudo sed -i "s/22/$port/g" /var/www/html/p/config.php &
+sudo sed -i "s/22/$port/g" /var/www/html/cp/config.php &
 wait 
-sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/p/config.php &
+sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/cp/config.php &
 wait 
-sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/p/config.php &
+sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/cp/config.php &
 wait 
-sudo sed -i "s/SERVERUSER/$adminusername/g" /var/www/html/p/killusers.sh &
+sudo sed -i "s/SERVERUSER/$adminusername/g" /var/www/html/cp/killusers.sh &
 wait 
-sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/p/killusers.sh &
+sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/cp/killusers.sh &
 wait 
-sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/p/killusers.sh &
+sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/cp/killusers.sh &
 wait 
 curl -u "$adminusername:$adminpassword" "http://${ipv4}/cp/reinstall.php"
-cp /var/www/html/p/tarikh /var/www/html/p/backup/tarikh
-rm -fr /var/www/html/p/tarikh
-crontab -l | grep -v '/p/expire.php'  | crontab  -
-crontab -l | grep -v '/p/synctraffic.php'  | crontab  -
+cp /var/www/html/cp/tarikh /var/www/html/cp/backup/tarikh
+rm -fr /var/www/html/cp/tarikh
+crontab -l | grep -v '/cp/expire.php'  | crontab  -
+crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
 (crontab -l ; echo "* * * * * curl  http://${ipv4}/cp/expire.php >/dev/null 2>&1
 * * * * * curl http://${ipv4}/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
 wait
