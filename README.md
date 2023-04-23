@@ -20,3 +20,8 @@ CentOS 7+ <br>
 Ubuntu 18+ <br>
 Debian 8+ <br>
 
+# نصب
+برای نصب م توانید از دستور زیر  استفاده کنید
+```
+bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/master/install.sh --ipv4)
+```
