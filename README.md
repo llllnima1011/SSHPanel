@@ -1,3 +1,4 @@
+<img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/Alirezad07/X-Panel-SSH-User-Management">
 # X Panel SSH User Management
 ### پنل مدیریت و فروش VPN  با پروتکل SSH
 
