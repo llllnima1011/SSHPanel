@@ -27,7 +27,7 @@ Ubuntu 18+ <br>
 Debian 8+ <br>
 
 # نصب
-برای نصب می توانید از دستور زیر  استفاده کنید
+برای نصب و بروز رسانی می توانید از دستور زیر  استفاده کنید
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/master/install.sh --ipv4)
 ```
