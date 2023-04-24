@@ -186,7 +186,7 @@ PHP_INI=$(php -i | grep /.+/php.ini -oE)
 sed -i 's/extension=intl/;extension=intl/' ${PHP_INI}
 fi
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/ioncube-loader/main/install.sh --ipv4)
-bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/Nethogs-Json-main/main/install.sh --ipv4)
+bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/Nethogs-Json-main/master/install.sh --ipv4)
 mysql -e "create database XPanel;" &
 wait
 mysql -e "CREATE USER '${adminusername}'@'localhost' IDENTIFIED BY '${adminpassword}';" &
