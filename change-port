@@ -1,5 +1,5 @@
 #!/bin/bash
-$serverport=80;
+$serverport=8081;
 
 serverPort=${serverPort//'"'} (You could eliminate the the "" in the settings file if you wanted to remove this command)
 echo $serverport
