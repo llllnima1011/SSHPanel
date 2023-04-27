@@ -101,7 +101,7 @@ if [[ -n "${porttmp}" ]]; then
 serverPort=${porttmp}
 echo $serverPort
 else
-serverPort=80
+serverPort=8081
 echo $serverPort
 fi
 ##Get just the port number from the settings variable I just grabbed
