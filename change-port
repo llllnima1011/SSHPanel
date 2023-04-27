@@ -1,9 +1,15 @@
 #!/bin/bash
-
+echo -e "\nPlease input Panel admin Port."
+printf "Default port 8081: "
+read porttmp
+if [[ -n "${porttmp}" ]]; then
 #Get the server port number from my settings file
+serverPort=${porttmp}
+echo $serverPort
+else
 serverPort=80
 echo $serverPort
-
+fi
 ##Get just the port number from the settings variable I just grabbed
 serverPort=${serverPort##*=}
 echo $serverPort
