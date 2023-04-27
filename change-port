@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Get the server port number from my settings file
-serverPort=8081
+serverPort=80
 echo $serverPort
 
 ##Get just the port number from the settings variable I just grabbed
