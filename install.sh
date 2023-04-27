@@ -93,7 +93,31 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/local/sbin/nethogs' | sudo EDITOR='te
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/iptables' | sudo EDITOR='tee -a' visudo &
 wait
+echo -e "\nPlease input Panel admin Port."
+printf "Default port 8081: "
+read porttmp
+if [[ -n "${porttmp}" ]]; then
+#Get the server port number from my settings file
+serverPort=${porttmp}
+echo $serverPort
+else
+serverPort=80
+echo $serverPort
+fi
+##Get just the port number from the settings variable I just grabbed
+serverPort=${serverPort##*=}
+echo $serverPort
 
+##Remove the "" marks from the variable as they will not be needed
+serverPort=${serverPort//'"'}
+echo $serverPort
+
+##Replace 'Virtual Hosts' and 'List' entries with the new port number
+sudo  sed -i.bak 's/.*NameVirtualHost.*/NameVirtualHost *:'$serverPort'/' /etc/apache2/ports.conf 
+sudo  sed -i.bak 's/.*Listen.*/Listen '$serverPort'/' /etc/apache2/ports.conf
+wait
+##Restart the apache server to use new port
+sudo /etc/init.d/apache2 reload
 sudo service apache2 restart
 chown www-data:www-data /var/www/html/cp/* &
 wait
