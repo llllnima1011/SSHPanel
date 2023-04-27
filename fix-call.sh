@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 clear
 udpport=7300
 echo -e "\ninput UDPGW Port :"
@@ -9,7 +8,6 @@ read udpport
 
 apt update -y
 apt install git cmake -y
-
 
 git clone https://github.com/ambrop72/badvpn.git /root/badvpn
 
