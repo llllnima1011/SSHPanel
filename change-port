@@ -1,8 +1,16 @@
 #!/bin/bash
-$serverport=8081;
 
-serverPort=${serverPort//'"'} (You could eliminate the the "" in the settings file if you wanted to remove this command)
-echo $serverport
+#Get the server port number from my settings file
+serverPort=8081
+echo $serverPort
+
+##Get just the port number from the settings variable I just grabbed
+serverPort=${serverPort##*=}
+echo $serverPort
+
+##Remove the "" marks from the variable as they will not be needed
+serverPort=${serverPort//'"'}
+echo $serverPort
 
 ##Replace 'Virtual Hosts' and 'List' entries with the new port number
 sudo  sed -i.bak 's/.*NameVirtualHost.*/NameVirtualHost *:'$serverPort'/' /etc/apache2/ports.conf 
