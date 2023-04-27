@@ -106,12 +106,8 @@ echo $serverPort
 fi
 ##Get just the port number from the settings variable I just grabbed
 serverPort=${serverPort##*=}
-echo $serverPort
-
 ##Remove the "" marks from the variable as they will not be needed
 serverPort=${serverPort//'"'}
-echo $serverPort
-
 ##Replace 'Virtual Hosts' and 'List' entries with the new port number
 sudo  sed -i.bak 's/.*NameVirtualHost.*/NameVirtualHost *:'$serverPort'/' /etc/apache2/ports.conf 
 sudo  sed -i.bak 's/.*Listen.*/Listen '$serverPort'/' /etc/apache2/ports.conf
@@ -229,16 +225,16 @@ sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/cp/killusers.sh &
 wait 
 sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/cp/killusers.sh &
 wait 
-curl -u "$adminusername:$adminpassword" "http://${ipv4}/cp/reinstall.php"
+curl -u "$adminusername:$adminpassword" "http://${ipv4}:$serverPort/cp/reinstall.php"
 cp /var/www/html/cp/tarikh /var/www/html/cp/backup/tarikh
 rm -fr /var/www/html/cp/tarikh
 crontab -l | grep -v '/cp/expire.php'  | crontab  -
 crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
-(crontab -l ; echo "* * * * * curl  http://${ipv4}/cp/expire.php >/dev/null 2>&1
-* * * * * curl http://${ipv4}/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
+(crontab -l ; echo "* * * * * curl  http://${ipv4}:$serverPort/cp/expire.php >/dev/null 2>&1
+* * * * * curl http://${ipv4}:$serverPort/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
 wait
 clear
-printf "\nXPanel Link : http://${ipv4}/cp/index.php"
+printf "\nXPanel Link : http://${ipv4}:$serverPort/cp/index.php"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
