@@ -48,7 +48,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Ma
 <br>
 <br>
 
-##جهت بهینه سازی سرور دستور زیر را در ترمینال وارد کنید
+## بهینه سازی سرور
 **(جهت حذف تنظیمات بعد از نصب مجدد دستور را اجرا نمائید مرحله حذف نمایش داده می شود)**
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/TCP-Tweaker --ipv4)
