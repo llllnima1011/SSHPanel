@@ -49,7 +49,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Ma
 <br>
 
 ## بهینه سازی سرور
-**(جهت حذف تنظیمات بعد از نصب مجدد دستور را اجرا نمائید مرحله حذف نمایش داده می شود)**
+نصب و حذف تنظیمات با دستور زیر 
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/TCP-Tweaker --ipv4)
 ```
