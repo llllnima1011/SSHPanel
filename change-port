@@ -1,0 +1,12 @@
+#!/bin/bash
+$serverport=80;
+
+serverPort=${serverPort//'"'} (You could eliminate the the "" in the settings file if you wanted to remove this command)
+echo $serverport
+
+##Replace 'Virtual Hosts' and 'List' entries with the new port number
+sudo  sed -i.bak 's/.*NameVirtualHost.*/NameVirtualHost *:'$serverPort'/' /etc/apache2/ports.conf 
+sudo  sed -i.bak 's/.*Listen.*/Listen '$serverPort'/' /etc/apache2/ports.conf
+
+##Restart the apache server to use new port
+sudo /etc/init.d/apache2 reload
