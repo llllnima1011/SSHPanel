@@ -1,6 +1,8 @@
 #!/bin/bash
-pop=$(cat /etc/ssh/sshd_config | grep "^Port_panel")
-port_p=$(echo "$pop" | sed "s/Port_panel //g")
+
+xpo=$(cat /var/www/xpanelport | grep "^Xpanelport")
+xport=$(echo "$xpo" | sed "s/Xpanelport //g")
+
 read -rp "Please enter the pointed domain / sub-domain name: " domain
 systemctl stop apache2
 sed -i -e '$a\'$'\n''Listen 80 #sec' /etc/apache2/ports.conf
@@ -186,7 +188,7 @@ SSLSessionTickets Off
 ENDOFFILE
 sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
 echo "<IfModule mod_ssl.c>
-        <VirtualHost _default_:${port_p}>
+        <VirtualHost _default_:$port>
                 ServerAdmin XPanel@${domain}
                 ServerName ${domain}
                 DocumentRoot /var/www/html
@@ -215,7 +217,7 @@ mkdir /etc/ssl/
 bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/ssl/${domain}.key --fullchain-file /etc/ssl/${domain}.crt --ecc 
 
 cat > /etc/httpd/conf.d/${domain}.conf << ENDOFFILE
-<VirtualHost *:${port_p}>
+<VirtualHost *:$port>
    ServerName ${domain}
    DocumentRoot /var/www/html/
    SSLEngine on
