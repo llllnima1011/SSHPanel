@@ -245,5 +245,7 @@ SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
 ENDOFFILE
 sudo apachectl configtest
 systemctl restart httpd
+wait
 fi
+clear
 printf "\nHTTPS Address : https://${domain}:$xport/cp \n"
