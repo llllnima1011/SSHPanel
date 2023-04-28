@@ -184,9 +184,10 @@ SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
 SSLSessionTickets Off
 ENDOFFILE
 sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
-
+pop=$(cat /etc/ssh/sshd_config | grep "^Port_panel")
+port_p=$(echo "$pop" | sed "s/Port_panel //g")
 echo "<IfModule mod_ssl.c>
-        <VirtualHost _default_:443>
+        <VirtualHost _default_:$port_p>
                 ServerAdmin XPanel@${domain}
                 ServerName ${domain}
                 DocumentRoot /var/www/html
