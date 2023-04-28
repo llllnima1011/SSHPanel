@@ -244,9 +244,10 @@ SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
 ENDOFFILE
 sudo apachectl configtest
 systemctl restart httpd
+fi
+clear
 sed -i '/Listen 80 #sec/d' /etc/apache2/ports.conf
 sudo service apache2 restart
 sudo /etc/init.d/apache2 reload
-fi
-clear
+wait 
 printf "\nHTTPS Address : https://${domain}:$xport/cp \n"
