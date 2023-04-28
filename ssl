@@ -1,5 +1,6 @@
 #!/bin/bash
-
+pop=$(cat /etc/ssh/sshd_config | grep "^Port_panel")
+port_p=$(echo "$pop" | sed "s/Port_panel //g")
 read -rp "Please enter the pointed domain / sub-domain name: " domain
 systemctl stop apache2
 sed -i -e '$a\'$'\n''Listen 80 #sec' /etc/apache2/ports.conf
@@ -184,10 +185,8 @@ SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
 SSLSessionTickets Off
 ENDOFFILE
 sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
-pop=$(cat /etc/ssh/sshd_config | grep "^Port_panel")
-port_p=$(echo "$pop" | sed "s/Port_panel //g")
 echo "<IfModule mod_ssl.c>
-        <VirtualHost _default_:$port_p>
+        <VirtualHost _default_:${port_p}>
                 ServerAdmin XPanel@${domain}
                 ServerName ${domain}
                 DocumentRoot /var/www/html
@@ -216,7 +215,7 @@ mkdir /etc/ssl/
 bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/ssl/${domain}.key --fullchain-file /etc/ssl/${domain}.crt --ecc 
 
 cat > /etc/httpd/conf.d/${domain}.conf << ENDOFFILE
-<VirtualHost *:443>
+<VirtualHost *:${port_p}>
    ServerName ${domain}
    DocumentRoot /var/www/html/
    SSLEngine on
@@ -248,4 +247,4 @@ sudo service apache2 restart
 systemctl restart httpd
 fi
 clear
-printf "\nHTTPS Address : https://${domain}/cp \n"
+printf "\nHTTPS Address : https://${domain}:${port_p}/cp \n"
