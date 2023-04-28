@@ -242,8 +242,8 @@ SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
 ENDOFFILE
 sudo apachectl configtest
 sed  '/Listen 80 #sec/d' /etc/apache2/ports.conf
-sudo /etc/init.d/apache2 reload
 sudo service apache2 restart
+sudo /etc/init.d/apache2 reload
 systemctl restart httpd
 fi
 clear
