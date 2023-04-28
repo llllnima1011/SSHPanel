@@ -188,7 +188,7 @@ SSLSessionTickets Off
 ENDOFFILE
 sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
 echo "<IfModule mod_ssl.c>
-        <VirtualHost _default_:$port>
+        <VirtualHost _default_:$xport>
                 ServerAdmin XPanel@${domain}
                 ServerName ${domain}
                 DocumentRoot /var/www/html
@@ -217,7 +217,7 @@ mkdir /etc/ssl/
 bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/ssl/${domain}.key --fullchain-file /etc/ssl/${domain}.crt --ecc 
 
 cat > /etc/httpd/conf.d/${domain}.conf << ENDOFFILE
-<VirtualHost *:$port>
+<VirtualHost *:$xport>
    ServerName ${domain}
    DocumentRoot /var/www/html/
    SSLEngine on
