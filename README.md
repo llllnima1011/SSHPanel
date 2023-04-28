@@ -54,6 +54,17 @@ bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Ma
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/TCP-Tweaker --ipv4)
 ```
+## فعال سازی SSL
+```
+https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/ssl
+```
+با استفاده از دستور بالا می توانید SSL را روی پنل نصب نمائید. به نکات زیر توجه کنید <br>
+1- حتما قبل از نصب SSL پنل را بروز کنید<<br>
+2- از هیچ دستور دیگری برای فعال سازی SSL استفاده نکنید<br>
+3- دامنه یا ساب دامنه را به IP سرور متصل کنید <br>
+4- دستور بالا را در ترمینال وارد کنید و مراحل نصب را پیش بروید<br>
+SSL بر روی پورتی که روی پنل تعریف کرده اید نصب فعال شد. <br>
+
 <picture>
 <img alt="XPanel" src="https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/xp1.jpg">
 </picture>
