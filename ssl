@@ -243,10 +243,10 @@ SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
 # SSLSessionTickets Off
 ENDOFFILE
 sudo apachectl configtest
-sed  '/Listen 80 #sec/d' /etc/apache2/ports.conf
+systemctl restart httpd
+sed -i '/Listen 80 #sec/d' /etc/apache2/ports.conf
 sudo service apache2 restart
 sudo /etc/init.d/apache2 reload
-systemctl restart httpd
 fi
 clear
 printf "\nHTTPS Address : https://${domain}:$xport/cp \n"
