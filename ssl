@@ -249,4 +249,4 @@ sudo /etc/init.d/apache2 reload
 systemctl restart httpd
 fi
 clear
-printf "\nHTTPS Address : https://${domain}:${port_p}/cp \n"
+printf "\nHTTPS Address : https://${domain}:$xport/cp \n"
