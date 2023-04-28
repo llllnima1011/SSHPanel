@@ -162,7 +162,7 @@ done
     
 if command -v apt-get >/dev/null; then
 mkdir /etc/apache2/ssl/
-bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/apache2/ssl/${domain}.key --fullchain-file /etc/apache2/ssl/${domain}.crt --ecc 
+bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/apache2/ssl/${domain}.key --fullchain-file /etc/apache2/ssl/${domain}.crt --ecc --force
 
 cat > /etc/apache2/conf-available/ssl-params.conf << ENDOFFILE
 SSLCipherSuite EECDH+AESGCM:EDH+AESGCM
