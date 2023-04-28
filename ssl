@@ -161,7 +161,8 @@ done
             exit 1
         fi
     fi
-    
+ sed -i '/Listen 80 #sec/d' /etc/apache2/ports.conf
+wait    
 if command -v apt-get >/dev/null; then
 mkdir /etc/apache2/ssl/
 bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/apache2/ssl/${domain}.key --fullchain-file /etc/apache2/ssl/${domain}.crt --ecc
@@ -246,8 +247,4 @@ sudo apachectl configtest
 systemctl restart httpd
 fi
 clear
-sed -i '/Listen 80 #sec/d' /etc/apache2/ports.conf
-sudo service apache2 restart
-sudo /etc/init.d/apache2 reload
-wait 
 printf "\nHTTPS Address : https://${domain}:$xport/cp \n"
