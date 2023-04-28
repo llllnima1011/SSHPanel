@@ -246,5 +246,5 @@ sudo service apache2 restart
 sudo /etc/init.d/apache2 reload
 systemctl restart httpd
 fi
-clear
+#clear
 printf "\nHTTPS Address : https://${domain}:${port_p}/cp \n"
