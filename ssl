@@ -244,4 +244,4 @@ sudo apachectl configtest
 systemctl restart httpd
 fi
 clear
-printf "\nHTTPS Address : https://${domain} \n"
+printf "\nHTTPS Address : https://${domain}/cp \n"
