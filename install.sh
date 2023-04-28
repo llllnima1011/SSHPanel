@@ -109,8 +109,7 @@ serverPort=${serverPort##*=}
 ##Remove the "" marks from the variable as they will not be needed
 serverPort=${serverPort//'"'}
 ##Replace 'Virtual Hosts' and 'List' entries with the new port number
-sudo  sed -i.bak 's/.*NameVirtualHost.*/NameVirtualHost *:'$serverPort'/' /etc/apache2/ports.conf 
-sudo  sed -i.bak 's/.*Listen.*/Listen '$serverPort'/' /etc/apache2/ports.conf
+sudo  sed -i.bak '/Listen/{s/\([0-9]\+\)/'$serverPort'/; :a;n; ba}' /etc/apache2/ports.conf 
 wait
 ##Restart the apache server to use new port
 sudo /etc/init.d/apache2 reload
