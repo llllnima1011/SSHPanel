@@ -2,6 +2,7 @@
 
 read -rp "Please enter the pointed domain / sub-domain name: " domain
 systemctl stop apache2
+sed -i -e '$a\'$'\n''Listen 80 #sec' /etc/apache2/ports.conf
 
 RED="\033[31m"
 GREEN="\033[32m"
@@ -202,7 +203,7 @@ echo "<IfModule mod_ssl.c>
                 </Directory>
         </VirtualHost>
 </IfModule>" > /etc/apache2/sites-available/default-ssl.conf
-
+sed  '/Listen 80 #sec/d' /etc/apache2/ports.conf
 sudo a2enmod ssl
 sudo a2enmod headers
 sudo a2ensite default-ssl
