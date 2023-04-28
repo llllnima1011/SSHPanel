@@ -111,6 +111,8 @@ serverPort=${serverPort//'"'}
 ##Replace 'Virtual Hosts' and 'List' entries with the new port number
 sudo  sed -i.bak 's/.*NameVirtualHost.*/NameVirtualHost *:'$serverPort'/' /etc/apache2/ports.conf 
 sudo  sed -i.bak '/Listen/{s/\([0-9]\+\)/'$serverPort'/; :a;n; ba}' /etc/apache2/ports.conf
+echo '#Xpanel' > /var/www/xpanelport
+sudo sed -i -e '$a\'$'\n''Xpanelport '$serverPort /var/www/xpanelport
 wait
 ##Restart the apache server to use new port
 sudo /etc/init.d/apache2 reload
