@@ -243,12 +243,12 @@ cp /var/www/html/cp/tarikh /var/www/html/cp/backup/tarikh
 rm -fr /var/www/html/cp/tarikh
 crontab -l | grep -v '/cp/expire.php'  | crontab  -
 crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
-(crontab -l ; echo "* * * * * wget  http://${defdomain}:$serverPort/cp/expire.php >/dev/null 2>&1
-* * * * * wget http://${defdomain}:$serverPort/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
+(crontab -l ; echo "* * * * * wget  $protcohttp://${defdomain}:$serverPort/cp/expire.php >/dev/null 2>&1
+* * * * * wget $protcohttp://${defdomain}:$serverPort/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
 wait
 clear
 
-printf "\nXPanel Link : ${protcohttp}://${defdomain}:$serverPort/cp/index.php"
+printf "\nXPanel Link : $protcohttp://${defdomain}:$serverPort/cp/index.php"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
