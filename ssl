@@ -246,6 +246,13 @@ ENDOFFILE
 sudo apachectl configtest
 systemctl restart httpd
 wait
+sudo sed -i -e '$a\'$'\n''DomainPanel '$domain /var/www/xpanelport
+wait
+crontab -l | grep -v '/cp/expire.php'  | crontab  -
+crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
+(crontab -l ; echo "* * * * * curl  https://${$domain}:$serverPort/cp/expire.php >/dev/null 2>&1
+* * * * * curl https://${$domain}:$serverPort/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
+wait
 fi
 clear
 printf "\nHTTPS Address : https://${domain}:$xport/cp \n"
