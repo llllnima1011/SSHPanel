@@ -250,12 +250,8 @@ systemctl restart httpd
 wait
 fi
 clear
-if [ "$xpdomain" != "${domain}" ]; then
-sed -i 's/$xpdomain/${domain}/' /var/www/xpanelport
-fi
-if [ "$xpdomain" != "" ]; then
-sed -i -e '$a\'$'\n''DomainPanel '${domain} /var/www/xpanelport
-fi
+echo '#Domain' > /var/www/xpanelport
+sudo sed -i -e '$a\'$'\n''DomainPanel '$domain /var/www/xpanelport
 crontab -l | grep -v '/cp/expire.php'  | crontab  -
 crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
 (crontab -l ; echo "* * * * * curl  https://${domain}:$xport/cp/expire.php >/dev/null 2>&1
