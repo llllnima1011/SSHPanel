@@ -72,7 +72,7 @@ done
         acmeEmail=$autoEmail@gmail.com
         yellow "Skipped entering email, using a fake email address: $acmeEmail"
     
-    curl https://get.acme.sh | sh -s email=$acmeEmail
+    curl https://get.acme.sh | sh -s email=$acmeEmail --force
     source ~/.bashrc
     bash ~/.acme.sh/acme.sh --upgrade --auto-upgrade --force
     bash ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt --force
