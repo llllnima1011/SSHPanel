@@ -5,6 +5,14 @@ port=$(echo "$po" | sed "s/Port //g")
 adminuser=$(mysql -N -e "use XPanel; select adminuser from setting where id='1';")
 adminpass=$(mysql -N -e "use XPanel; select adminpassword from setting where id='1';")
 clear
+domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
+dmp=$(echo "$domainp" | sed "s/DomainPanel //g")
+if [ "$dmp" != "" ]; then
+defdomain=$dmp
+else
+defdomain=$(curl rabin.cf)
+fi
+fi
 if [ "$adminuser" != "" ]; then
 adminusername=$adminuser
 adminpassword=$adminpass
@@ -233,11 +241,11 @@ cp /var/www/html/cp/tarikh /var/www/html/cp/backup/tarikh
 rm -fr /var/www/html/cp/tarikh
 crontab -l | grep -v '/cp/expire.php'  | crontab  -
 crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
-(crontab -l ; echo "* * * * * curl  http://${ipv4}:$serverPort/cp/expire.php >/dev/null 2>&1
-* * * * * curl http://${ipv4}:$serverPort/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
+(crontab -l ; echo "* * * * * curl  http://${defdomain}:$serverPort/cp/expire.php >/dev/null 2>&1
+* * * * * curl http://${defdomain}:$serverPort/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
 wait
 clear
-printf "\nXPanel Link : http://${ipv4}:$serverPort/cp/index.php"
+printf "\nXPanel Link : http://${defdomain}:$serverPort/cp/index.php"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
