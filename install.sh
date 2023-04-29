@@ -123,9 +123,9 @@ serverPort=${serverPort//'"'}
 sudo  sed -i.bak 's/.*NameVirtualHost.*/NameVirtualHost *:'$serverPort'/' /etc/apache2/ports.conf 
 sudo  sed -i.bak '/Listen/{s/\([0-9]\+\)/'$serverPort'/; :a;n; ba}' /etc/apache2/ports.conf
 echo '#Xpanel' > /var/www/xpanelport
-sudo sed -i -e '$a\'$'\n'Xpanelport '$serverPort /var/www/xpanelport
+sudo sed -i -e '$a\'$'\n''Xpanelport '$serverPort /var/www/xpanelport
 if [ "$dmp" != "" ]; then
-sudo sed -i -e '$a\'$'\n'DomainPanel '$dmp /var/www/xpanelport
+sudo sed -i -e '$a\'$'\n''DomainPanel '$dmp /var/www/xpanelport
 fi
 wait
 ##Restart the apache server to use new port
