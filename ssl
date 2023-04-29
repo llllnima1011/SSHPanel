@@ -2,10 +2,8 @@
 
 xpo=$(cat /var/www/xpanelport | grep "^Xpanelport")
 xport=$(echo "$xpo" | sed "s/Xpanelport //g")
-
 read -rp "Please enter the pointed domain / sub-domain name: " domain
 systemctl stop apache2
-sed -i -e '$a\'$'\n''Listen 80 #sec' /etc/apache2/ports.conf
 
 RED="\033[31m"
 GREEN="\033[32m"
@@ -53,6 +51,8 @@ done
 
 [[ -z $SYSTEM ]] && red "Does not support the current OS, please use a supported one" && exit 1
 
+
+
     if [[ ! $SYSTEM == "CentOS" ]]; then
         ${PACKAGE_UPDATE[int]}
     fi
@@ -71,7 +71,7 @@ done
         autoEmail=$(date +%s%N | md5sum | cut -c 1-16)
         acmeEmail=$autoEmail@gmail.com
         yellow "Skipped entering email, using a fake email address: $acmeEmail"
-        
+    
     curl https://get.acme.sh | sh -s email=$acmeEmail
     source ~/.bashrc
     bash ~/.acme.sh/acme.sh --upgrade --auto-upgrade
@@ -137,10 +137,10 @@ done
     domainIP=$(curl -sm8 ipget.net/?ip="${domain}")
     
     if [[ $domainIP == $ipv6 ]]; then
-        bash ~/.acme.sh/acme.sh --issue -d ${domain} --standalone -k ec-256 --listen-v6 --insecure --force
+        bash ~/.acme.sh/acme.sh --issue -d ${domain} --standalone -k ec-256 --listen-v6 --insecure
     fi
     if [[ $domainIP == $ipv4 ]]; then
-        bash ~/.acme.sh/acme.sh --issue -d ${domain} --standalone -k ec-256 --insecure --force
+        bash ~/.acme.sh/acme.sh --issue -d ${domain} --standalone -k ec-256 --insecure
     fi
     
     if [[ -n $(echo $domainIP | grep nginx) ]]; then
@@ -159,11 +159,13 @@ done
             exit 1
         fi
     fi
- sed -i '/Listen 80 #sec/d' /etc/apache2/ports.conf
-wait    
+    
+
+
+
 if command -v apt-get >/dev/null; then
 mkdir /etc/apache2/ssl/
-bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/apache2/ssl/${domain}.key --fullchain-file /etc/apache2/ssl/${domain}.crt --ecc
+bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/apache2/ssl/${domain}.key --fullchain-file /etc/apache2/ssl/${domain}.crt --ecc 
 
 cat > /etc/apache2/conf-available/ssl-params.conf << ENDOFFILE
 SSLCipherSuite EECDH+AESGCM:EDH+AESGCM
