@@ -9,10 +9,10 @@ domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
 dmp=$(echo "$domainp" | sed "s/DomainPanel //g")
 if [ "$dmp" != "" ]; then
 defdomain=$dmp
-protcohttp="https"
+protcohttp=https
 else
 defdomain=$(curl rabin.cf)
-protcohttp="https"
+protcohttp=http
 fi
 
 if [ "$adminuser" != "" ]; then
