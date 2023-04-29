@@ -12,7 +12,7 @@ defdomain=$dmp
 else
 defdomain=$(curl rabin.cf)
 fi
-fi
+
 if [ "$adminuser" != "" ]; then
 adminusername=$adminuser
 adminpassword=$adminpass
