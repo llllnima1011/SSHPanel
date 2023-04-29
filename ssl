@@ -72,10 +72,10 @@ done
         acmeEmail=$autoEmail@gmail.com
         yellow "Skipped entering email, using a fake email address: $acmeEmail"
     
-    curl https://get.acme.sh | sh -s email=$acmeEmail --force
+    curl https://get.acme.sh | sh -s email=$acmeEmail
     source ~/.bashrc
-    bash ~/.acme.sh/acme.sh --upgrade --auto-upgrade --force
-    bash ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt --force
+    bash ~/.acme.sh/acme.sh --upgrade --auto-upgrade
+    bash ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
     if [[ -n $(~/.acme.sh/acme.sh -v 2>/dev/null) ]]; then
         green "ACME.SH certificate application script installed successfully!"
     else
@@ -137,10 +137,10 @@ done
     domainIP=$(curl -sm8 ipget.net/?ip="${domain}")
     
     if [[ $domainIP == $ipv6 ]]; then
-        bash ~/.acme.sh/acme.sh --issue -d ${domain} --standalone -k ec-256 --listen-v6 --insecure
+        bash ~/.acme.sh/acme.sh --issue -d ${domain} --standalone -k ec-256 --listen-v6 --insecure --force
     fi
     if [[ $domainIP == $ipv4 ]]; then
-        bash ~/.acme.sh/acme.sh --issue -d ${domain} --standalone -k ec-256 --insecure
+        bash ~/.acme.sh/acme.sh --issue -d ${domain} --standalone -k ec-256 --insecure --force
     fi
     
     if [[ -n $(echo $domainIP | grep nginx) ]]; then
