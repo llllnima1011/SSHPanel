@@ -124,9 +124,6 @@ sudo  sed -i.bak 's/.*NameVirtualHost.*/NameVirtualHost *:'$serverPort'/' /etc/a
 sudo  sed -i.bak '/Listen/{s/\([0-9]\+\)/'$serverPort'/; :a;n; ba}' /etc/apache2/ports.conf
 echo '#Xpanel' > /var/www/xpanelport
 sudo sed -i -e '$a\'$'\n''Xpanelport '$serverPort /var/www/xpanelport
-if [ "$dmp" != "" ]; then
-sudo sed -i -e '$a\'$'\n'DomainPanel '$dmp /var/www/xpanelport
-fi
 wait
 ##Restart the apache server to use new port
 sudo /etc/init.d/apache2 reload
@@ -250,7 +247,7 @@ crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
 * * * * * wget $protcohttp://${defdomain}:$serverPort/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
 wait
 clear
-
+sed -i -e '$a\'$'\n''DomainPanel '$domain /var/www/xpanelport
 printf "\nXPanel Link : $protcohttp://${defdomain}:$serverPort/cp/index.php"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
