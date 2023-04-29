@@ -255,7 +255,6 @@ sed -i 's/$xpdomain/$domain/' /var/www/xpanelport
 else
 sudo sed -i -e '$a\'$'\n''DomainPanel '$domain /var/www/xpanelport
 fi
-fi
 crontab -l | grep -v '/cp/expire.php'  | crontab  -
 crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
 (crontab -l ; echo "* * * * * wget  https://${domain}:$xport/cp/expire.php >/dev/null 2>&1
