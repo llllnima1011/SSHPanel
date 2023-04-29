@@ -1,8 +1,9 @@
 #!/bin/bash
 
-xp=$(cat /var/www/xpanelport | grep "^Xpanelport")
-xport=$(echo "$xp" | sed "s/Xpanelport //g")
-xpdomain=$(echo "$xp" | sed "s/DomainPanel //g")
+xpo=$(cat /var/www/xpanelport | grep "^Xpanelport")
+xpd=$(cat /var/www/xpanelport | grep "^DomainPanel")
+xport=$(echo "$xpo" | sed "s/Xpanelport //g")
+xpdomain=$(echo "$xpd" | sed "s/DomainPanel //g")
 read -rp "Please enter the pointed domain / sub-domain name: " domain
 systemctl stop apache2
 
