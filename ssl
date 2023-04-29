@@ -74,8 +74,8 @@ done
     
     curl https://get.acme.sh | sh -s email=$acmeEmail
     source ~/.bashrc
-    bash ~/.acme.sh/acme.sh --upgrade --auto-upgrade
-    bash ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
+    bash ~/.acme.sh/acme.sh --upgrade --auto-upgrade --force
+    bash ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt --force
     if [[ -n $(~/.acme.sh/acme.sh -v 2>/dev/null) ]]; then
         green "ACME.SH certificate application script installed successfully!"
     else
