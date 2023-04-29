@@ -250,7 +250,7 @@ wait
 fi
 clear
 if [ "$xpdomain" != "${domain}" ]; then
-sed -i 's/'$xpdomain'/'${domain}'/' /var/www/xpanelport
+sed -i 's/$xpdomain/${domain}/' /var/www/xpanelport
 fi
 if [ "$xpdomain" != "" ]; then
 sed -i -e '$a\'$'\n''DomainPanel '${domain} /var/www/xpanelport
