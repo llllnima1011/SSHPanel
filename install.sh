@@ -24,6 +24,11 @@ if [[ -n "${passwordtmp}" ]]; then
     adminpassword=${passwordtmp}
 fi
 fi
+domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
+if [ "$DMP" != "" ]; then
+DefDomain=$(echo "$domainp" | sed "s/DomainPanel //g")
+else
+DefDomain=$(curl rabin.cf)
 ipv4=$(curl rabin.cf)
 sudo sed -i '/www-data/d' /etc/sudoers &
 wait
@@ -227,16 +232,16 @@ sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/cp/killusers.sh &
 wait 
 sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/cp/killusers.sh &
 wait 
-curl -u "$adminusername:$adminpassword" "http://${ipv4}:$serverPort/cp/reinstall.php"
+curl -u "$adminusername:$adminpassword" "http://${DefDomain}:$serverPort/cp/reinstall.php"
 cp /var/www/html/cp/tarikh /var/www/html/cp/backup/tarikh
 rm -fr /var/www/html/cp/tarikh
 crontab -l | grep -v '/cp/expire.php'  | crontab  -
 crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
-(crontab -l ; echo "* * * * * curl  http://${ipv4}:$serverPort/cp/expire.php >/dev/null 2>&1
-* * * * * curl http://${ipv4}:$serverPort/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
+(crontab -l ; echo "* * * * * curl  http://${DefDomain}:$serverPort/cp/expire.php >/dev/null 2>&1
+* * * * * curl http://${DefDomain}:$serverPort/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
 wait
 clear
-printf "\nXPanel Link : http://${ipv4}:$serverPort/cp/index.php"
+printf "\nXPanel Link : http://${DefDomain}:$serverPort/cp/index.php"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
