@@ -25,8 +25,9 @@ if [[ -n "${passwordtmp}" ]]; then
 fi
 fi
 domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
+DMP=$(echo "$domainp" | sed "s/DomainPanel //g")
 if [ "$DMP" != "" ]; then
-DefDomain=$(echo "$domainp" | sed "s/DomainPanel //g")
+DefDomain=$DMP
 else
 DefDomain=$(curl rabin.cf)
 ipv4=$(curl rabin.cf)
