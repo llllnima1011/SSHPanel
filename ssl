@@ -258,6 +258,6 @@ fi
 fi
 crontab -l | grep -v '/cp/expire.php'  | crontab  -
 crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
-(crontab -l ; echo "* * * * * curl  https://${domain}:$xport/cp/expire.php >/dev/null 2>&1
-* * * * * curl https://${domain}:$xport/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
+(crontab -l ; echo "* * * * * wget  https://${domain}:$xport/cp/expire.php >/dev/null 2>&1
+* * * * * wget https://${domain}:$xport/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
 printf "\nHTTPS Address : https://${domain}:$xport/cp \n"
