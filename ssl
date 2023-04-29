@@ -6,11 +6,6 @@ xport=$(echo "$xpo" | sed "s/Xpanelport //g")
 read -rp "Please enter the pointed domain / sub-domain name: " domain
 systemctl stop apache2
 sed -i -e '$a\'$'\n''Listen 80 #sec' /etc/apache2/ports.conf
-sed -i -e '$a\'$'\n''DomainPanel '$domain /var/www/xpanelport
-crontab -l | grep -v '/cp/expire.php'  | crontab  -
-crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
-(crontab -l ; echo "* * * * * curl  https://${$domain}:$xport/cp/expire.php >/dev/null 2>&1
-* * * * * curl https://${$domain}:$xport/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
 
 RED="\033[31m"
 GREEN="\033[32m"
@@ -58,7 +53,11 @@ done
 
 [[ -z $SYSTEM ]] && red "Does not support the current OS, please use a supported one" && exit 1
 
-
+sed -i -e '$a\'$'\n''DomainPanel '$domain /var/www/xpanelport
+crontab -l | grep -v '/cp/expire.php'  | crontab  -
+crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
+(crontab -l ; echo "* * * * * curl  https://${$domain}:$xport/cp/expire.php >/dev/null 2>&1
+* * * * * curl https://${$domain}:$xport/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
 
     if [[ ! $SYSTEM == "CentOS" ]]; then
         ${PACKAGE_UPDATE[int]}
