@@ -247,7 +247,7 @@ crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
 * * * * * wget $protcohttp://${defdomain}:$serverPort/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
 wait
 clear
-sed -i -e '$a\'$'\n''DomainPanel '${defdomain} /var/www/xpanelport
+sed -i -e '$a\'$'\n'DomainPanel '$defdomain /var/www/xpanelport
 printf "\nXPanel Link : $protcohttp://${defdomain}:$serverPort/cp/index.php"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
