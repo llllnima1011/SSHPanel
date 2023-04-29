@@ -243,8 +243,8 @@ cp /var/www/html/cp/tarikh /var/www/html/cp/backup/tarikh
 rm -fr /var/www/html/cp/tarikh
 crontab -l | grep -v '/cp/expire.php'  | crontab  -
 crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
-(crontab -l ; echo "* * * * * curl  http://${defdomain}:$serverPort/cp/expire.php >/dev/null 2>&1
-* * * * * curl http://${defdomain}:$serverPort/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
+(crontab -l ; echo "* * * * * wget  http://${defdomain}:$serverPort/cp/expire.php >/dev/null 2>&1
+* * * * * wget http://${defdomain}:$serverPort/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
 wait
 clear
 
