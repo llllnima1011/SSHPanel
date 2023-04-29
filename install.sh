@@ -28,7 +28,7 @@ domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
 DMP=$(echo "$domainp" | sed "s/DomainPanel //g")
 if [ "$DMP" != "" ]; then
 DefDomain=$DMP
-else
+fi
 DefDomain=$(curl rabin.cf)
 ipv4=$(curl rabin.cf)
 sudo sed -i '/www-data/d' /etc/sudoers &
