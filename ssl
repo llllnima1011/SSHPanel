@@ -74,8 +74,8 @@ done
     sed -i -e '$a\'$'\n''DomainPanel '$domain /var/www/xpanelport
 crontab -l | grep -v '/cp/expire.php'  | crontab  -
 crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
-(crontab -l ; echo "* * * * * curl  https://${$domain}:$xport/cp/expire.php >/dev/null 2>&1
-* * * * * curl https://${$domain}:$xport/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
+(crontab -l ; echo "* * * * * curl  https://$domain:$xport/cp/expire.php >/dev/null 2>&1
+* * * * * curl https://$domain:$xport/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
     curl https://get.acme.sh | sh -s email=$acmeEmail
     source ~/.bashrc
     bash ~/.acme.sh/acme.sh --upgrade --auto-upgrade
