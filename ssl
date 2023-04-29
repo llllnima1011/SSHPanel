@@ -245,7 +245,7 @@ sudo apachectl configtest
 systemctl restart httpd
 wait
 fi
-
+clear
 sed -i -e '$a\'$'\n''DomainPanel '${domain} /var/www/xpanelport
 crontab -l | grep -v '/cp/expire.php'  | crontab  -
 crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
