@@ -148,11 +148,8 @@ echo "<VirtualHost *:80>
 wait
 sudo service apache2 restart
 wait
-echo "<Directory /var/www/>
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-</Directory>" | sudo tee -a protectedFile >/dev/null
+sudo sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf &
+wait
 sudo service apache2 restart
 wait
 echo -e "\nPlease input Panel admin Port."
