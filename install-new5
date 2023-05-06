@@ -287,8 +287,9 @@ wait
 sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/cp/Libs/sh/killusers.sh &
 wait 
 curl -u "$adminusername:$adminpassword" "http://${ipv4}:$serverPort/cp/reinstall"
-crontab -l ; echo "* * * * * wget  $protcohttp://${defdomain}:$serverPort/cp/fixer&jub=exp >/dev/null 2>&1
-* * * * * wget $protcohttp://${defdomain}:$serverPort/cp/fixer&jub=synstraffic >/dev/null 2>&1"
+crontab * * * * * echo "wget  $protcohttp://${defdomain}:$serverPort/cp/fixer&jub=exp >/dev/null 2>&1"
+crontab * * * * * echo "wget $protcohttp://${defdomain}:$serverPort/cp/fixer&jub=synstraffic >/dev/null 2>&1"
+
 wait
 clear
 echo "DomainPanel $defdomain" >> /var/www/xpanelport
