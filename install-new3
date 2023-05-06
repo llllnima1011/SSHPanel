@@ -274,7 +274,7 @@ mysql -e "GRANT ALL ON *.* TO '${adminusername}'@'localhost';" &
 wait
 sudo sed -i "s/22/$port/g" /var/www/html/cp/Config/database.php &
 wait 
-sudo sed -i "s/address/$ipv4/g" /var/www/html/cp/Config/define.php &
+sudo sed -i "s/address/'http://$ipv4/cp/'/g" /var/www/html/cp/Config/define.php &
 wait 
 sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/cp/Config/database.php &
 wait 
