@@ -47,7 +47,7 @@ apt remove php8* -y
 sudo apt -y install software-properties-common
 
 sudo add-apt-repository ppa:ondrej/php -y
-
+sudo apt-get install postfix
 apt install apache2 php7.4 zip unzip net-tools curl mariadb-server -y
 apt install php7.4-mysql php7.4-xml php7.4-curl -y
 link=$(sudo curl -Ls "https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
@@ -103,6 +103,54 @@ wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/local/sbin/nethogs' | sudo EDITOR='tee -a' visudo &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/iptables' | sudo EDITOR='tee -a' visudo &
+wait
+sudo a2enmod rewrite
+wait
+sudo service apache2 restart
+wait
+sudo systemctl restart apache2
+wait
+echo "<VirtualHost *:80>
+        # The ServerName directive sets the request scheme, hostname and port that
+        # the server uses to identify itself. This is used when creating
+        # redirection URLs. In the context of virtual hosts, the ServerName
+        # specifies what hostname must appear in the request's Host: header to
+        # match this virtual host. For the default virtual host (this file) this
+        # value is not decisive as it is used as a last resort host regardless.
+        # However, you must set it for any further virtual host explicitly.
+        #ServerName www.example.com
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+
+        # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+        # error, crit, alert, emerg.
+        # It is also possible to configure the loglevel for particular
+        # modules, e.g.
+        #LogLevel info ssl:warn
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        # For most configuration files from conf-available/, which are
+        # enabled or disabled at a global level, it is possible to
+        # include a line for only one particular virtual host. For example the
+        # following line enables the CGI configuration for this host only
+        # after it has been globally disabled with "a2disconf".
+        #Include conf-available/serve-cgi-bin.conf
+<Directory '/var/www/html'>
+    AllowOverride All
+</Directory>
+
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet" > /etc/apache2/sites-available/000-default.conf
+wait
+sudo service apache2 restart
+wait
+sudo sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf &
+wait
+sudo service apache2 restart
 wait
 echo -e "\nPlease input Panel admin Port."
 printf "Default port 8081: "
@@ -210,8 +258,6 @@ systemctl restart httpd
 systemctl enable httpd
 chown apache:apache /var/www/html/cp/* &
 wait
-sudo sed -i "s/apache2/httpd/g" /var/www/html/cp/setting.php &
-wait
 chmod 644 /etc/ssh/sshd_config &
 wait
 sudo phpenmod curl
@@ -226,29 +272,29 @@ mysql -e "CREATE USER '${adminusername}'@'localhost' IDENTIFIED BY '${adminpassw
 wait
 mysql -e "GRANT ALL ON *.* TO '${adminusername}'@'localhost';" &
 wait
-sudo sed -i "s/22/$port/g" /var/www/html/cp/config.php &
+sudo sed -i "s/22/$port/g" /var/www/html/cp/Config/database.php &
 wait 
-sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/cp/config.php &
+sudo sed -i "s/port/$serverPort/g" /var/www/html/cp/Config/define.php &
 wait 
-sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/cp/config.php &
+sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/cp/Config/database.php &
 wait 
-sudo sed -i "s/SERVERUSER/$adminusername/g" /var/www/html/cp/killusers.sh &
+sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/cp/Config/database.php &
 wait 
-sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/cp/killusers.sh &
+sudo sed -i "s/SERVERUSER/$adminusername/g" /var/www/html/cp/Libs/sh/killusers.sh &
 wait 
-sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/cp/killusers.sh &
+sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/cp/Libs/sh/killusers.sh &
 wait 
-curl -u "$adminusername:$adminpassword" "http://${ipv4}:$serverPort/cp/reinstall.php"
-cp /var/www/html/cp/tarikh /var/www/html/cp/backup/tarikh
-rm -fr /var/www/html/cp/tarikh
-crontab -l | grep -v '/cp/expire.php'  | crontab  -
-crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
-(crontab -l ; echo "* * * * * wget  $protcohttp://${defdomain}:$serverPort/cp/expire.php >/dev/null 2>&1
-* * * * * wget $protcohttp://${defdomain}:$serverPort/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
+sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/cp/Libs/sh/killusers.sh &
+wait 
+curl -u "$adminusername:$adminpassword" "http://${ipv4}:$serverPort/cp/reinstall"
+(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$serverPort/cp/fixer&jub=exp' > /dev/null 2>&1") | crontab -
+(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$serverPort/cp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 wait
 clear
-echo "DomainPanel $defdomain" >> /var/www/xpanelport
-printf "\nXPanel Link : $protcohttp://${defdomain}:$serverPort/cp/index.php"
+chmod 777 /var/www/html/cp/storage
+chmod 777 /var/www/html/cp/storage/log
+chmod 777 /var/www/html/cp/storage/backup
+printf "\nXPanel Link : $protcohttp://${defdomain}:$serverPort/cp/index"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
