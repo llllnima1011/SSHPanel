@@ -292,6 +292,15 @@ crontab -l ; echo "* * * * * wget  $protcohttp://${defdomain}:$serverPort/cp/fix
 wait
 clear
 echo "DomainPanel $defdomain" >> /var/www/xpanelport
+wait 
+echo "
+<?php
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) {
+define('path', 'https://'.$_SERVER['SERVER_NAME'].':'.$serverPort.'/cp/');
+} else {
+define('path', 'http://'.$_SERVER['SERVER_NAME'].':'.$serverPort.'/cp/');
+}
+" >> /var/www/html/cp/Config/define.php
 printf "\nXPanel Link : $protcohttp://${defdomain}:$serverPort/cp/index"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
