@@ -206,6 +206,10 @@ echo "<IfModule mod_ssl.c>
                 <Directory /usr/lib/cgi-bin>
                                 SSLOptions +StdEnvVars
                 </Directory>
+                
+                <Directory "/var/www/html">
+                AllowOverride All
+                </Directory>
         </VirtualHost>
 </IfModule>" > /etc/apache2/sites-available/default-ssl.conf
 sudo a2enmod ssl
@@ -226,6 +230,9 @@ cat > /etc/httpd/conf.d/${domain}.conf << ENDOFFILE
    SSLEngine on
    SSLCertificateFile /etc/ssl/${domain}.crt
    SSLCertificateKeyFile /etc/ssl/${domain}.key
+   <Directory "/var/www/html">
+   AllowOverride All
+   </Directory>
 </VirtualHost>
 SSLCipherSuite EECDH+AESGCM:EDH+AESGCM
 # Requires Apache 2.4.36 & OpenSSL 1.1.1
@@ -255,8 +262,8 @@ sed -i 's/$xpdomain/$domain/' /var/www/xpanelport
 else
 sudo sed -i -e '$a\'$'\n''DomainPanel '$domain /var/www/xpanelport
 fi
-crontab -l | grep -v '/cp/expire.php'  | crontab  -
-crontab -l | grep -v '/cp/synctraffic.php'  | crontab  -
-(crontab -l ; echo "* * * * * wget  https://${domain}:$xport/cp/expire.php >/dev/null 2>&1
-* * * * * wget https://${domain}:$xport/cp/synctraffic.php >/dev/null 2>&1" ) | crontab - &
+crontab -r
+wait
+(crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$xport/cp/cp/fixer&jub=exp' > /dev/null 2>&1") | crontab -
+(crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$xport/cp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 printf "\nHTTPS Address : https://${domain}:$xport/cp \n"
