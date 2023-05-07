@@ -293,6 +293,7 @@ clear
 chmod 777 /var/www/html/cp/storage
 chmod 777 /var/www/html/cp/storage/log
 chmod 777 /var/www/html/cp/storage/backup
+chmod 777 /var/www/html/cp/Config/database.php
 printf "\nXPanel Link : $protcohttp://${defdomain}:$serverPort/cp/index"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
