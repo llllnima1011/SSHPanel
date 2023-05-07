@@ -286,6 +286,9 @@ wait
 sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/cp/Libs/sh/killusers.sh &
 wait 
 curl -u "$adminusername:$adminpassword" "http://${ipv4}:$serverPort/cp/reinstall"
+wait
+crontab -r
+wait
 (crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$serverPort/cp/fixer&jub=exp' > /dev/null 2>&1") | crontab -
 (crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$serverPort/cp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 wait
