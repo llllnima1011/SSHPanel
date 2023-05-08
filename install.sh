@@ -15,7 +15,7 @@ dmssl=$(echo "$sslp" | sed "s/SSLPanel //g")
 if [ "$dmp" != "" ]; then
 defdomain=$dmp
 else
-defdomain=$(wget -qO- ipv4.icanhazip.com)
+defdomain=$(curl -sm8 ipget.net)
 fi
 
 if [ "$dmssl" == "True" ]; then
@@ -45,7 +45,7 @@ if [[ -n "${passwordtmp}" ]]; then
 fi
 fi
 
-ipv4=$(wget -qO- ipv4.icanhazip.com)
+ipv4=$(curl -sm8 ipget.net)
 sudo sed -i '/www-data/d' /etc/sudoers &
 wait
 sudo sed -i '/apache/d' /etc/sudoers & 
