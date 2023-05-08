@@ -129,9 +129,11 @@ read porttmp
 if [[ -n "${porttmp}" ]]; then
 #Get the server port number from my settings file
 serverPort=${porttmp}
+serverPortssl=$serverPort+1
 echo $serverPort
 else
 serverPort=8081
+serverPortssl=$serverPort+1
 echo $serverPort
 fi
 ##Get just the port number from the settings variable I just grabbed
@@ -187,6 +189,17 @@ wait
 ##Replace 'Virtual Hosts' and 'List' entries with the new port number
 sudo  sed -i.bak 's/.*NameVirtualHost.*/NameVirtualHost *:'$serverPort'/' /etc/apache2/ports.conf 
 sudo sed -i -e '$a\'$'\n''Listen '$serverPort /etc/apache2/ports.conf
+echo "Listen 80
+Listen $serverPort
+<IfModule ssl_module>
+Listen $serverPortssl
+Listen 443
+</IfModule>
+
+<IfModule mod_gnutls.c>
+Listen $serverPortssl
+Listen 443
+</IfModule>" > /var/www/xpanelport
 echo '#Xpanel' > /var/www/xpanelport
 sudo sed -i -e '$a\'$'\n''Xpanelport '$serverPort /var/www/xpanelport
 wait
