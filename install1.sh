@@ -350,9 +350,9 @@ sudo sed -i "s/$xport/$serverPort/g" /var/www/html/cp/Config/define.php &
 wait 
 sudo sed -i "s/$pssl/$serverPortssl/g" /var/www/html/cp/Config/define.php &
 else
-sudo sed -i "s/port/$serverPort/g" /var/www/html/cp/Config/define.php &
+sudo sed -i "s/':port/'/':$serverPort/'/g" /var/www/html/cp/Config/define.php &
 wait 
-sudo sed -i "s/tlsp/$serverPortssl/g" /var/www/html/cp/Config/define.php & 
+sudo sed -i "s/':tlsp/'/':$serverPortssl/'/g" /var/www/html/cp/Config/define.php & 
 fi
 printf "\nXPanel Link : $protcohttp://${defdomain}:$sshttp/login"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
