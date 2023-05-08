@@ -57,7 +57,7 @@ sudo add-apt-repository ppa:ondrej/php -y
 sudo apt-get install postfix
 apt install apache2 php7.4 zip unzip net-tools curl mariadb-server -y
 apt install php7.4-mysql php7.4-xml php7.4-curl -y
-link=$(sudo curl -Ls "https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
+link=$(sudo curl -Ls "https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/tags/xpanelv2-4" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
@@ -117,7 +117,40 @@ sudo service apache2 restart
 wait
 sudo systemctl restart apache2
 wait
+sudo service apache2 restart
+wait
+sudo sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf &
+wait
+sudo service apache2 restart
+wait
+echo -e "\nPlease input Panel admin Port."
+printf "Default port 8081: "
+read porttmp
+if [[ -n "${porttmp}" ]]; then
+#Get the server port number from my settings file
+serverPort=${porttmp}
+serverPortssl=$((serverPort+1))
+echo $serverPort
+else
+serverPort=8081
+serverPortssl=$((serverPort+1))
+echo $serverPort
+fi
+##Get just the port number from the settings variable I just grabbed
+serverPort=${serverPort##*=}
+##Remove the "" marks from the variable as they will not be needed
+serverPort=${serverPort//'"'}
 echo "<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html/example
+        ErrorLog /error.log
+        CustomLog /access.log combined
+        <Directory '/var/www/html/example'>
+        AllowOverride All
+        </Directory>
+</VirtualHost>
+
+<VirtualHost *:$serverPort>
         # The ServerName directive sets the request scheme, hostname and port that
         # the server uses to identify itself. This is used when creating
         # redirection URLs. In the context of virtual hosts, the ServerName
@@ -128,7 +161,7 @@ echo "<VirtualHost *:80>
         #ServerName www.example.com
 
         ServerAdmin webmaster@localhost
-        DocumentRoot /var/www/html
+        DocumentRoot /var/www/html/cp
 
         # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
         # error, crit, alert, emerg.
@@ -145,7 +178,7 @@ echo "<VirtualHost *:80>
         # following line enables the CGI configuration for this host only
         # after it has been globally disabled with "a2disconf".
         #Include conf-available/serve-cgi-bin.conf
-<Directory '/var/www/html'>
+<Directory '/var/www/html/cp'>
     AllowOverride All
 </Directory>
 
@@ -153,30 +186,19 @@ echo "<VirtualHost *:80>
 
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet" > /etc/apache2/sites-available/000-default.conf
 wait
-sudo service apache2 restart
-wait
-sudo sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf &
-wait
-sudo service apache2 restart
-wait
-echo -e "\nPlease input Panel admin Port."
-printf "Default port 8081: "
-read porttmp
-if [[ -n "${porttmp}" ]]; then
-#Get the server port number from my settings file
-serverPort=${porttmp}
-echo $serverPort
-else
-serverPort=8081
-echo $serverPort
-fi
-##Get just the port number from the settings variable I just grabbed
-serverPort=${serverPort##*=}
-##Remove the "" marks from the variable as they will not be needed
-serverPort=${serverPort//'"'}
 ##Replace 'Virtual Hosts' and 'List' entries with the new port number
 sudo  sed -i.bak 's/.*NameVirtualHost.*/NameVirtualHost *:'$serverPort'/' /etc/apache2/ports.conf 
-sudo  sed -i.bak '/Listen/{s/\([0-9]\+\)/'$serverPort'/; :a;n; ba}' /etc/apache2/ports.conf
+echo "Listen 80
+Listen $serverPort
+<IfModule ssl_module>
+Listen $serverPortssl
+Listen 443
+</IfModule>
+
+<IfModule mod_gnutls.c>
+Listen $serverPortssl
+Listen 443
+</IfModule>" > /etc/apache2/ports.conf
 echo '#Xpanel' > /var/www/xpanelport
 sudo sed -i -e '$a\'$'\n''Xpanelport '$serverPort /var/www/xpanelport
 wait
@@ -204,7 +226,7 @@ systemctl restart mariadb &
 wait
 systemctl enable mariadb &
 wait
-link=$(sudo curl -Ls "https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
+link=$(sudo curl -Ls "https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/tags/xpanelv2-4" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
@@ -282,6 +304,8 @@ sudo sed -i "s/22/$port/g" /var/www/html/cp/Config/database.php &
 wait 
 sudo sed -i "s/port/$serverPort/g" /var/www/html/cp/Config/define.php &
 wait 
+sudo sed -i "s/portssl/$serverPortssl/g" /var/www/html/cp/Config/define.php &
+wait 
 sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/cp/Config/database.php &
 wait 
 sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/cp/Config/database.php &
@@ -292,19 +316,32 @@ sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/cp/Libs/sh/killuse
 wait 
 sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/cp/Libs/sh/killusers.sh &
 wait 
-curl -u "$adminusername:$adminpassword" "http://${ipv4}:$serverPort/cp/reinstall"
+curl -u "$adminusername:$adminpassword" "http://${ipv4}:$serverPort/reinstall"
 wait
 crontab -r
 wait
-(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$serverPort/cp/fixer&jub=exp' > /dev/null 2>&1") | crontab -
-(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$serverPort/cp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
+(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$serverPort/fixer&jub=exp' > /dev/null 2>&1") | crontab -
+(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$serverPort/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 wait
 clear
 chmod 777 /var/www/html/cp/storage
+wait
 chmod 777 /var/www/html/cp/storage/log
+wait
 chmod 777 /var/www/html/cp/storage/backup
+wait
 chmod 777 /var/www/html/cp/Config/database.php
-printf "\nXPanel Link : $protcohttp://${defdomain}:$serverPort/cp/index"
+wait
+chmod 777 /var/www/html/index.php 
+wait
+chmod 777 /var/www/html/cp/Config/define.php 
+wait
+chmod 777 /var/www/html/cp/Libs
+wait
+chmod 777 /var/www/html/cp/Libs/sh
+wait
+
+printf "\nXPanel Link : $protcohttp://${defdomain}:$serverPort/login"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
