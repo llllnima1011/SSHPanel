@@ -45,7 +45,7 @@ chmod 777 /var/www/html/
 ```
 بعد از انجام مراحل بالا اقدام به نصب با دستور زیر نمائید (توجه داشته باشید حتما از دیتابیس بکاپ تهیه کنید)
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/master/install.sh --ipv4)
+bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/install.sh --ipv4)
 ```
 
 حل مشکل عدم ارتباط  تماس صوتی و تصویری در اپلیکشن
