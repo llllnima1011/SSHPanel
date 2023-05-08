@@ -20,6 +20,7 @@ fi
 
 if [ "$dmssl" == "True" ]; then
 protcohttp=https
+
 else
 protcohttp=http
 fi
@@ -137,6 +138,11 @@ else
 serverPort=8081
 serverPortssl=$((serverPort+1))
 echo $serverPort
+fi
+if [ "$dmssl" == "True" ]; then
+sshttp=$((serverPort+1))
+else
+sshttp=$serverPort
 fi
 ##Get just the port number from the settings variable I just grabbed
 serverPort=${serverPort##*=}
@@ -325,12 +331,12 @@ sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/cp/Libs/sh/killuse
 wait 
 sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/cp/Libs/sh/killusers.sh &
 wait 
-curl -u "$adminusername:$adminpassword" "http://${ipv4}:$serverPort/reinstall"
+curl -u "$adminusername:$adminpassword" "$protcohttp://${defdomain}:$sshttp/reinstall"
 wait
 crontab -r
 wait
-(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$serverPort/fixer&jub=exp' > /dev/null 2>&1") | crontab -
-(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$serverPort/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
+(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=exp' > /dev/null 2>&1") | crontab -
+(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 wait
 clear
 chmod 777 /var/www/html/cp/storage
@@ -350,7 +356,7 @@ wait
 chmod 777 /var/www/html/cp/Libs/sh
 wait
 
-printf "\nXPanel Link : $protcohttp://${defdomain}:$serverPort/login"
+printf "\nXPanel Link : $protcohttp://${defdomain}:$sshttp/login"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
