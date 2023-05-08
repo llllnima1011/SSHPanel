@@ -3,6 +3,7 @@
 xpo=$(cat /var/www/xpanelport | grep "^Xpanelport")
 xpd=$(cat /var/www/xpanelport | grep "^DomainPanel")
 xport=$(echo "$xpo" | sed "s/Xpanelport //g")
+portssl=$xport+1
 xpdomain=$(echo "$xpd" | sed "s/DomainPanel //g")
 read -rp "Please enter the pointed domain / sub-domain name: " domain
 systemctl stop apache2
@@ -212,7 +213,7 @@ echo "<IfModule mod_ssl.c>
                 </Directory>
         </VirtualHost>
         
-        <VirtualHost _default_:$xport>
+        <VirtualHost _default_:$portssl>
                 ServerAdmin XPanel@${domain}
                 ServerName ${domain}
                 DocumentRoot /var/www/html/cp
@@ -256,7 +257,7 @@ cat > /etc/httpd/conf.d/${domain}.conf << ENDOFFILE
    </Directory>
 </VirtualHost>
 
-<VirtualHost *:$xport>
+<VirtualHost *:$portssl>
    ServerName ${domain}
    DocumentRoot /var/www/html/cp/
    SSLEngine on
@@ -301,6 +302,6 @@ fi
 crontab -r
 wait
 clear
-(crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$xport/fixer&jub=exp' > /dev/null 2>&1") | crontab -
-(crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$xport/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
-printf "\nHTTPS Address : https://${domain}:$xport/login \n"
+(crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$portssl/fixer&jub=exp' > /dev/null 2>&1") | crontab -
+(crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$portssl/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
+printf "\nHTTPS Address : https://${domain}:$portssl/login \n"
