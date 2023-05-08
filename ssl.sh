@@ -261,6 +261,7 @@ if [ "$xpdomain" != "" ]; then
 sed -i 's/$xpdomain/$domain/' /var/www/xpanelport
 else
 sudo sed -i -e '$a\'$'\n''DomainPanel '$domain /var/www/xpanelport
+sudo sed -i -e '$a\'$'\n''SSLPanel True' /var/www/xpanelport
 fi
 crontab -r
 wait
