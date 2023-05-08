@@ -142,10 +142,10 @@ serverPort=${serverPort##*=}
 serverPort=${serverPort//'"'}
 echo "<VirtualHost *:80>
         ServerAdmin webmaster@localhost
-        DocumentRoot /var/www/html
+        DocumentRoot /var/www/html/example
         ErrorLog /error.log
         CustomLog /access.log combined
-        <Directory '/var/www/html'>
+        <Directory '/var/www/html/example'>
         AllowOverride All
         </Directory>
 </VirtualHost>
@@ -188,7 +188,6 @@ echo "<VirtualHost *:80>
 wait
 ##Replace 'Virtual Hosts' and 'List' entries with the new port number
 sudo  sed -i.bak 's/.*NameVirtualHost.*/NameVirtualHost *:'$serverPort'/' /etc/apache2/ports.conf 
-sudo sed -i -e '$a\'$'\n''Listen '$serverPort /etc/apache2/ports.conf
 echo "Listen 80
 Listen $serverPort
 <IfModule ssl_module>
@@ -199,7 +198,7 @@ Listen 443
 <IfModule mod_gnutls.c>
 Listen $serverPortssl
 Listen 443
-</IfModule>" > /var/www/xpanelport
+</IfModule>" > /etc/apache2/ports.conf
 echo '#Xpanel' > /var/www/xpanelport
 sudo sed -i -e '$a\'$'\n''Xpanelport '$serverPort /var/www/xpanelport
 wait
