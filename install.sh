@@ -15,7 +15,7 @@ dmssl=$(echo "$sslp" | sed "s/SSLPanel //g")
 if [ "$dmp" != "" ]; then
 defdomain=$dmp
 else
-defdomain=$(curl rabin.cf)
+defdomain=hostname -I
 fi
 
 if [ "$dmssl" == "True" ]; then
@@ -45,7 +45,7 @@ if [[ -n "${passwordtmp}" ]]; then
 fi
 fi
 
-ipv4=$(curl rabin.cf)
+ipv4=hostname -I
 sudo sed -i '/www-data/d' /etc/sudoers &
 wait
 sudo sed -i '/apache/d' /etc/sudoers & 
