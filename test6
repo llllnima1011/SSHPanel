@@ -129,11 +129,11 @@ read porttmp
 if [[ -n "${porttmp}" ]]; then
 #Get the server port number from my settings file
 serverPort=${porttmp}
-serverPortssl=$serverPort+1
+serverPortssl=$((serverPort+1))
 echo $serverPort
 else
 serverPort=8081
-serverPortssl=$serverPort+1
+serverPortssl=$((serverPort+1))
 echo $serverPort
 fi
 ##Get just the port number from the settings variable I just grabbed
