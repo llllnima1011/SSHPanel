@@ -309,7 +309,8 @@ wait
 mysql -e "GRANT ALL ON *.* TO '${adminusername}'@'localhost';" &
 wait
 sudo sed -i "s/22/$port/g" /var/www/html/cp/Config/database.php &
-wait 
+wait
+clear
 if [ "$xport" != "" ]; then
 pssl=$((xport+1))
 sudo sed -i "s/$xport/$serverPort/g" /var/www/html/cp/Config/define.php &
