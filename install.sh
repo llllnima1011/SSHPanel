@@ -332,7 +332,7 @@ chmod 777 /var/www/html/cp/storage/backup
 wait
 chmod 777 /var/www/html/cp/Config/database.php
 wait
-chmod 777 /var/www/html/index.php 
+chmod 777 /var/www/html/example/index.php
 wait
 chmod 777 /var/www/html/cp/Config/define.php 
 wait
