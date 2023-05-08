@@ -7,6 +7,8 @@ adminpass=$(mysql -N -e "use XPanel; select adminpassword from setting where id=
 clear
 domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
 sslp=$(cat /var/www/xpanelport | grep "^SSLPanel")
+xpo=$(cat /var/www/xpanelport | grep "^Xpanelport")
+xport=$(echo "$xpo" | sed "s/Xpanelport //g")
 dmp=$(echo "$domainp" | sed "s/DomainPanel //g")
 dmssl=$(echo "$sslp" | sed "s/SSLPanel //g")
 
@@ -302,10 +304,17 @@ mysql -e "GRANT ALL ON *.* TO '${adminusername}'@'localhost';" &
 wait
 sudo sed -i "s/22/$port/g" /var/www/html/cp/Config/database.php &
 wait 
+if [ "$xport" != "" ]; then
+pssl=$((xport+1))
+sudo sed -i "s/$xport/$serverPort/g" /var/www/html/cp/Config/define.php &
+wait 
+sudo sed -i "s/$pssl/$serverPortssl/g" /var/www/html/cp/Config/define.php &
+else
 sudo sed -i "s/port/$serverPort/g" /var/www/html/cp/Config/define.php &
 wait 
-sudo sed -i "s/pssl/$serverPortssl/g" /var/www/html/cp/Config/define.php &
-wait 
+sudo sed -i "s/pssl/$serverPortssl/g" /var/www/html/cp/Config/define.php & 
+fi
+wait
 sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/cp/Config/database.php &
 wait 
 sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/cp/Config/database.php &
