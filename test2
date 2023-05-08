@@ -245,13 +245,24 @@ mkdir /etc/ssl/
 bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/ssl/${domain}.key --fullchain-file /etc/ssl/${domain}.crt --ecc 
 
 cat > /etc/httpd/conf.d/${domain}.conf << ENDOFFILE
-<VirtualHost *:$xport>
+<VirtualHost *:443>
    ServerName ${domain}
    DocumentRoot /var/www/html/
    SSLEngine on
    SSLCertificateFile /etc/ssl/${domain}.crt
    SSLCertificateKeyFile /etc/ssl/${domain}.key
    <Directory "/var/www/html">
+   AllowOverride All
+   </Directory>
+</VirtualHost>
+
+<VirtualHost *:$xport>
+   ServerName ${domain}
+   DocumentRoot /var/www/html/cp/
+   SSLEngine on
+   SSLCertificateFile /etc/ssl/${domain}.crt
+   SSLCertificateKeyFile /etc/ssl/${domain}.key
+   <Directory "/var/www/html/cp/">
    AllowOverride All
    </Directory>
 </VirtualHost>
@@ -276,8 +287,11 @@ ENDOFFILE
 sudo apachectl configtest
 systemctl restart httpd
 wait
+sudo systemctl restart apache2
+wait
+sudo service apache2 restart
 fi
-clear
+
 if [ "$xpdomain" != "" ]; then
 sed -i 's/$xpdomain/$domain/' /var/www/xpanelport
 else
@@ -286,6 +300,7 @@ sudo sed -i -e '$a\'$'\n''SSLPanel True' /var/www/xpanelport
 fi
 crontab -r
 wait
+clear
 (crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$xport/fixer&jub=exp' > /dev/null 2>&1") | crontab -
 (crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$xport/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 printf "\nHTTPS Address : https://${domain}:$xport/login \n"
