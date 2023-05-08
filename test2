@@ -3,7 +3,7 @@
 xpo=$(cat /var/www/xpanelport | grep "^Xpanelport")
 xpd=$(cat /var/www/xpanelport | grep "^DomainPanel")
 xport=$(echo "$xpo" | sed "s/Xpanelport //g")
-portssl=$xport+1
+portssl=$((xport+1))
 xpdomain=$(echo "$xpd" | sed "s/DomainPanel //g")
 read -rp "Please enter the pointed domain / sub-domain name: " domain
 systemctl stop apache2
@@ -192,10 +192,10 @@ SSLSessionTickets Off
 ENDOFFILE
 sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
 echo "<IfModule mod_ssl.c>
-<VirtualHost _default_:443>
+<VirtualHost *:443>
                 ServerAdmin XPanel@${domain}
                 ServerName ${domain}
-                DocumentRoot /var/www/html
+                DocumentRoot /var/www/html/example
                 ErrorLog ${APACHE_LOG_DIR}/error.log
                 CustomLog ${APACHE_LOG_DIR}/access.log combined
                 SSLEngine on
@@ -208,12 +208,12 @@ echo "<IfModule mod_ssl.c>
                                 SSLOptions +StdEnvVars
                 </Directory>
                 
-                <Directory "/var/www/html">
+                <Directory "/var/www/html/example">
                 AllowOverride All
                 </Directory>
         </VirtualHost>
         
-        <VirtualHost _default_:$portssl>
+        <VirtualHost *:$portssl>
                 ServerAdmin XPanel@${domain}
                 ServerName ${domain}
                 DocumentRoot /var/www/html/cp
@@ -248,22 +248,22 @@ bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/ssl/${domain
 cat > /etc/httpd/conf.d/${domain}.conf << ENDOFFILE
 <VirtualHost *:443>
    ServerName ${domain}
-   DocumentRoot /var/www/html/
+   DocumentRoot /var/www/html/example
    SSLEngine on
    SSLCertificateFile /etc/ssl/${domain}.crt
    SSLCertificateKeyFile /etc/ssl/${domain}.key
-   <Directory "/var/www/html">
+   <Directory "/var/www/html/example">
    AllowOverride All
    </Directory>
 </VirtualHost>
 
 <VirtualHost *:$portssl>
    ServerName ${domain}
-   DocumentRoot /var/www/html/cp/
+   DocumentRoot /var/www/html/cp
    SSLEngine on
    SSLCertificateFile /etc/ssl/${domain}.crt
    SSLCertificateKeyFile /etc/ssl/${domain}.key
-   <Directory "/var/www/html/cp/">
+   <Directory "/var/www/html/cp">
    AllowOverride All
    </Directory>
 </VirtualHost>
