@@ -304,7 +304,7 @@ sudo sed -i "s/22/$port/g" /var/www/html/cp/Config/database.php &
 wait 
 sudo sed -i "s/port/$serverPort/g" /var/www/html/cp/Config/define.php &
 wait 
-sudo sed -i "s/portssl/$serverPortssl/g" /var/www/html/cp/Config/define.php &
+sudo sed -i "s/pssl/$serverPortssl/g" /var/www/html/cp/Config/define.php &
 wait 
 sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/cp/Config/database.php &
 wait 
