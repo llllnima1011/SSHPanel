@@ -186,7 +186,7 @@ echo "<VirtualHost *:80>
 wait
 ##Replace 'Virtual Hosts' and 'List' entries with the new port number
 sudo  sed -i.bak 's/.*NameVirtualHost.*/NameVirtualHost *:'$serverPort'/' /etc/apache2/ports.conf 
-sudo sed -i -e '$a\'$'\n''Listen $serverPort' /etc/apache2/ports.conf
+sudo sed -i -e '$a\'$'\n''Listen '$serverPort /etc/apache2/ports.conf
 echo '#Xpanel' > /var/www/xpanelport
 sudo sed -i -e '$a\'$'\n''Xpanelport '$serverPort /var/www/xpanelport
 wait
