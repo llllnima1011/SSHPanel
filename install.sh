@@ -6,12 +6,19 @@ adminuser=$(mysql -N -e "use XPanel; select adminuser from setting where id='1';
 adminpass=$(mysql -N -e "use XPanel; select adminpassword from setting where id='1';")
 clear
 domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
+sslp=$(cat /var/www/xpanelport | grep "^SSLPanel")
 dmp=$(echo "$domainp" | sed "s/DomainPanel //g")
+dmssl=$(echo "$sslp" | sed "s/SSLPanel //g")
+
 if [ "$dmp" != "" ]; then
 defdomain=$dmp
-protcohttp=https
 else
 defdomain=$(curl rabin.cf)
+fi
+
+if [ "$dmssl" != "True" ]; then
+protcohttp=https
+else
 protcohttp=http
 fi
 
