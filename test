@@ -145,9 +145,6 @@ echo "<VirtualHost *:80>
         CustomLog /access.log combined
         <Directory '/var/www/html'>
         AllowOverride All
-        <FilesMatch ".(eot|ttf|otf|woff)">
-         Header set Access-Control-Allow-Origin "*"
-        </FilesMatch>
         </Directory>
 </VirtualHost>
 
