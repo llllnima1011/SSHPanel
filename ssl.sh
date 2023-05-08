@@ -3,6 +3,7 @@
 xpo=$(cat /var/www/xpanelport | grep "^Xpanelport")
 xpd=$(cat /var/www/xpanelport | grep "^DomainPanel")
 xport=$(echo "$xpo" | sed "s/Xpanelport //g")
+portssl=$((xport+1))
 xpdomain=$(echo "$xpd" | sed "s/DomainPanel //g")
 read -rp "Please enter the pointed domain / sub-domain name: " domain
 systemctl stop apache2
@@ -191,10 +192,10 @@ SSLSessionTickets Off
 ENDOFFILE
 sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
 echo "<IfModule mod_ssl.c>
-        <VirtualHost _default_:$xport>
+<VirtualHost *:443>
                 ServerAdmin XPanel@${domain}
                 ServerName ${domain}
-                DocumentRoot /var/www/html
+                DocumentRoot /var/www/html/example
                 ErrorLog ${APACHE_LOG_DIR}/error.log
                 CustomLog ${APACHE_LOG_DIR}/access.log combined
                 SSLEngine on
@@ -207,7 +208,28 @@ echo "<IfModule mod_ssl.c>
                                 SSLOptions +StdEnvVars
                 </Directory>
                 
-                <Directory "/var/www/html">
+                <Directory "/var/www/html/example">
+                AllowOverride All
+                </Directory>
+        </VirtualHost>
+        
+        <VirtualHost *:$portssl>
+                ServerAdmin XPanel@${domain}
+                ServerName ${domain}
+                DocumentRoot /var/www/html/cp
+                ErrorLog ${APACHE_LOG_DIR}/error.log
+                CustomLog ${APACHE_LOG_DIR}/access.log combined
+                SSLEngine on
+                SSLCertificateFile      /etc/apache2/ssl/${domain}.crt
+                SSLCertificateKeyFile /etc/apache2/ssl/${domain}.key
+                <FilesMatch '\.(cgi|shtml|phtml|php)$'>
+                                SSLOptions +StdEnvVars
+                </FilesMatch>
+                <Directory /usr/lib/cgi-bin>
+                                SSLOptions +StdEnvVars
+                </Directory>
+                
+                <Directory "/var/www/html/cp">
                 AllowOverride All
                 </Directory>
         </VirtualHost>
@@ -224,13 +246,24 @@ mkdir /etc/ssl/
 bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/ssl/${domain}.key --fullchain-file /etc/ssl/${domain}.crt --ecc 
 
 cat > /etc/httpd/conf.d/${domain}.conf << ENDOFFILE
-<VirtualHost *:$xport>
+<VirtualHost *:443>
    ServerName ${domain}
-   DocumentRoot /var/www/html/
+   DocumentRoot /var/www/html/example
    SSLEngine on
    SSLCertificateFile /etc/ssl/${domain}.crt
    SSLCertificateKeyFile /etc/ssl/${domain}.key
-   <Directory "/var/www/html">
+   <Directory "/var/www/html/example">
+   AllowOverride All
+   </Directory>
+</VirtualHost>
+
+<VirtualHost *:$portssl>
+   ServerName ${domain}
+   DocumentRoot /var/www/html/cp
+   SSLEngine on
+   SSLCertificateFile /etc/ssl/${domain}.crt
+   SSLCertificateKeyFile /etc/ssl/${domain}.key
+   <Directory "/var/www/html/cp">
    AllowOverride All
    </Directory>
 </VirtualHost>
@@ -255,8 +288,11 @@ ENDOFFILE
 sudo apachectl configtest
 systemctl restart httpd
 wait
+sudo systemctl restart apache2
+wait
+sudo service apache2 restart
 fi
-clear
+
 if [ "$xpdomain" != "" ]; then
 sed -i 's/$xpdomain/$domain/' /var/www/xpanelport
 else
@@ -265,6 +301,7 @@ sudo sed -i -e '$a\'$'\n''SSLPanel True' /var/www/xpanelport
 fi
 crontab -r
 wait
-(crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$xport/cp/cp/fixer&jub=exp' > /dev/null 2>&1") | crontab -
-(crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$xport/cp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
-printf "\nHTTPS Address : https://${domain}:$xport/cp \n"
+clear
+(crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$portssl/fixer&jub=exp' > /dev/null 2>&1") | crontab -
+(crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$portssl/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
+printf "\nHTTPS Address : https://${domain}:$portssl/login \n"
