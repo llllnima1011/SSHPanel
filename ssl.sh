@@ -120,8 +120,8 @@ done
         wg-quick down wgcf >/dev/null 2>&1
     fi
     
-    ipv4=$(curl rabin.cf)
-    ipv6=$(curl -s6m8 ip.gs)
+    ipv4=$(curl -sm8 ipget.net)
+    ipv6=$(curl -sm8 ipget.net)
     
     echo ""
     yellow "When using port 80 application mode, first point your domain name to your server's public IP address. Otherwise the certificate application will be failed!"
