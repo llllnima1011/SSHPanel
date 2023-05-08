@@ -1,11 +1,12 @@
 #!/bin/bash
-
+crontab -r
 xpo=$(cat /var/www/xpanelport | grep "^Xpanelport")
 xpd=$(cat /var/www/xpanelport | grep "^DomainPanel")
 xport=$(echo "$xpo" | sed "s/Xpanelport //g")
 portssl=$((xport+1))
 xpdomain=$(echo "$xpd" | sed "s/DomainPanel //g")
 read -rp "Please enter the pointed domain / sub-domain name: " domain
+
 systemctl stop apache2
 
 RED="\033[31m"
@@ -299,8 +300,6 @@ else
 sudo sed -i -e '$a\'$'\n''DomainPanel '$domain /var/www/xpanelport
 sudo sed -i -e '$a\'$'\n''SSLPanel True' /var/www/xpanelport
 fi
-crontab -r
-wait
 clear
 (crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$portssl/fixer&jub=exp' > /dev/null 2>&1") | crontab -
 (crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$portssl/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
