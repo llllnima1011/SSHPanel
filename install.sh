@@ -16,7 +16,7 @@ else
 defdomain=$(curl rabin.cf)
 fi
 
-if [ "$dmssl" != "True" ]; then
+if [ "$dmssl" == "True" ]; then
 protcohttp=https
 else
 protcohttp=http
