@@ -5,7 +5,7 @@ port=$(echo "$po" | sed "s/Port //g")
 adminuser=$(mysql -N -e "use XPanel; select adminuser from setting where id='1';")
 adminpass=$(mysql -N -e "use XPanel; select adminpassword from setting where id='1';")
 clear
-if [-f /var/www/xpanelport ] ; then
+if [-e /var/www/xpanelport ] ; then
 echo "File exists xpanelport"
 else
 cat > /var/www/xpanelport
