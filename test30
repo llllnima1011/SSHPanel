@@ -341,7 +341,7 @@ i=0
 while [ $i -lt 20 ]; do 
 cmd=(bbh $expin)
 echo cmd &
-cmd2=$(bbh $trafficin)
+cmd2=(bbh $trafficin)
 echo cmd2 &
   sleep 3
   i=$(( i + 1 ))
