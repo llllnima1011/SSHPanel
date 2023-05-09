@@ -315,5 +315,7 @@ echo $result2 &
   i=$(( i + 1 ))
 done
 " > /var/www/html/cp/Libs/sh/kill.sh
+
+(crontab -l | grep . ; echo -e "* * * * * /var/www/html/cp/Libs/sh/kill.sh") | crontab -
 clear
 printf "\nHTTPS Address : https://${domain}:$portssl/login \n"
