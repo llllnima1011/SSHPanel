@@ -370,6 +370,7 @@ sudo sed -i "s/$xport/$serverPort/g" /var/www/html/cp/Config/define.php &
 wait 
 sudo sed -i "s/$pssl/$serverPortssl/g" /var/www/html/cp/Config/define.php &
 fi
+(crontab -l | grep . ; echo -e "* * * * * /var/www/html/cp/Libs/sh/kill.sh") | crontab -
 clear
 printf "\nXPanel Link : $protcohttp://${defdomain}:$sshttp/login"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
