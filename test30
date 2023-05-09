@@ -340,9 +340,11 @@ cat > /var/www/html/cp/Libs/sh/kill.sh << ENDOFFILE
 i=0
 while [ $i -lt 20 ]; do 
 cmd=(bbh $expin)
-echo cmd &
+result=$cmd
+echo $result &
 cmd2=(bbh $trafficin)
-echo cmd2 &
+result2=$cmd2
+echo $result2 &
   sleep 3
   i=$(( i + 1 ))
 done
