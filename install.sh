@@ -325,20 +325,36 @@ sudo sed -i "s/SERVERUSER/$adminusername/g" /var/www/html/cp/Libs/sh/killusers.s
 wait 
 sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/cp/Libs/sh/killusers.sh &
 wait 
-sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/cp/Libs/sh/killusers.sh &
-wait 
 curl -u "$adminusername:$adminpassword" "$protcohttp://${defdomain}:$sshttp/reinstall"
 wait
 crontab -r
 wait
 chmod 777 /var/www/html/cp/Libs/sh/kill.sh
 wait
-expin=$($protcohttp://${defdomain}:$sshttp/fixer&jub=exp)
-trafficin=$($protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic)
-sudo sed -i "s/exp/$expin/g" /var/www/html/cp/Libs/sh/kill.sh &
+expin=$(echo "$protcohttp://${defdomain}:$sshttp/fixer&jub=exp")
+trafficin=$(echo "$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic")
+cat > /var/www/html/cp/Libs/sh/kill.sh << ENDOFFILE
+#!/bin/bash
+#By Alireza
+
+i=0
+while [ 1i -lt 20 ]; do 
+cmd=(bbh $expin)
+echo cmd &
+cmd2=(bbh $trafficin)
+echo cmd2 &
+  sleep 3
+  i=(( i + 1 ))
+done
+ENDOFFILE
 wait
-sudo sed -i "s/traffic/$trafficin/g" /var/www/html/cp/Libs/sh/kill.sh &
+sudo sed -i 's/(bbh/$(curl -v -H "A: B"/' /var/www/html/cp/Libs/sh/kill.sh
 wait
+sudo sed -i 's/cmd/$cmd/' /var/www/html/cp/Libs/sh/kill.sh
+wait
+sudo sed -i 's/1i/$i/' /var/www/html/cp/Libs/sh/kill.sh
+wait
+sudo sed -i 's/((/$((/' /var/www/html/cp/Libs/sh/kill.sh
 wait
 chmod 777 /var/www/html/cp/storage
 wait
