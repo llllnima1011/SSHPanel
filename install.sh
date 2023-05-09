@@ -337,7 +337,7 @@ expin=$($protcohttp://${defdomain}:$sshttp/fixer&jub=exp)
 trafficin=$($protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic)
 sudo sed -i "s/exp/$expin/g" /var/www/html/cp/Libs/sh/kill.sh &
 wait
-sudo sed -i "s/traffic/trafficin/g" /var/www/html/cp/Libs/sh/kill.sh &
+sudo sed -i "s/traffic/$trafficin/g" /var/www/html/cp/Libs/sh/kill.sh &
 wait
 wait
 chmod 777 /var/www/html/cp/storage
