@@ -340,17 +340,15 @@ cat > /var/www/html/cp/Libs/sh/kill.sh << ENDOFFILE
 i=0
 while [ $i -lt 20 ]; do 
 cmd=$(curl -v -H "A: B" $expin)
-result=$cmd
-$echo $result &
+echo cmd &
 cmd2=$(curl -v -H "A: B" $trafficin)
-result2=$cmd2
-#echo $result2 &
+echo cmd2 &
   sleep 3
   i=$(( i + 1 ))
 done
 ENDOFFILE
 wait
-sudo sed -i 's/#echo /echo /' /var/www/html/cp/Libs/sh/kill.sh
+sudo sed -i 's/cmd/$cmd/' /var/www/html/cp/Libs/sh/kill.sh
 wait
 chmod 777 /var/www/html/cp/storage
 wait
