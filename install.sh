@@ -5,6 +5,12 @@ port=$(echo "$po" | sed "s/Port //g")
 adminuser=$(mysql -N -e "use XPanel; select adminuser from setting where id='1';")
 adminpass=$(mysql -N -e "use XPanel; select adminpassword from setting where id='1';")
 clear
+if [-f /var/www/xpanelport ] ; then
+echo "File exists xpanelport"
+else
+cat > /var/www/xpanelport
+fi
+chmod 777 /var/www/xpanelport
 domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
 sslp=$(cat /var/www/xpanelport | grep "^SSLPanel")
 xpo=$(cat /var/www/xpanelport | grep "^Xpanelport")
@@ -324,8 +330,22 @@ curl -u "$adminusername:$adminpassword" "$protcohttp://${defdomain}:$sshttp/rein
 wait
 crontab -r
 wait
-(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=exp' > /dev/null 2>&1") | crontab -
-(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
+chmod 777 /var/www/html/cp/Libs/sh/kill.sh
+wait
+echo "#!/bin/bash
+#By Alireza
+i=0
+while [ $i -lt 20 ]; do 
+cmd=$(curl -v -H "A: B" $protcohttp://${defdomain}:$sshttp/fixer&jub=exp)
+result=$cmd
+echo $result &
+cmd2=$(curl -v -H "A: B" $protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic)
+result2=$cmd2
+echo $result2 &
+  sleep 3
+  i=$(( i + 1 ))
+done
+" > /var/www/html/cp/Libs/sh/kill.sh
 wait
 chmod 777 /var/www/html/cp/storage
 wait
@@ -348,10 +368,6 @@ pssl=$((xport+1))
 sudo sed -i "s/$xport/$serverPort/g" /var/www/html/cp/Config/define.php &
 wait 
 sudo sed -i "s/$pssl/$serverPortssl/g" /var/www/html/cp/Config/define.php &
-else
-sudo sed -i "s/':port/'/':$serverPort/'/g" /var/www/html/cp/Config/define.php &
-wait 
-sudo sed -i "s/':tlsp/'/':$serverPortssl/'/g" /var/www/html/cp/Config/define.php & 
 fi
 clear
 printf "\nXPanel Link : $protcohttp://${defdomain}:$sshttp/login"
