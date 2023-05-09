@@ -332,9 +332,8 @@ wait
 chmod 777 /var/www/html/cp/Libs/sh/kill.sh
 wait
 expin=$(echo "$protcohttp://${defdomain}:$sshttp/fixer&jub=exp")
-sed -i -e "s/job exp/$expin/" /var/www/html/cp/Libs/sh/kill.sh
 trafficin=$(echo "$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic")
-sudo sed -i "s/job exp/$expin/' /var/www/html/cp/Libs/sh/kill.sh
+sudo sed -i "s/job exp/$expin/" /var/www/html/cp/Libs/sh/kill.sh
 sudo sed -i "s/job traffic/$trafficin/" /var/www/html/cp/Libs/sh/kill.sh
 wait
 chmod 777 /var/www/html/cp/storage
