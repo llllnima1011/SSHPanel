@@ -5,19 +5,28 @@ port=$(echo "$po" | sed "s/Port //g")
 adminuser=$(mysql -N -e "use XPanel; select adminuser from setting where id='1';")
 adminpass=$(mysql -N -e "use XPanel; select adminpassword from setting where id='1';")
 clear
+if [-e /var/www/xpanelport ] ; then
+echo "File exists xpanelport"
+else
+cat > /var/www/xpanelport
+fi
+chmod 777 /var/www/xpanelport
 domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
 sslp=$(cat /var/www/xpanelport | grep "^SSLPanel")
+xpo=$(cat /var/www/xpanelport | grep "^Xpanelport")
+xport=$(echo "$xpo" | sed "s/Xpanelport //g")
 dmp=$(echo "$domainp" | sed "s/DomainPanel //g")
 dmssl=$(echo "$sslp" | sed "s/SSLPanel //g")
 
 if [ "$dmp" != "" ]; then
 defdomain=$dmp
 else
-defdomain=$(curl rabin.cf)
+defdomain=$(curl -sm8 ipv4.icanhazip.com)
 fi
 
-if [ "$dmssl" != "True" ]; then
+if [ "$dmssl" == "True" ]; then
 protcohttp=https
+
 else
 protcohttp=http
 fi
@@ -42,7 +51,7 @@ if [[ -n "${passwordtmp}" ]]; then
 fi
 fi
 
-ipv4=$(curl rabin.cf)
+ipv4=$(curl -sm8 ipv4.icanhazip.com)
 sudo sed -i '/www-data/d' /etc/sudoers &
 wait
 sudo sed -i '/apache/d' /etc/sudoers & 
@@ -135,6 +144,11 @@ else
 serverPort=8081
 serverPortssl=$((serverPort+1))
 echo $serverPort
+fi
+if [ "$dmssl" == "True" ]; then
+sshttp=$((serverPort+1))
+else
+sshttp=$serverPort
 fi
 ##Get just the port number from the settings variable I just grabbed
 serverPort=${serverPort##*=}
@@ -301,11 +315,7 @@ wait
 mysql -e "GRANT ALL ON *.* TO '${adminusername}'@'localhost';" &
 wait
 sudo sed -i "s/22/$port/g" /var/www/html/cp/Config/database.php &
-wait 
-sudo sed -i "s/port/$serverPort/g" /var/www/html/cp/Config/define.php &
-wait 
-sudo sed -i "s/portssl/$serverPortssl/g" /var/www/html/cp/Config/define.php &
-wait 
+wait
 sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/cp/Config/database.php &
 wait 
 sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/cp/Config/database.php &
@@ -316,14 +326,27 @@ sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/cp/Libs/sh/killuse
 wait 
 sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/cp/Libs/sh/killusers.sh &
 wait 
-curl -u "$adminusername:$adminpassword" "http://${ipv4}:$serverPort/reinstall"
+curl -u "$adminusername:$adminpassword" "$protcohttp://${defdomain}:$sshttp/reinstall"
 wait
 crontab -r
 wait
-(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$serverPort/fixer&jub=exp' > /dev/null 2>&1") | crontab -
-(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$serverPort/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
+chmod 777 /var/www/html/cp/Libs/sh/kill.sh
 wait
-clear
+echo "#!/bin/bash
+#By Alireza
+i=0
+while [ $i -lt 20 ]; do 
+cmd=$(curl -v -H "A: B" $protcohttp://${defdomain}:$sshttp/fixer&jub=exp)
+result=$cmd
+echo $result &
+cmd2=$(curl -v -H "A: B" $protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic)
+result2=$cmd2
+echo $result2 &
+  sleep 3
+  i=$(( i + 1 ))
+done
+" > /var/www/html/cp/Libs/sh/kill.sh
+wait
 chmod 777 /var/www/html/cp/storage
 wait
 chmod 777 /var/www/html/cp/storage/log
@@ -332,7 +355,7 @@ chmod 777 /var/www/html/cp/storage/backup
 wait
 chmod 777 /var/www/html/cp/Config/database.php
 wait
-chmod 777 /var/www/html/index.php 
+chmod 777 /var/www/html/example/index.php
 wait
 chmod 777 /var/www/html/cp/Config/define.php 
 wait
@@ -340,8 +363,14 @@ chmod 777 /var/www/html/cp/Libs
 wait
 chmod 777 /var/www/html/cp/Libs/sh
 wait
-
-printf "\nXPanel Link : $protcohttp://${defdomain}:$serverPort/login"
+if [ "$xport" != "" ]; then
+pssl=$((xport+1))
+sudo sed -i "s/$xport/$serverPort/g" /var/www/html/cp/Config/define.php &
+wait 
+sudo sed -i "s/$pssl/$serverPortssl/g" /var/www/html/cp/Config/define.php &
+fi
+clear
+printf "\nXPanel Link : $protcohttp://${defdomain}:$sshttp/login"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
