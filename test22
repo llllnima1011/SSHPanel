@@ -335,6 +335,22 @@ expin=$(echo "$protcohttp://${defdomain}:$sshttp/fixer&jub=exp")
 trafficin=$(echo "$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic")
 sudo sed -i "s/job exp/$expin/" /var/www/html/cp/Libs/sh/kill.sh
 sudo sed -i "s/job traffic/$trafficin/" /var/www/html/cp/Libs/sh/kill.sh
+cat > /var/www/html/cp/Libs/sh/kill.sh << ENDOFFILE
+#!/bin/bash
+#By Alireza
+
+i=0
+while [ $i -lt 20 ]; do 
+cmd=$(curl -v -H "A: B" $expin)
+result=$cmd
+echo $result &
+cmd2=$(curl -v -H "A: B" $trafficin)
+result2=$cmd2
+echo $result2 &
+  sleep 3
+  i=$(( i + 1 ))
+done
+ENDOFFILE
 wait
 chmod 777 /var/www/html/cp/storage
 wait
