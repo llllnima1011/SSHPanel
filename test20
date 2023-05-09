@@ -325,8 +325,6 @@ sudo sed -i "s/SERVERUSER/$adminusername/g" /var/www/html/cp/Libs/sh/killusers.s
 wait 
 sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/cp/Libs/sh/killusers.sh &
 wait 
-sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/cp/Libs/sh/killusers.sh &
-wait 
 curl -u "$adminusername:$adminpassword" "$protcohttp://${defdomain}:$sshttp/reinstall"
 wait
 crontab -r
@@ -336,8 +334,8 @@ wait
 expin=$(echo "$protcohttp://${defdomain}:$sshttp/fixer&jub=exp")
 sed -i -e "s/job exp/$expin/" /var/www/html/cp/Libs/sh/kill.sh
 trafficin=$(echo "$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic")
-sed -i 's/job exp/${expin}/' /var/www/html/cp/Libs/sh/kill.sh
-sed -i 's/job traffic/${trafficin}/' /var/www/html/cp/Libs/sh/kill.sh
+sudo sed -i "s/job exp/$expin/' /var/www/html/cp/Libs/sh/kill.sh
+sudo sed -i "s/job traffic/$trafficin/" /var/www/html/cp/Libs/sh/kill.sh
 wait
 chmod 777 /var/www/html/cp/storage
 wait
