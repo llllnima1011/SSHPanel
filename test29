@@ -339,7 +339,7 @@ cat > /var/www/html/cp/Libs/sh/kill.sh << ENDOFFILE
 
 i=0
 while [ $i -lt 20 ]; do 
-cmd=$(bbh $expin)
+cmd=(bbh $expin)
 echo cmd &
 cmd2=$(bbh $trafficin)
 echo cmd2 &
@@ -348,7 +348,7 @@ echo cmd2 &
 done
 ENDOFFILE
 wait
-sudo sed -i 's/bbh/curl -v -H "A: B"/' /var/www/html/cp/Libs/sh/kill.sh
+sudo sed -i 's/(bbh/$(curl -v -H "A: B"/' /var/www/html/cp/Libs/sh/kill.sh
 wait
 sudo sed -i 's/cmd/$cmd/' /var/www/html/cp/Libs/sh/kill.sh
 wait
