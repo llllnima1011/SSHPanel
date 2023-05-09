@@ -301,20 +301,32 @@ sudo sed -i -e '$a\'$'\n''DomainPanel '$domain /var/www/xpanelport
 sudo sed -i -e '$a\'$'\n''SSLPanel True' /var/www/xpanelport
 fi
 
-echo "#!/bin/bash
+chmod 777 /var/www/html/cp/Libs/sh/kill.sh
+wait
+expin=$(echo "https://${domain}:$portssl/fixer&jub=exp")
+trafficin=$(echo "https://${domain}:$portssl/fixer&jub=synstraffic")
+cat > /var/www/html/cp/Libs/sh/kill.sh << ENDOFFILE
+#!/bin/bash
 #By Alireza
+
 i=0
-while [ $i -lt 20 ]; do 
-cmd=$(curl -v -H "A: B" https://${domain}:$portssl/fixer&jub=exp)
-result=$cmd
-echo $result &
-cmd2=$(curl -v -H "A: B" https://${domain}:$portssl/fixer&jub=synstraffic)
-result2=$cmd2
-echo $result2 &
+while [ 1i -lt 20 ]; do 
+cmd=(bbh $expin)
+echo cmd &
+cmd2=(bbh $trafficin)
+echo cmd2 &
   sleep 3
-  i=$(( i + 1 ))
+  i=(( i + 1 ))
 done
-" > /var/www/html/cp/Libs/sh/kill.sh
+ENDOFFILE
+wait
+sudo sed -i 's/(bbh/$(curl -v -H "A: B"/' /var/www/html/cp/Libs/sh/kill.sh
+wait
+sudo sed -i 's/cmd/$cmd/' /var/www/html/cp/Libs/sh/kill.sh
+wait
+sudo sed -i 's/1i/$i/' /var/www/html/cp/Libs/sh/kill.sh
+wait
+sudo sed -i 's/((/$((/' /var/www/html/cp/Libs/sh/kill.sh
 
 (crontab -l | grep . ; echo -e "* * * * * /var/www/html/cp/Libs/sh/kill.sh") | crontab -
 clear
