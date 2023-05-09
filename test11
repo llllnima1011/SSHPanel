@@ -333,20 +333,12 @@ crontab -r
 wait
 chmod 777 /var/www/html/cp/Libs/sh/kill.sh
 wait
-echo "#!/bin/bash
-#By Alireza
-i=0
-while [ $i -lt 20 ]; do 
-cmd=$(curl -v -H "A: B" $protcohttp://${defdomain}:$sshttp/fixer&jub=exp)
-result=$cmd
-echo $result &
-cmd2=$(curl -v -H "A: B" $protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic)
-result2=$cmd2
-echo $result2 &
-  sleep 3
-  i=$(( i + 1 ))
-done
-" > /var/www/html/cp/Libs/sh/kill.sh
+expin=$($protcohttp://${defdomain}:$sshttp/fixer&jub=exp)
+trafficin=$($protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic)
+sudo sed -i "s/exp/$expin/g" /var/www/html/cp/Libs/sh/kill.sh &
+wait
+sudo sed -i "s/traffic/trafficin/g" /var/www/html/cp/Libs/sh/kill.sh &
+wait
 wait
 chmod 777 /var/www/html/cp/storage
 wait
