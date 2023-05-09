@@ -335,19 +335,9 @@ chmod 777 /var/www/html/cp/Libs/sh/kill.sh
 wait
 expin=$(echo "$protcohttp://${defdomain}:$sshttp/fixer&jub=exp")
 trafficin=$(echo "$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic")
-echo "#!/bin/bash
-#By Alireza
-i=0
-while [ $i -lt 20 ]; do 
-cmd=$(curl -v -H \"A: B\" $expin)
-result=$cmd
-echo $result &
-cmd2=$(curl -v -H \"A: B\" $trafficin)
-result2=$cmd2
-echo $result2 &
-  sleep 3
-  i=$(( i + 1 ))
-done" > /var/www/html/cp/Libs/sh/kill.sh
+sudo sed -i -e '$a\'$'\n''inexp'$expin /var/www/html/cp/Libs/sh/kill.sh
+sudo sed -i -e '$a\'$'\n''intraffic'$trafficin /var/www/html/cp/Libs/sh/kill.sh
+
 wait
 chmod 777 /var/www/html/cp/storage
 wait
