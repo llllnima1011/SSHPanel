@@ -327,7 +327,6 @@ wait
 (crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=exp' > /dev/null 2>&1") | crontab -
 (crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 wait
-clear
 chmod 777 /var/www/html/cp/storage
 wait
 chmod 777 /var/www/html/cp/storage/log
@@ -354,6 +353,7 @@ sudo sed -i "s/':port/'/':$serverPort/'/g" /var/www/html/cp/Config/define.php &
 wait 
 sudo sed -i "s/':tlsp/'/':$serverPortssl/'/g" /var/www/html/cp/Config/define.php & 
 fi
+clear
 printf "\nXPanel Link : $protcohttp://${defdomain}:$sshttp/login"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
