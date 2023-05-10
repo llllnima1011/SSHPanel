@@ -303,7 +303,7 @@ fi
 
 chmod 777 /var/www/html/cp/Libs/sh/kill.sh
 wait
-multiin=$(echo "https://${defdomain}:$sshttp/fixer&jub=multi")
+multiin=$(echo "https://${domain}:$portssl/fixer&jub=multi")
 cat > /var/www/html/cp/Libs/sh/kill.sh << ENDOFFILE
 #!/bin/bash
 #By Alireza
@@ -325,7 +325,7 @@ sudo sed -i 's/1i/$i/' /var/www/html/cp/Libs/sh/kill.sh
 wait
 sudo sed -i 's/((/$((/' /var/www/html/cp/Libs/sh/kill.sh
 
-(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=exp' > /dev/null 2>&1") | crontab -
-(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
+(crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$portssl/fixer&jub=exp' > /dev/null 2>&1") | crontab -
+(crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$portssl/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 clear
 printf "\nHTTPS Address : https://${domain}:$portssl/login \n"
