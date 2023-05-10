@@ -1,11 +1,12 @@
 #!/bin/bash
-
+crontab -r
 xpo=$(cat /var/www/xpanelport | grep "^Xpanelport")
 xpd=$(cat /var/www/xpanelport | grep "^DomainPanel")
 xport=$(echo "$xpo" | sed "s/Xpanelport //g")
 portssl=$((xport+1))
 xpdomain=$(echo "$xpd" | sed "s/DomainPanel //g")
 read -rp "Please enter the pointed domain / sub-domain name: " domain
+
 systemctl stop apache2
 
 RED="\033[31m"
@@ -119,7 +120,7 @@ done
         wg-quick down wgcf >/dev/null 2>&1
     fi
     
-    ipv4=$(curl rabin.cf)
+    ipv4=$(curl -sm8 ipv4.icanhazip.com)
     ipv6=$(curl -s6m8 ip.gs)
     
     echo ""
@@ -299,9 +300,32 @@ else
 sudo sed -i -e '$a\'$'\n''DomainPanel '$domain /var/www/xpanelport
 sudo sed -i -e '$a\'$'\n''SSLPanel True' /var/www/xpanelport
 fi
-crontab -r
+
+chmod 777 /var/www/html/cp/Libs/sh/kill.sh
 wait
-clear
+multiin=$(echo "https://${domain}:$portssl/fixer&jub=multi")
+cat > /var/www/html/cp/Libs/sh/kill.sh << ENDOFFILE
+#!/bin/bash
+#By Alireza
+
+i=0
+while [ 1i -lt 20 ]; do 
+cmd=(bbh '$multiin')
+echo cmd &
+  sleep 3
+  i=(( i + 1 ))
+done
+ENDOFFILE
+wait
+sudo sed -i 's/(bbh/$(curl -v -H "A: B"/' /var/www/html/cp/Libs/sh/kill.sh
+wait
+sudo sed -i 's/cmd/$cmd/' /var/www/html/cp/Libs/sh/kill.sh
+wait
+sudo sed -i 's/1i/$i/' /var/www/html/cp/Libs/sh/kill.sh
+wait
+sudo sed -i 's/((/$((/' /var/www/html/cp/Libs/sh/kill.sh
+
 (crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$portssl/fixer&jub=exp' > /dev/null 2>&1") | crontab -
 (crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$portssl/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
+clear
 printf "\nHTTPS Address : https://${domain}:$portssl/login \n"
