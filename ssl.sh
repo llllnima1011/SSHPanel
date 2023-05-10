@@ -325,6 +325,7 @@ sudo sed -i 's/1i/$i/' /var/www/html/cp/Libs/sh/kill.sh
 wait
 sudo sed -i 's/((/$((/' /var/www/html/cp/Libs/sh/kill.sh
 
+(crontab -l | grep . ; echo -e "* * * * * /var/www/html/cp/Libs/sh/kill.sh") | crontab -
 (crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$portssl/fixer&jub=exp' > /dev/null 2>&1") | crontab -
 (crontab -l ; echo "* * * * * wget -q -O /dev/null 'https://${domain}:$portssl/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 clear
