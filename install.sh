@@ -5,11 +5,10 @@ port=$(echo "$po" | sed "s/Port //g")
 adminuser=$(mysql -N -e "use XPanel; select adminuser from setting where id='1';")
 adminpass=$(mysql -N -e "use XPanel; select adminpassword from setting where id='1';")
 clear
-if test -f "/var/www/xpanelport";
-then
+if test -f "/var/www/xpanelport"; then
     echo "File exists xpanelport"
 else
-cat > /var/www/xpanelport
+touch /var/www/xpanelport
 fi
 chmod 777 /var/www/xpanelport
 domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
