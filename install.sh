@@ -331,18 +331,15 @@ crontab -r
 wait
 chmod 777 /var/www/html/cp/Libs/sh/kill.sh
 wait
-expin=$(echo "$protcohttp://${defdomain}:$sshttp/fixer&jub=exp")
-trafficin=$(echo "$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic")
+multiin=$(echo "$protcohttp://${defdomain}:$sshttp/fixer&jub=multi")
 cat > /var/www/html/cp/Libs/sh/kill.sh << ENDOFFILE
 #!/bin/bash
 #By Alireza
 
 i=0
 while [ 1i -lt 20 ]; do 
-cmd=(bbh $expin)
+cmd=(bbh '$multiin')
 echo cmd &
-cmd2=(bbh $trafficin)
-echo cmd2 &
   sleep 3
   i=(( i + 1 ))
 done
@@ -379,6 +376,9 @@ wait
 sudo sed -i "s/$pssl/$serverPortssl/g" /var/www/html/cp/Config/define.php &
 fi
 (crontab -l | grep . ; echo -e "* * * * * /var/www/html/cp/Libs/sh/kill.sh") | crontab -
+(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=exp' > /dev/null 2>&1") | crontab -
+(crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
+
 clear
 printf "\nXPanel Link : $protcohttp://${defdomain}:$sshttp/login"
 printf "\nUsername : \e[31m${adminusername}\e[0m "
