@@ -35,7 +35,7 @@ ETH: `0x6cc08b2057EfAe4d76Af531e145DeEd4B73c9D7e`
 **سیستم عامل مورد نیاز**
 
 CentOS 7+ <br>
-Ubuntu 18+ <br>
+Ubuntu 18+ (پیشنهادی :Ubuntu 20)<br>
 Debian 8+ <br>
 
 برای نصب و بروز رسانی می توانید از دستور زیر  استفاده کنید
