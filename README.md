@@ -38,13 +38,13 @@ CentOS 7+ <br>
 Ubuntu 18+ (پیشنهادی :Ubuntu 20)<br>
 Debian 8+ <br>
 
-اگر از نسخه های قبلی XPanel (نسخه 2 به پائین) برای نصب بروز رسانی ابتدا دستورات زیر را به ترتیب وارد کنید.
+اگر از نسخه های قبلی XPanel (نسخه 2 به پائین) استفاده میکنید ابتدا پنل قبلی را با دستور زیر حذف کنید.
 ```
 rm -rf /var/www/html/
 mkdir /var/www/html/
 chmod 777 /var/www/html/
 ```
-در صورتی که پنل 2 به پائین را نصب ندارید بدون در نظر گرفتن دستور بالا نصب را با دستور زیر انجام دهید<br>
+برای نصب کافیست دستور زیر را وارد کنید<br>
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/install.sh --ipv4)
 ```
