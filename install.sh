@@ -67,7 +67,7 @@ sudo add-apt-repository ppa:ondrej/php -y
 sudo apt-get install postfix
 apt install apache2 php7.4 zip unzip net-tools curl mariadb-server -y
 apt install php7.4-mysql php7.4-xml php7.4-curl -y
-link=$(sudo curl -Ls "https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/tags/xpanelv2-4" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
+link=$(sudo curl -Ls "https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
