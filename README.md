@@ -1,16 +1,38 @@
-<p dir="auto">
+<p align="center">
+<picture>
+<img width="160" height="160"  alt="XPanel" src="https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/xlogo.png">
+</picture>
+  </p> 
+<h1 align="center"/>X Panel</h1>
+<p align="center">
 <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/Alirezad07/X-Panel-SSH-User-Management">
+</p>
+ 
+<p align="center">
+	<a href="./README-EN.md">
+	English
+	</a>
+	/
+	<a href="./README.md">
+	فارسی
+	</a>
 </p>
 
 # X Panel SSH User Management
 
-### پنل مدیریت و فروش VPN  با پروتکل SSH
-**معرفی** <br>
+### فهرست
+ -[معرفی](#معرفی)<br>
+ -[امکانات](#امکانات)<br>
+ -[نصب](#نصب) <br>
+  -[بهینه سازی سرور](#بهینه-سازی-سرور)<br>
+  -[فعال سازی SSL](#فعال-سازی-ssl)<br>
+ -[حمایت از ما](#حمایت-از-ما)<br>
+ 
+## معرفی <br>
 ایکس پنل یک نرم افزار تحت وب جهت مدیریت اکانت SSH می باشد. با کمک پنل تحت وب ایکس پنل می توانید کاربران را مدیریت کرده و محدودیت اعمال کنید.
 
 
-**امکانات**
-<br>
+## امکانات <br>
 ایجاد کاربر بدون محدودیت <br>
 اعمال محدودیت در حجم مصرفی و تاریخ انقضا<br>
 قابلیت محاسبه تاریخ انقضا در اولین اتصال<br>
