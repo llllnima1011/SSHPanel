@@ -1,9 +1,33 @@
-<p dir="auto">
+<p align="center">
+<picture>
+<img width="160" height="160"  alt="XPanel" src="https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/xlogo.png">
+</picture>
+  </p> 
+<h1 align="center"/>X Panel</h1>
+<p align="center">
 <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/Alirezad07/X-Panel-SSH-User-Management">
+</p>
+ 
+<p align="center">
+	<a href="./README-EN.md">
+	English
+	</a>
+	/
+	<a href="./README.md">
+	فارسی
+	</a>
 </p>
 
 # X Panel SSH User Management
 
+## Contents
+- [Introduction](#introduction)<br>
+- [Features](#features)<br>
+- [Installation guide](#installation-guide) <br>
+  - [Server optimization](#server-optimization)<br>
+  - [Enabling SSL](#enabling-ssl)<br>
+- [Supporting us](#supporting-us)
+<br> 
 ## Introduction
 X-Panel is a web-based control panel for SSH VPN accounting. With the help of X-Panel you can easily configure users and set your desirable limits.
 
