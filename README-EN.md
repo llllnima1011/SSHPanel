@@ -32,18 +32,18 @@
 X-Panel is a web-based control panel for SSH VPN accounting. With the help of X-Panel you can easily configure users and set your desirable limits.
 
 ### Features
-Unlimited user creation<br>
-Limiting bandwidth usage and setting expiration date<br>
-Capable of calculating expiration date on first connection<br>
-Limiting the amount of connections per user<br>
-View online users<br>
-Backup & Restore capability<br>
-Telegram Bot support<br>
-Setting optional port number for control panel access<br>
-Fake address (Evade Censorship)<br>
-IP blacklist (Blacklisting adult websites and …)<br>
-Multi-server support (Soon…)<br>
-API support (Soon…)<br>
+:green_circle: Unlimited user creation<br>
+:green_circle: Limiting bandwidth usage and setting expiration date<br>
+:green_circle: Capable of calculating expiration date on first connection<br>
+:green_circle: Limiting the amount of connections per user<br>
+:green_circle: View online users<br>
+:green_circle: Backup & Restore capability<br>
+:green_circle: Telegram Bot support<br>
+:green_circle: Setting optional port number for control panel access<br>
+:green_circle: Fake address (Evade Censorship)<br>
+:green_circle: IP blacklist (Blacklisting adult websites and …)<br>
+:orange_circle: Multi-server support (Soon…)<br>
+:orange_circle: API support (Soon…)<br>
 
 
 ### Installation guide
