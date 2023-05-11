@@ -43,7 +43,7 @@ Fixing the known video & voice call issue in the application:<br>
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/master/fix-call.sh --ipv4)
 ```
 
-**Server optimization**
+### Server optimization
 Use the following command to install or remove<br>
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/TCP-Tweaker --ipv4)
