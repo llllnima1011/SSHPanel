@@ -26,14 +26,14 @@ API support (Soon…)<br>
 Supported operating systems<br>
 - **Ubuntu 18+ (recommended: Ubuntu 20)** <br>
 
-If your currently installed XPanel is below version 2 you must first remove the panel with the command below:<br>
+If your currently installed X-Panel is below version 2 you must first remove the panel with the command below:<br>
 ```
 rm -rf /var/www/html/
 mkdir /var/www/html/
 chmod 777 /var/www/html/
 ```
 
-To install the XPanel simply input the following command in the terminal:<br>
+To install the X-Panel simply input the following command in the terminal:<br>
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/install.sh --ipv4)
 ```
