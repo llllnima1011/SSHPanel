@@ -75,13 +75,13 @@ bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Ma
 SSL بر روی پورتی که روی پنل تعریف کرده اید نصب فعال شد. <br>
 
 <picture>
-<img alt="XPanel" src="https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/xp1.jpg">
+<img alt="XPanel" src="https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/xpanel1.jpg">
 </picture>
 
 <picture>
-<img alt="XPanel" src="https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/xp2.jpg">
+<img alt="XPanel" src="https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/xpanel2.jpg">
 </picture>
 
 <picture>
-<img alt="XPanel" src="https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/xp3.jpg">
+<img alt="XPanel" src="https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/xpanel3.jpg">
 </picture>
