@@ -87,7 +87,7 @@ With the above command you can install SSL on the panel **(First pay attention t
 
 
 
-### Supporting us
+### Supporting us :hearts:
 If X-Panel has been useful to you with supporting us you can help developing this web application.<br>
 Tether TRC20 USDT: `TYQraQ5JJXKyVD6BpTGoDYNhiLbFRfzVtV`<br>
 ETH: `0x6cc08b2057EfAe4d76Af531e145DeEd4B73c9D7e`
