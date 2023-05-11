@@ -4,6 +4,7 @@
 </picture>
   </p> 
 <h1 align="center"/>X Panel</h1>
+ **X Panel SSH User Management**<br>
 <p align="center">
 <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/Alirezad07/X-Panel-SSH-User-Management">
 </p>
@@ -18,7 +19,6 @@
 	</a>
 </p>
 
- **X Panel SSH User Management**<br>
 
 ### فهرست
 - [معرفی](#معرفی)<br>
