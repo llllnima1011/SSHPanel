@@ -26,7 +26,7 @@
 - [نصب](#نصب) <br>
   - [بهینه سازی سرور](#بهینه-سازی-سرور)<br>
   - [فعال سازی SSL](#فعال-سازی-ssl)<br>
-- [حمایت از ما](#حمایت-از-ما)<br>
+- [حمایت از ما](#حمایت-از-ما-hearts)<br>
  
 ## معرفی <br>
 ایکس پنل یک نرم افزار تحت وب جهت مدیریت اکانت SSH می باشد. با کمک پنل تحت وب ایکس پنل می توانید کاربران را مدیریت کرده و محدودیت اعمال کنید.
@@ -51,11 +51,12 @@ https://t.me/Xpanelssh
 
 ## حمایت از ما :hearts:
 حمایت های شما برای ما دلگرمی بزرگی است<br> 
+<p align="left">
 Tether(TRC20 USDT): `TYQraQ5JJXKyVD6BpTGoDYNhiLbFRfzVtV`<br>
 ETH: `0x6cc08b2057EfAe4d76Af531e145DeEd4B73c9D7e`<br>
 Litecoin(LTC): `ltc1q6gq4espx74lp6jvhmr0jmxlu4al0uwemmzwdv4`<br>
 Dogecoin(DOGE): `DPrKJJxFZH91b54Cb6A2xzTDz8bY1vKgXc`<br>
-	
+	</p>	
 
 # نصب
 
