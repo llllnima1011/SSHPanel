@@ -28,16 +28,16 @@
 - [Supporting us](#supporting-us-hearts)
 <br> 
 
-## Introduction
-X-Panel is a web-based control panel for SSH VPN accounting. With the help of X-Panel you can easily configure users and set your desirable limits.
+## X-PANEL Introduction
+X-Panel is a lightweight web application for SSH accounts management. With the help of X-Panel, you can manage users and apply restrictions.	
 
-### Features
-:green_circle: Unlimited user creation<br>
-:green_circle: Limiting bandwidth usage and setting expiration date<br>
-:green_circle: Capable of calculating expiration date on first connection<br>
-:green_circle: Limiting the amount of connections per user<br>
+### Features and Capabilities
+:green_circle: Ability to create multiple users (unlimited)<br>
+:green_circle: Restrictions on users’ traffic consumption and expiration date<br>
+:green_circle: Ability to calculate the expiration date after the first connection<br>
+:green_circle: Ability to set limitation for user account’s concurrent sessions<br>
 :green_circle: View online users<br>
-:green_circle: Backup & Restore capability<br>
+:green_circle: Ability to backup and restore users<br>
 :green_circle: Telegram Bot support<br>
 :green_circle: Setting optional port number for control panel access<br>
 :green_circle: Fake address (Evade Censorship)<br>
@@ -62,7 +62,7 @@ To install the X-Panel simply input the following command in the terminal:<br>
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/install.sh --ipv4)
 ```
 
-Fixing the known video & voice call issue in the application:<br>
+To resolve audio and video call issues use this command:<br>
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/master/fix-call.sh --ipv4)
 ```
