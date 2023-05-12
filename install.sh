@@ -58,12 +58,12 @@ sudo sed -i '/apache/d' /etc/sudoers &
 wait
 
 if command -v apt-get >/dev/null; then
-apt update -y
+sudo NEETRESTART_MODE=a apt update --yes 
 apt remove php8* -y
 sudo apt -y install software-properties-common
 
 sudo add-apt-repository ppa:ondrej/php -y
-sudo apt-get install postfix
+sudo apt-get install postfix -y
 apt install apache2 php7.4 zip unzip net-tools curl mariadb-server -y
 apt install php7.4-mysql php7.4-xml php7.4-curl -y
 link=$(sudo curl -Ls "https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
