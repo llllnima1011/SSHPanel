@@ -20,7 +20,7 @@
 </p>
 
 ## Contents
-- [Introduction](#introduction)<br>
+- [Introduction](#x-panel-introduction)<br>
 - [Features](#features)<br>
 - [Installation guide](#installation-guide) <br>
   - [Server optimization](#server-optimization)<br>
