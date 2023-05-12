@@ -25,7 +25,7 @@
 - [Installation guide](#installation-guide) <br>
   - [Server optimization](#server-optimization)<br>
   - [Enabling SSL](#enabling-ssl)<br>
-- [Supporting us](#supporting-us)
+- [Supporting us](#supporting-us-hearts)
 <br> 
 
 ## Introduction
@@ -89,7 +89,11 @@ With the above command you can install SSL on the panel **(First pay attention t
 
 ### Supporting us :hearts:
 If X-Panel has been useful to you with supporting us you can help developing this web application.<br>
-Tether TRC20 USDT: `TYQraQ5JJXKyVD6BpTGoDYNhiLbFRfzVtV`<br>
-ETH: `0x6cc08b2057EfAe4d76Af531e145DeEd4B73c9D7e`
+
+Tether(TRC20 USDT): `TYQraQ5JJXKyVD6BpTGoDYNhiLbFRfzVtV`<br>
+ETH: `0x6cc08b2057EfAe4d76Af531e145DeEd4B73c9D7e`<br>
+Litecoin(LTC): `ltc1q6gq4espx74lp6jvhmr0jmxlu4al0uwemmzwdv4`<br>
+Dogecoin(DOGE): `DPrKJJxFZH91b54Cb6A2xzTDz8bY1vKgXc`<br>
+	
 
 
