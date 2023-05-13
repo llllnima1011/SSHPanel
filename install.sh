@@ -9,12 +9,7 @@ port=$(echo "$po" | sed "s/Port //g")
 adminuser=$(mysql -N -e "use XPanel; select adminuser from setting where id='1';")
 adminpass=$(mysql -N -e "use XPanel; select adminpassword from setting where id='1';")
 clear
-if test -f "/var/www/xpanelport"; then
-    echo "File exists xpanelport"
-else
-touch /var/www/xpanelport
-fi
-chmod 777 /var/www/xpanelport
+
 domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
 sslp=$(cat /var/www/xpanelport | grep "^SSLPanel")
 xpo=$(cat /var/www/xpanelport | grep "^Xpanelport")
@@ -70,6 +65,14 @@ sudo add-apt-repository ppa:ondrej/php -y
 sudo apt-get install postfix -y
 apt install apache2 php7.4 zip unzip net-tools curl mariadb-server -y
 apt install php7.4-mysql php7.4-xml php7.4-curl -y
+
+if test -f "/var/www/xpanelport"; then
+    echo "File exists xpanelport"
+else
+touch /var/www/xpanelport
+fi
+chmod 777 /var/www/xpanelport
+
 link=$(sudo curl -Ls "https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
