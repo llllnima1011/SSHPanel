@@ -62,7 +62,7 @@ apt remove php8* -y
 sudo apt -y install software-properties-common
 
 sudo add-apt-repository ppa:ondrej/php -y
-sudo apt-get install postfix -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get install postfix -y
 apt install apache2 php7.4 zip unzip net-tools curl mariadb-server -y
 apt install php7.4-mysql php7.4-xml php7.4-curl -y
 
