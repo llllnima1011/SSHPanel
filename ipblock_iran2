@@ -32,8 +32,8 @@ save_blocked_ips() {
 
 # Función para bloquear las direcciones IP de un país - No funciona el link esta mal, debes tener una cuenta comprada con su respectiva api key
 block_country_ips() {
-    read -p "Ingrese el código de país que desea bloquear (por ejemplo, US para Estados Unidos): " COUNTRY
-    IP_LIST=$(wget -qO- https://www.ip2location.com/free/visitor-blocker/$COUNTRY | awk -F'[,]' '{ print $2 }' | tr -d '"' | sort -u)
+   
+    IP_LIST=$(wget -qO- https://www.ipdeny.com/ipblocks/data/aggregated/ir-aggregated.zone/ | awk -F'[,]' '{ print $2 }' | tr -d '"' | sort -u)
 
     for IP in $IP_LIST; do
         iptables -A INPUT -s $IP -j DROP
