@@ -1,6 +1,5 @@
 #!/bin/sh
-sudo apt-get update; sudo apt-get -y upgrade
-wait
+#Alireza
 sudo apt-get install curl unzip perl &
 wait
 sudo apt-get install xtables-addons-common &
