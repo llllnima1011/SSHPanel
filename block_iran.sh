@@ -21,4 +21,4 @@ wait
 sudo iptables -A OUTPUT -m geoip -p tcp --destination-port 443 --dst-cc IR -j DROP
 
 clear
-printf "\n Block Port 80,443 GEOIP IRAN"
+printf "\n Block Port 80,443 GEOIP IRAN  \n"
