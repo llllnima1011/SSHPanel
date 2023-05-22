@@ -43,5 +43,7 @@ if !(groups $u | grep >/dev/null www-data); then
 fi
 
 echo ""
-echo "Install Wordpress complete!"
+echo "Database Name: $db"
+echo "\nDatabase Username: $user"
+echo "\nDatabase User Password: $pass"
 echo ""
