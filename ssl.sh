@@ -312,7 +312,7 @@ i=0
 while [ 1i -lt 20 ]; do 
 cmd=(bbh '$multiin')
 echo cmd &
-  sleep 3
+  sleep 6
   i=(( i + 1 ))
 done
 ENDOFFILE
