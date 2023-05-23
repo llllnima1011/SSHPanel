@@ -1,9 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web Panel/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="ADD web panel open source">
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Config/database.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Config/define.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Checkip.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Edituser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Fixer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Jub.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Login.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Managers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Online.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Protection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Reinstall.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Settings.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Users.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/Bootstrap.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/CheckEmail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/Controller.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/Database.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/Model.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/Session.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/View.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/checkuser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/jdf.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/en-us.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/fa-ir.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/adduser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/banip.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/changepass" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/deleteuser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/kill.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/userdelete" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Edituser_Model.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Fixer_Model.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Index_Model.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Login_Model.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Managers_Model.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Permission_Model.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Reinstall_Model.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Settings_Model.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Users_Model.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Checkip/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Footer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Header.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Index/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Login/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Managers/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Online/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Protection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Settings/api.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Settings/backup.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Settings/block.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Settings/chengepass.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Settings/fakeaddress.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Settings/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Settings/multiserver.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Settings/sshport.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Settings/telegram.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Settings/user.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Settings/wordpress.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Users/edituser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/css/persian-datepicker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/css/style-en-us.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/css/style-fa-ir.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/css/style-preset.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/IRANYekanX-Regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/feather.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/feather/feathere8ab.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/feather/feathere8ab.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/feather/feathere8ab.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/feather/feathere8ab.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-brands-400.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-brands-400.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-brands-400.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-brands-400.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-brands-400.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-brands-400d41d.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-regular-400.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-regular-400.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-regular-400.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-regular-400.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-regular-400.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-regular-400d41d.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-solid-900.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-solid-900.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-solid-900.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-solid-900.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-solid-900.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/fontawesome/fa-solid-900d41d.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/inter/Inter-italic.var32a8.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/inter/Inter-roman.var32a8.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/inter/inter.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/material.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/material/material.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/tabler-icons.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/tabler/tabler-icons.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/tabler/tabler-icons.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/tabler/tabler-icons.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/tabler/tabler-icons.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/tabler/tabler-icons.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/fonts/tabler/tabler-iconsd41d.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/application/img-cal-bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/authentication/img-auth-bg-dark.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/authentication/img-auth-bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/ae.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/at.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/br.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/ch.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/cz.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/de.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/fi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/fr.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/hk.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/il.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/in.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/ir.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/it.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/kz.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/lt.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/md.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/nl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/pl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/pt.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/ru.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/th.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/tr.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/ua.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/uk.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/flags/us.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/layout/img-announcement-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/layout/img-announcement-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/layout/img-announcement-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/layout/img-announcement-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/layout/img-profile-card.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/pages/img-cunstruct-1-bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/user/avatar-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/user/avatar-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/user/avatar-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/user/avatar-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/user/avatar-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/widget/img-gpay.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/widget/img-paypal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/widget/img-phonepay.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/images/xlogo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/clipboard.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/fonts/custom-font.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/pages/dashboard-analytics.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/pages/dashboard-default.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/pcoded.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/persian-date.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/persian-datepicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/persian-datepicker.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/plugins/apexcharts.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/plugins/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/plugins/feather.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/plugins/main.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/plugins/popper.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/plugins/quill.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/plugins/simple-datatables-en-us.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/plugins/simple-datatables-fa-ir.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/plugins/simplebar.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/plugins/sweetalert2.all.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/plugins/uppy.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/cp/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web Panel/example/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +182,11 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Alireza &lt;127631174+alirezad07@users.noreply.github.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="main" />
@@ -45,8 +218,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1684879446141</updated>
-      <workItem from="1684879447595" duration="3418000" />
+      <workItem from="1684879447595" duration="3752000" />
     </task>
+    <task id="LOCAL-00001" summary="ADD web panel open source">
+      <created>1684882940503</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1684882940503</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -74,5 +255,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ADD web panel open source" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADD web panel open source" />
   </component>
 </project>
