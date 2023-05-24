@@ -6,6 +6,7 @@ class Permission_Model extends Model
     {
         // Call the Model constructor
         parent::__construct();
+        if (isset($_COOKIE["xpkey"])) {
             $key_login = explode(':', $_COOKIE["xpkey"]);
             $Ukey = $key_login[0];
             $url = $_GET['url'];
@@ -13,12 +14,12 @@ class Permission_Model extends Model
             $query = $this->db->prepare("select * from admins where username_u='" . $Ukey . "' and permission_u='admin' and login_key='" . $_COOKIE["xpkey"] . "'");
             $query->execute();
             $queryCount = $query->rowCount();
-            if ($queryCount > 0 ) {
-                if(ucfirst($url[0])=='Managers' || ucfirst($url[0])=='Settings')
-                {
+            if ($queryCount > 0) {
+                if (ucfirst($url[0]) == 'Managers' || ucfirst($url[0]) == 'Settings') {
                     die('<h4 style="color: red">INACCESSIBILITY</h4>');
                 }
             }
+        }
 
     }
 }
