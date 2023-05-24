@@ -375,6 +375,8 @@ chmod 777 /var/www/html/cp/Libs
 wait
 chmod 777 /var/www/html/cp/Libs/sh
 wait
+chmod 777 /var/www/html/cp/assets/js/config.js
+wait
 if [ "$xport" != "" ]; then
 pssl=$((xport+1))
 sudo sed -i "s/$xport/$serverPort/g" /var/www/html/cp/Config/define.php &
