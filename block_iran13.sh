@@ -2,9 +2,9 @@
 #Alireza
 sudo apt-get install curl unzip perl &
 wait
-sudo apt-get install xtables-addons-common -y &
+apt install xtables-addons-common -y &
 wait
-sudo apt-get install libtext-csv-xs-perl libmoosex-types-netaddr-ip-perl -y &
+apt install libtext-csv-xs-perl libmoosex-types-netaddr-ip-perl -y &
 wait
 sudo mkdir /usr/share/xt_geoip
 sudo mkdir /usr/lib/xtables-addons/
