@@ -8,6 +8,7 @@ wait
 sudo apt-get install libtext-csv-xs-perl libmoosex-types-netaddr-ip-perl &
 wait
 sudo mkdir /usr/share/xt_geoip
+cd /usr/share/xt_geoip
 wait
 MON=$(date +"%m")
 YR=$(date +"%Y")
