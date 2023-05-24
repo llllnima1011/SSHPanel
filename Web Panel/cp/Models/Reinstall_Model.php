@@ -2,15 +2,15 @@
 
 class Reinstall_Model extends Model
 {
-	function __construct()
-	{
-		parent::__construct();
-	}
+    function __construct()
+    {
+        parent::__construct();
+    }
 
-	function install()
-	{
-	$statements = [
-		'CREATE TABLE setting(
+    function install()
+    {
+        $statements = [
+            'CREATE TABLE setting(
 	        id   INT AUTO_INCREMENT,
 	        adminuser  VARCHAR(100) NOT NULL,
 	        adminpassword VARCHAR(100) NULL,
@@ -22,7 +22,7 @@ class Reinstall_Model extends Model
 					credit   VARCHAR(100) NULL,
 	        PRIMARY KEY(id)
 	    );',
-			'CREATE TABLE users(
+            'CREATE TABLE users(
 						id   INT AUTO_INCREMENT,
 						username  VARCHAR(100) NOT NULL,
 						password VARCHAR(50) NULL,
@@ -38,7 +38,7 @@ class Reinstall_Model extends Model
 						info   VARCHAR(100) NULL,
 						PRIMARY KEY(id)
 				);',
-				'CREATE TABLE servers(
+            'CREATE TABLE servers(
 							id  INT AUTO_INCREMENT,
 							serverip  VARCHAR(100) NOT NULL,
 							serverlocation VARCHAR(100) NULL,
@@ -46,7 +46,7 @@ class Reinstall_Model extends Model
 							serverpassword   VARCHAR(100) NULL,
 							PRIMARY KEY(id)
 					);',
-					'CREATE TABLE ApiToken(
+            'CREATE TABLE ApiToken(
 								id  INT AUTO_INCREMENT,
 								Token  VARCHAR(100) NOT NULL,
 								Description VARCHAR(100) NULL,
@@ -54,7 +54,7 @@ class Reinstall_Model extends Model
 								enable   VARCHAR(100) NULL,
 								PRIMARY KEY(id)
 						);',
-                    'CREATE TABLE admins(
+            'CREATE TABLE admins(
 								id  INT AUTO_INCREMENT,
 								username_u VARCHAR(100) NOT NULL,
 								password_u VARCHAR(100) NULL,
@@ -63,7 +63,7 @@ class Reinstall_Model extends Model
 								condition_u VARCHAR(100) NULL,
 								PRIMARY KEY(id)
 						);',
-					'CREATE TABLE Traffic(
+            'CREATE TABLE Traffic(
 									id  INT AUTO_INCREMENT,
 									user  VARCHAR(100) NOT NULL,
 									download VARCHAR(100) NULL,
@@ -73,29 +73,31 @@ class Reinstall_Model extends Model
 									PRIMARY KEY(id)
 							)'];
 
-		// execute SQL statements
-		foreach ($statements as $statement) {
-			$this->db->exec($statement);
-		}
+        // execute SQL statements
+        foreach ($statements as $statement) {
+            $this->db->exec($statement);
+        }
+        $sql=$this->db->prepare("TRUNCATE TABLE `setting`");
+        $sql->execute();
         $sql = "INSERT INTO `setting` (`id`,`adminuser`, `adminpassword`, `sshport`) VALUES (NULL,?,?,?)";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(array(DB_USER, DB_PASS, PORT));
 
-				$query = $this->db->prepare("select * from users");
+        $query = $this->db->prepare("select * from users");
         $query->execute();
         $queryCount = $query->fetchAll();
         foreach ($queryCount as $value) {
-         // echo $value['username']."<br>";
-          $tr=$value['username'];
-          $stmt = $this->db->prepare("SELECT * FROM Traffic WHERE user=:user");
-          $stmt->execute(['user' => $tr]);
-          $user = $stmt->rowCount();
-         if($user==0) {
-             echo"ok";
-             $sql1 = "INSERT INTO `Traffic` (`user`, `download`, `upload`, `total` ) VALUES (?,?,?,?)";
-             $stmt1 = $this->db->prepare($sql1);
-             $stmt1->execute(array($tr, '0', '0', '0'));
-         }
+            // echo $value['username']."<br>";
+            $tr=$value['username'];
+            $stmt = $this->db->prepare("SELECT * FROM Traffic WHERE user=:user");
+            $stmt->execute(['user' => $tr]);
+            $user = $stmt->rowCount();
+            if($user==0) {
+                echo"ok";
+                $sql1 = "INSERT INTO `Traffic` (`user`, `download`, `upload`, `total` ) VALUES (?,?,?,?)";
+                $stmt1 = $this->db->prepare($sql1);
+                $stmt1->execute(array($tr, '0', '0', '0'));
+            }
         }
 
         $sql = "ALTER TABLE users ADD COLUMN finishdate_one_connect VARCHAR(100) AFTER finishdate;";
