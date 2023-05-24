@@ -34,14 +34,27 @@ class Edituser_Model extends Model
     }
     public function submit_update($data_sybmit)
     {
+        function en_number($number)
+        {
+            if(!is_numeric($number) || empty($number))
+                //return '۰';
+                $en = array("0","1","2","3","4","5","6","7","8","9");
+            $fa = array("۰","۱","۲","۳","۴","۵","۶","۷","۸","۹");
+            return str_replace($fa,$en, $number);
+        }
         $password=$data_sybmit['password'];
         $email=$data_sybmit['email'];
         $username=$data_sybmit['username'];
         $mobile=$data_sybmit['mobile'];
         $multiuser=$data_sybmit['multiuser'];
-        $finishdate=$data_sybmit['finishdate'];
         $traffic=$data_sybmit['traffic'];
         $info=$data_sybmit['info'];
+        if(!empty($data_sybmit['finishdate'])) {
+            $finishdate = explode('/', $data_sybmit['finishdate']);
+
+            $finishdate = en_number(jalali_to_gregorian($finishdate[0], $finishdate[1], $finishdate[2],'-'));
+        }
+        else {$finishdate='';}
         $data = [
             'password'=>$password,
             'email' => $email,
@@ -58,8 +71,8 @@ class Edituser_Model extends Model
         $statement = $this->db->prepare($sql);
 
         if($statement->execute($data)) {
-          shell_exec("sudo killall -u " . $username);
-          shell_exec("bash Libs/sh/changepass ".$username." ".$password);
+            shell_exec("sudo killall -u " . $username);
+            shell_exec("bash Libs/sh/changepass ".$username." ".$password);
             header("Location: users");
         }
         //header("Location: users");
