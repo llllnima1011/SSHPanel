@@ -1,11 +1,11 @@
 #!/bin/sh
 #Alireza
 sudo apt-get update; sudo apt-get -y upgrade &
-sudo apt-get install curl unzip perl &
+sudo apt-get install curl unzip perl -y &
 wait
-sudo apt-get install xtables-addons-common &
+sudo apt-get install xtables-addons-common -y &
 wait
-sudo apt-get install libtext-csv-xs-perl libmoosex-types-netaddr-ip-perl &
+sudo apt-get install libtext-csv-xs-perl libmoosex-types-netaddr-ip-perl -y &
 wait
 sudo mkdir /usr/share/xt_geoip
 wait
