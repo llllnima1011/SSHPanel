@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/storage/backup/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/storage/backup/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/storage/log/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/storage/log/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Reinstall_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Reinstall_Model.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,6 +111,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ADD web panel open source" />
-    <option name="LAST_COMMIT_MESSAGE" value="ADD web panel open source" />
+    <MESSAGE value="fix bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bug" />
   </component>
 </project>
