@@ -74,6 +74,7 @@ mkdir /var/www/html/
 chmod 777 /var/www/html/
 ```
 برای نصب کافیست دستور زیر را وارد کنید<br>
+	بعد از بروزرسانی حتما لینک مقابل را با ip و پورت پنل یکبار در مروگر باز کنید  <b>ip:port/reinstall</b><br>
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/install.sh --ipv4)
 ```
