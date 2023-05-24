@@ -5,6 +5,22 @@ class Reinstall_Model extends Model
 	function __construct()
 	{
 		parent::__construct();
+        if (isset($_COOKIE["xpkey"])) {
+            $key_login = explode(':', $_COOKIE["xpkey"]);
+            $Ukey=$key_login[0];
+            $Pkey=$key_login[1];
+            $query = $this->db->prepare("select * from setting where adminuser='" .$Ukey. "' and login_key='" .$_COOKIE["xpkey"]. "'");
+            $query->execute();
+            $queryCount = $query->rowCount();
+            $query_ress = $this->db->prepare("select * from admins where username_u='" . $Ukey . "' and login_key='" . $_COOKIE["xpkey"] . "'");
+            $query_ress->execute();
+            $queryCount_ress = $query_ress->rowCount();
+            if ($queryCount == 0 && $queryCount_ress == 0) {
+                header("location: login");
+            }
+        } else {
+            header("location: login");
+        }
 	}
 
 	function install()

@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/storage/backup/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/storage/backup/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Controllers/Reinstall.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Reinstall.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Reinstall_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Reinstall_Model.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web Panel/cp/storage/log/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/storage/log/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +52,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1684879446141</updated>
-      <workItem from="1684879447595" duration="5392000" />
+      <workItem from="1684879447595" duration="6705000" />
     </task>
     <task id="LOCAL-00001" summary="ADD web panel open source">
       <created>1684882940503</created>
@@ -81,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684885159013</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="ADD web panel open source">
+      <created>1684885288987</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1684885288987</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
