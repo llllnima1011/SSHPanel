@@ -1,8 +1,8 @@
 #!/bin/sh
 #Alireza
 sudo apt-get install curl unzip perl &
-wait
-sudo apt install xtables-addons-common libnet-cidr-lite-perl libtext-csv-xs-perl libgeoip2-perl -y
+sudo apt-get install xtables-addons-common -y
+sudo apt-get install libtext-csv-xs-perl libmoosex-types-netaddr-ip-perl -y
 wait
 sudo mkdir /usr/share/xt_geoip
 sudo mkdir /usr/lib/xtables-addons/
