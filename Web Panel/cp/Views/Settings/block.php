@@ -4,6 +4,12 @@
 
             <p class="form-text text-muted"><?php echo setting_block_dec1_lang;?></p>
             <p class="form-text text-muted"><?php echo setting_block_dec2_lang;?></p>
+            <code>sudo apt-get install curl unzip perl</code>
+            <br>
+            <code>sudo apt-get install xtables-addons-common -y</code>
+            <br>
+            <code>sudo apt-get install libtext-csv-xs-perl libmoosex-types-netaddr-ip-perl -y</code>
+            <br>
             <code>bash <(curl -Ls
                 https://raw.githubusercontent.com/Alirezad07/X-Panel-SSH-User-Management/main/block_iran.sh
                 --ipv4)</code>
