@@ -8,6 +8,9 @@ wait
 sudo apt-get install libtext-csv-xs-perl libmoosex-types-netaddr-ip-perl -y &
 wait
 sudo mkdir /usr/share/xt_geoip
+sudo mkdir /usr/lib/xtables-addons/
+sudo mkdir /usr/lib/xtables-addons/xt_geoip_build
+chmod 777 /usr/lib/xtables-addons/xt_geoip_build
 wait
 MON=$(date +"%m")
 YR=$(date +"%Y")
@@ -19,5 +22,4 @@ rm /usr/share/xt_geoip/dbip-country-lite.csv
 modprobe xt_geoip
 lsmod | grep ^xt_geoip
 wait
-iptables -m geoip -h
 printf "\n Download Success GEOIP Library  \n"
