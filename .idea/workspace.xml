@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="fix bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Edituser_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Edituser_Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Users_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Users_Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/en-us.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/en-us.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/fa-ir.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/fa-ir.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Index/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +58,7 @@
       <option name="presentableId" value="Default" />
       <updated>1684879446141</updated>
       <workItem from="1684879447595" duration="5392000" />
-      <workItem from="1684953996179" duration="4822000" />
+      <workItem from="1684953996179" duration="6529000" />
     </task>
     <task id="LOCAL-00001" summary="ADD web panel open source">
       <created>1684882940503</created>
@@ -129,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684959650757</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix bug">
+      <created>1685087721643</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1685087721643</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

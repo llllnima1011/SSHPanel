@@ -9,6 +9,8 @@ define('confirm_re_user_lang','Username is already taken');
 define('confirm_success_lang','Operation performed successfully');
 define('confirm_sql_lang','Only SQL file is supported');
 define('confirm_dev_lang','Design and Development');
+define('confirm_last_version_lang','A new version is available');
+
 //menu
 define('dashboard_lang','Dashboard');
 define('users_lang','Users');

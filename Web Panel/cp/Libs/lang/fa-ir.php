@@ -9,6 +9,7 @@ define('confirm_re_user_lang','نام کاربری تکراری می باشد');
 define('confirm_success_lang','عملیات با موفقیت انجام شد');
 define('confirm_sql_lang','تنها فایل SQL پشتیبانی می شود');
 define('confirm_dev_lang','طراحی و توسعه');
+define('confirm_last_version_lang','نسخه جدید در دسترس می باشد');
 //menu
 define('dashboard_lang','پیشخوان');
 define('users_lang','کاربران');
