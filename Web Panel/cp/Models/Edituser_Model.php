@@ -49,12 +49,18 @@ class Edituser_Model extends Model
         $multiuser=$data_sybmit['multiuser'];
         $traffic=$data_sybmit['traffic'];
         $info=$data_sybmit['info'];
-        if(!empty($data_sybmit['finishdate'])) {
-            $finishdate = explode('/', $data_sybmit['finishdate']);
+        if(LANG=='fa-ir') {
+            if (!empty($data_sybmit['finishdate'])) {
+                $finishdate = explode('/', $data_sybmit['finishdate']);
 
-            $finishdate = en_number(jalali_to_gregorian($finishdate[0], $finishdate[1], $finishdate[2],'-'));
+                $finishdate = en_number(jalali_to_gregorian($finishdate[0], $finishdate[1], $finishdate[2], '-'));
+            } else {
+                $finishdate = '';
+            }
         }
-        else {$finishdate='';}
+        else{
+            $finishdate = $data_sybmit['finishdate'];
+        }
         $data = [
             'password'=>$password,
             'email' => $email,

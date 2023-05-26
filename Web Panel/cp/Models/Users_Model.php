@@ -82,11 +82,17 @@ class Users_Model extends Model
         $query->execute();
         $queryCount = $query->rowCount();
         if ($queryCount < 1) {
-            if(!empty($data_sybmit['finishdate'])) {
-                $finishdate = explode('/', $data_sybmit['finishdate']);
-                $finishdate = jalali_to_gregorian($finishdate[0], $finishdate[1], $finishdate[2],'-');
+            if(LANG=='fa-ir') {
+                if (!empty($data_sybmit['finishdate'])) {
+                    $finishdate = explode('/', $data_sybmit['finishdate']);
+                    $finishdate = jalali_to_gregorian($finishdate[0], $finishdate[1], $finishdate[2], '-');
+                } else {
+                    $finishdate = '';
+                }
             }
-            else {$finishdate='';}
+            else{
+                $finishdate = $data_sybmit['finishdate'];
+            }
             $sql = "INSERT INTO `users` (`username`, `password`, `email`, `mobile`, `multiuser`, `startdate`, `finishdate`, `finishdate_one_connect`, `enable`, `traffic`, `referral`, `info`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             $stmt = $this->db->prepare($sql);
             $stmt->execute(array($data_sybmit['username'], $password, $data_sybmit['email'], $data_sybmit['mobile'], $data_sybmit['multiuser'], $data_sybmit['startdate'], $finishdate, $data_sybmit['finishdate_one_connect'], $data_sybmit['enable'], $data_sybmit['traffic'], $data_sybmit['referral'], $data_sybmit['info']));
