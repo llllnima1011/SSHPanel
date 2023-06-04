@@ -1,4 +1,12 @@
 #!/bin/bash
+
+RED="\e[31m"
+GREEN="\e[32m"
+YELLOW="\e[33m"
+BLUE="\e[34m"
+CYAN="\e[36m"
+ENDCOLOR="\e[0m"
+
 if [ "$EUID" -ne 0 ]
 then echo "Please run as root"
 exit
@@ -463,7 +471,22 @@ fi
 (crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 sudo wget -O $protcohttp://${defdomain}:$sshttp/reinstall
 clear
-printf "\nXPanel Link : $protcohttp://${defdomain}:$sshttp/login"
-printf "\nUsername : \e[31m${adminusername}\e[0m "
-printf "\nPassword : \e[31m${adminpassword}\e[0m "
-printf "\nPort : \e[31m${port}\e[0m \n"
+
+old_db_port=$(grep "DROPBEAR_PORT=" /etc/default/dropbear | sed 's/=/= /'  | awk '{print$2}')
+old_db_ssl=$(grep "accept =" /etc/stunnel/stunnel.conf | sed ':a;N;$!ba;s/\n/ /g' | sed 's/accept =//g' | awk '{print$1}')
+old_op_ssl=$(grep "accept =" /etc/stunnel/stunnel.conf | sed ':a;N;$!ba;s/\n/ /g' | sed 's/accept =//g' | awk '{print$2}')
+old_squid_port=$(sed /^#/d /etc/squid/squid.conf | grep "http_port" | awk '{print$2}')
+
+echo -e "${YELLOW}************ XPanel ************"
+echo -e "${RED}-----------------------------------\n"
+echo -e "${YELLOW}-------- Panel web Details -----------\n"
+echo -e "XPanel Link : $protcohttp://${defdomain}:$sshttp/login \n"
+echo -e "Username : \e[31m${adminusername}\e[0m  \n"
+echo -e "Password : \e[31m${adminpassword}\e[0m \n"
+echo -e "${YELLOW}-------- Connection Details -----------\n"
+echo -e "${GREEN}IP : $ipv4"
+echo -e "SSH port : \e[31m${port}\e[0m \n"
+echo -e "Dropbear port : $old_db_port"
+echo -e "Dropbear + SSL port : $old_db_ssl"
+echo -e "Openssh +  SSL port : $old_op_ssl"
+echo -e "Squid port : $old_squid_port"
