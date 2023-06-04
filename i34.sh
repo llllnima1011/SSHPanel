@@ -80,7 +80,6 @@ cat << EOF > /etc/default/dropbear
 NO_START=0
 DROPBEAR_PORT=2022
 DROPBEAR_EXTRA_ARGS="-p 110"
-DROPBEAR_BANNER=""
 DROPBEAR_RSAKEY="/etc/dropbear/dropbear_rsa_host_key"
 DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
 DROPBEAR_ECDSAKEY="/etc/dropbear/dropbear_ecdsa_host_key"
