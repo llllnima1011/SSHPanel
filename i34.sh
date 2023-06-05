@@ -12,7 +12,7 @@ then echo "Please run as root"
 exit
 fi
 sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
-sed -i 's/#Banner/Banner /root/banner.txt/g' /etc/ssh/sshd_config
+sed -i 's/#Banner none/Banner \/root\/banner.txt/g' /etc/ssh/sshd_config
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
@@ -97,59 +97,30 @@ EOF
 #Configuring stunnel
 mkdir /etc/stunnel
 cat << EOF > /etc/stunnel/stunnel.conf
-cert = /etc/stunnel/stunnel.pem
-client = no
-sslVersion = all
-socket = l:TCP_NODELAY=1
-socket = r:TCP_NODELAY=1
-
-[dropbear]
-accept = 2022
-connect = 110
-
-[openssh]
-accept = 444
-connect = 22
+ cert = /etc/stunnel/stunnel.pem
+ client = no
+ socket = a:SO_REUSEADDR=1
+ socket = l:TCP_NODELAY=1
+ socket = r:TCP_NODELAY=1
+ [dropbear]
+ accept = 2083
+ connect = 127.0.0.1:222
 EOF
-#Genarating a self signed certificate for stunnel
-openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
-    -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.example.com" \
-    -out stunnel.pem  -keyout stunnel.pem
 
-cp stunnel.pem /etc/stunnel/stunnel.pem
-chmod 644 /etc/stunnel/stunnel.pem
-
-#Enable overide stunnel default
-cp /etc/default/stunnel4 /etc/default/stunnel4.backup
-sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/stunnel4
-# Configuring squid
-mv /etc/squid/squid.conf /etc/squid/squid.conf.backup
-cat << EOF > /etc/squid/squid.conf
-acl url1 dstdomain -i 127.0.0.1
-acl url2 dstdomain -i localhost
-acl url3 dstdomain -i $pub_ip
-acl url4 dstdomain -i /REZOTHSSSH?
-acl payload url_regex -i "/etc/squid/payload.txt"
-
-http_access allow url1
-http_access allow url2
-http_access allow url3
-http_access allow url4
-http_access allow payload
-http_access deny all
-
-http_port 8080
-visible_hostname REZOTHSSSH
-via off
-forwarded_for off
-pipeline_prefetch off
-EOF
-cat << EOF > /etc/squid/payload.txt
-.whatsapp.net/
-.facebook.net/
-.twitter.com/
-.speedtest.net/
-EOF
+echo "=================  XPanel OpenSSL ======================"
+country=ID
+state=Semarang
+locality=Jawa Tengah
+organization=hidessh
+organizationalunit=HideSSH
+commonname=hidessh.com
+email=admin@hidessh.com
+openssl genrsa -out key.pem 2048
+openssl req -new -x509 -key key.pem -out cert.pem -days 1095 -subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
+cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
+sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
+service stunnel4 restart
+  
 if test -f "/var/www/xpanelport"; then
 echo "File exists xpanelport"
 else
