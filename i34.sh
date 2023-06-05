@@ -32,12 +32,18 @@ dropbear_tls_port=$dropb_tls_port
 else
 dropbear_tls_port=2083
 fi
+if test -f "/var/www/xpanelport"; then
 domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
 sslp=$(cat /var/www/xpanelport | grep "^SSLPanel")
 xpo=$(cat /var/www/xpanelport | grep "^Xpanelport")
 xport=$(echo "$xpo" | sed "s/Xpanelport //g")
 dmp=$(echo "$domainp" | sed "s/DomainPanel //g")
 dmssl=$(echo "$sslp" | sed "s/SSLPanel //g")
+else
+xport=""
+dmp=""
+dmssl=""
+fi
 
 if [ "$dmp" != "" ]; then
 defdomain=$dmp
