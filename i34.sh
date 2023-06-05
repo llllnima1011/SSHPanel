@@ -19,8 +19,19 @@ po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 adminuser=$(mysql -N -e "use XPanel; select adminuser from setting where id='1';")
 adminpass=$(mysql -N -e "use XPanel; select adminpassword from setting where id='1';")
+dropb_port=$(mysql -N -e "use XPanel; select dropb_port from setting where id='1';")
+dropb_tls_port=$(mysql -N -e "use XPanel; select dropb_tls_port from setting where id='1';")
 clear
-
+if [ "$dropb_port" != "" ]; then
+dropbear_port=$dropb_port
+else
+dropbear_port=222
+fi
+if [ "$dropb_tls_port" != "" ]; then
+dropbear_tls_port=$dropb_tls_port
+else
+dropbear_tls_port=2083
+fi
 domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
 sslp=$(cat /var/www/xpanelport | grep "^SSLPanel")
 xpo=$(cat /var/www/xpanelport | grep "^Xpanelport")
@@ -80,7 +91,7 @@ apt-get install php7.4-mysql php7.4-xml php7.4-curl -y
 mv /etc/default/dropbear /etc/default/dropbear.backup
 cat << EOF > /etc/default/dropbear
 NO_START=0
-DROPBEAR_PORT=222
+DROPBEAR_PORT=$dropbear_port
 DROPBEAR_EXTRA_ARGS="-p 110"
 DROPBEAR_RSAKEY="/etc/dropbear/dropbear_rsa_host_key"
 DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
@@ -103,8 +114,8 @@ cat << EOF > /etc/stunnel/stunnel.conf
  socket = l:TCP_NODELAY=1
  socket = r:TCP_NODELAY=1
  [dropbear]
- accept = 2083
- connect = 127.0.0.1:222
+ accept = $dropbear_tls_port
+ connect = 127.0.0.1:$dropbear_port
 EOF
 
 echo "=================  XPanel OpenSSL ======================"
