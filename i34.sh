@@ -12,6 +12,8 @@ then echo "Please run as root"
 exit
 fi
 sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
+sed -i 's/#Banner/Banner /root/banner.txt/g' /etc/ssh/sshd_config
+sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
@@ -78,14 +80,20 @@ apt-get install php7.4-mysql php7.4-xml php7.4-curl -y
 mv /etc/default/dropbear /etc/default/dropbear.backup
 cat << EOF > /etc/default/dropbear
 NO_START=0
-DROPBEAR_PORT=2022
+DROPBEAR_PORT=222
 DROPBEAR_EXTRA_ARGS="-p 110"
 DROPBEAR_RSAKEY="/etc/dropbear/dropbear_rsa_host_key"
 DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
 DROPBEAR_ECDSAKEY="/etc/dropbear/dropbear_ecdsa_host_key"
 DROPBEAR_RECEIVE_WINDOW=65536
 EOF
-
+echo "/bin/false" >> /etc/shells
+echo "/usr/sbin/nologin" >> /etc/shells
+    
+#Banner 
+cat << EOF > /root/banner.txt
+XPanel
+EOF
 #Configuring stunnel
 mkdir /etc/stunnel
 cat << EOF > /etc/stunnel/stunnel.conf
