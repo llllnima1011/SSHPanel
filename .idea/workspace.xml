@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="Fix New Version 3.2">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07-Jun-23_19_05__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Footer.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +66,7 @@
       <workItem from="1685660101165" duration="1168000" />
       <workItem from="1685862743562" duration="592000" />
       <workItem from="1685994314765" duration="23702000" />
-      <workItem from="2064859571877" duration="1454000" />
+      <workItem from="2064859571877" duration="1730000" />
     </task>
     <task id="LOCAL-00001" summary="ADD web panel open source">
       <created>1684882940503</created>
@@ -167,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686148602590</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fix New Version 3.2">
+      <created>1686148990697</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1686148990697</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
