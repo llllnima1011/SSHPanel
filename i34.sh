@@ -21,6 +21,7 @@ adminuser=$(mysql -N -e "use XPanel; select adminuser from setting where id='1';
 adminpass=$(mysql -N -e "use XPanel; select adminpassword from setting where id='1';")
 dropb_port=$(mysql -N -e "use XPanel; select dropb_port from setting where id='1';")
 dropb_tls_port=$(mysql -N -e "use XPanel; select dropb_tls_port from setting where id='1';")
+ssh_tls_port=$(mysql -N -e "use XPanel; select ssh_tls_port from setting where id='1';")
 clear
 if [ "$dropb_port" != "" ]; then
 dropbear_port=$dropb_port
@@ -31,6 +32,11 @@ if [ "$dropb_tls_port" != "" ]; then
 dropbear_tls_port=$dropb_tls_port
 else
 dropbear_tls_port=2083
+fi
+if [ "$ssh_tls_port" != "" ]; then
+sshtls_port=$ssh_tls_port
+else
+sshtls_port=444
 fi
 if test -f "/var/www/xpanelport"; then
 domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
@@ -122,6 +128,9 @@ cat << EOF > /etc/stunnel/stunnel.conf
  [dropbear]
  accept = $dropbear_tls_port
  connect = 127.0.0.1:$dropbear_port
+ [openssh]
+ accept = $sshtls_port
+ connect = 127.0.0.1:$port
 EOF
 
 echo "=================  XPanel OpenSSL ======================"
@@ -481,7 +490,6 @@ echo -e "Password : \e[31m${adminpassword}\e[0m \n"
 echo -e "${YELLOW}-------- Connection Details -----------\n"
 echo -e "${GREEN}IP : $ipv4"
 echo -e "SSH port : \e[31m${port}\e[0m \n"
-echo -e "Dropbear port : $old_db_port"
-echo -e "Dropbear + SSL port : $old_db_ssl"
-echo -e "Openssh +  SSL port : $old_op_ssl"
-echo -e "Squid port : $old_squid_port"
+echo -e "SSH + TLS port : $sshtls_port \n"
+echo -e "Dropbear port : $dropbear_port \n"
+echo -e "Dropbear + TLS port : $dropbear_tls_port \n"
