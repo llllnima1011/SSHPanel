@@ -102,11 +102,19 @@ class Reinstall_Model extends Model
 
         $sql = "ALTER TABLE users ADD COLUMN finishdate_one_connect VARCHAR(100) AFTER finishdate;";
         $this->db->query($sql);
+        $sql = "ALTER TABLE users ADD COLUMN customer_user VARCHAR(100) AFTER finishdate_one_connect;";
+        $this->db->query($sql);
         $sql = "ALTER TABLE setting ADD COLUMN multiuser VARCHAR(100) AFTER credit;";
         $this->db->query($sql);
         $sql = "ALTER TABLE setting ADD COLUMN ststus_multiuser VARCHAR(100) AFTER multiuser;";
         $this->db->query($sql);
         $sql = "ALTER TABLE setting ADD COLUMN login_key VARCHAR(100) AFTER ststus_multiuser;";
+        $this->db->query($sql);
+        $sql = "ALTER TABLE setting ADD COLUMN dropb_port VARCHAR(100) AFTER login_key;";
+        $this->db->query($sql);
+        $sql = "ALTER TABLE setting ADD COLUMN dropb_tls_port VARCHAR(100) AFTER login_key;";
+        $this->db->query($sql);
+        $sql = "ALTER TABLE setting ADD COLUMN ssh_tls_port VARCHAR(100) AFTER dropb_tls_port;";
         $this->db->query($sql);
         $sql = "ALTER TABLE admins ADD COLUMN login_key VARCHAR(100) AFTER condition_u;";
         $this->db->query($sql);

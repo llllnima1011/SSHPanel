@@ -24,7 +24,7 @@
                     <div class="card-body">
                         <div class="text-end p-4 pb-0">
                             <a href="#" class="btn btn-primary d-inline-flex align-items-center"
-                               <?php if(LANG=='fa-ir'){echo 'style="margin-bottom: 5px;"';}?> data-bs-toggle="modal" data-bs-target="#customer_add-modal">
+                                <?php if(LANG=='fa-ir'){echo 'style="margin-bottom: 5px;"';}?> data-bs-toggle="modal" data-bs-target="#customer_add-modal">
                                 <i class="ti ti-plus f-18"></i> <?php echo new_user_lang;?>
                             </a>
 
@@ -38,6 +38,7 @@
                                 <thead>
                                 <tr>
                                     <th>#ID</th>
+                                    <?php if(permis=='admin'){echo "<th>".customer_tb_lang."</th>";}?>
                                     <th><?php echo username_tb_lang;?></th>
                                     <th><?php echo password_tb_lang;?></th>
                                     <th><?php echo traffic_tb_lang;?></th>
@@ -58,14 +59,20 @@
                                 foreach ($data['for'] as $datum) {
                                     $uid++;
                                     if ($datum["traffic"] !== "0") {
-                                        $traffic = $datum["traffic"] / 1024 . gib_lang;
+                                        if (1024 <= $datum["traffic"]) {
+                                            $traffic = $datum["traffic"] / 1024 .' '.gib_lang;
+                                        } else {
+                                            $traffic = $datum["traffic"] .' '.mib_lang;
                                         }
-                                    else {
+                                    } else {
                                         $traffic = unlimited_tb_lang;
                                     }
 
-
-                                        $to = round($datum["total"] / 1024, 2) . gib_lang;
+                                    if (1024 < $datum["total"]) {
+                                        $to = round($datum["total"] / 1024, 2) .' '.gib_lang;
+                                    } else {
+                                        $to = $datum["total"] .' '.mib_lang;
+                                    }
 
                                     if ($datum["enable"] == "true") {
                                         $status = "<span class='badge bg-light-success rounded-pill f-12'>".active_tb_lang."</span>";
@@ -79,81 +86,89 @@
                                     if ($datum["enable"] == "traffic") {
                                         $status = "<span class='badge bg-light-primary rounded-pill f-12'>".traffic2_tb_lang."</span>";
                                     }
-                                $duplicate = [];
-                                $m = 1;
-                                $u= 0;
-                                if($ststus_multiuser=='on') {
-                                    $list = shell_exec("sudo lsof -i :" . PORT . " -n | grep -v root | grep ESTABLISHED");
-                                    $onlineuserlist = preg_split("/\r\n|\n|\r/", $list);
-                                    $onlineuserlist = preg_split("/\r\n|\n|\r/", $list);
-                                    foreach ($onlineuserlist as $user) {
-                                        $user = preg_replace("/\\s+/", " ", $user);
-                                        if (strpos($user, ":AAAA") !== false) {
-                                            $userarray = explode(":", $user);
-                                        } else {
-                                            $userarray = explode(" ", $user);
-                                        }
-                                        if (strpos($userarray[8], "->") !== false) {
-                                            $userarray[8] = strstr($userarray[8], "->");
-                                            $userarray[8] = str_replace("->", "", $userarray[8]);
-                                            $userip = substr($userarray[8], 0, strpos($userarray[8], ":"));
-                                        } else {
-                                            $userip = $userarray[8];
-                                        }
-                                        $color = "#dc2626";
-                                        if (!in_array($userarray[2], $duplicate)) {
-                                            $color = "#269393";
-                                            array_push($duplicate, $userarray[2]);
-                                        }
-                                        if (!empty($userarray[2]) && $userarray[2] == $datum['username'] && $userarray[2] !== "sshd") {
-                                            $u++;
+                                    $duplicate = [];
+                                    $m = 1;
+                                    $u= 0;
+                                    if($ststus_multiuser=='on') {
+                                        $list = shell_exec("sudo lsof -i :" . PORT . " -n | grep -v root | grep ESTABLISHED");
+                                        $onlineuserlist = preg_split("/\r\n|\n|\r/", $list);
+                                        $onlineuserlist = preg_split("/\r\n|\n|\r/", $list);
+                                        foreach ($onlineuserlist as $user) {
+                                            $user = preg_replace("/\\s+/", " ", $user);
+                                            if (strpos($user, ":AAAA") !== false) {
+                                                $userarray = explode(":", $user);
+                                            } else {
+                                                $userarray = explode(" ", $user);
+                                            }
+                                            if (strpos($userarray[8], "->") !== false) {
+                                                $userarray[8] = strstr($userarray[8], "->");
+                                                $userarray[8] = str_replace("->", "", $userarray[8]);
+                                                $userip = substr($userarray[8], 0, strpos($userarray[8], ":"));
+                                            } else {
+                                                $userip = $userarray[8];
+                                            }
+                                            $color = "#dc2626";
+                                            if (!in_array($userarray[2], $duplicate)) {
+                                                $color = "#269393";
+                                                array_push($duplicate, $userarray[2]);
+                                            }
+                                            if (!empty($userarray[2]) && $userarray[2] == $datum['username'] && $userarray[2] !== "sshd") {
+                                                $u++;
+                                            }
                                         }
                                     }
-                                }
-                                if(LANG=='fa-ir') {
-                                    if (!empty($datum['startdate'])) {
-                                        $startdate = explode('-', $datum['startdate']);
-                                        $startdate = gregorian_to_jalali($startdate[0], $startdate[1], $startdate[2]);
-                                        if ($startdate[2] >= 10) {
-                                            $startday = $startdate[2];
+                                    if(LANG=='fa-ir') {
+                                        if (!empty($datum['startdate'])) {
+                                            $startdate = explode('-', $datum['startdate']);
+                                            $startdate = gregorian_to_jalali($startdate[0], $startdate[1], $startdate[2]);
+                                            if ($startdate[2] >= 10) {
+                                                $startday = $startdate[2];
+                                            } else {
+                                                $startday = '0' . $startdate[2];
+                                            }
+                                            if ($startdate[1] >= 10) {
+                                                $startmon = $startdate[1];
+                                            } else {
+                                                $startmon = '0' . $startdate[1];
+                                            }
+                                            $startdate = $startday . '-' . $startmon . '-' . $startdate[0];
                                         } else {
-                                            $startday = '0' . $startdate[2];
+                                            $startdate = '';
                                         }
-                                        if ($startdate[1] >= 10) {
-                                            $startmon = $startdate[1];
+                                        if (!empty($datum['finishdate'])) {
+                                            $finishdate = explode('-', $datum['finishdate']);
+                                            $finishdate = gregorian_to_jalali($finishdate[0], $finishdate[1], $finishdate[2]);
+                                            if ($finishdate[2] >= 10) {
+                                                $finishday = $finishdate[2];
+                                            } else {
+                                                $finishday = '0' . $finishdate[2];
+                                            }
+                                            if ($finishdate[1] >= 10) {
+                                                $finishmon = $finishdate[1];
+                                            } else {
+                                                $finishmon = '0' . $finishdate[1];
+                                            }
+                                            $finishdate = $finishday . '-' . $finishmon . '-' . $finishdate[0];
                                         } else {
-                                            $startmon = '0' . $startdate[1];
+                                            $finishdate = '';
                                         }
-                                        $startdate = $startday . '-' . $startmon . '-' . $startdate[0];
-                                    } else {
-                                        $startdate = '';
                                     }
-                                    if (!empty($datum['finishdate'])) {
-                                        $finishdate = explode('-', $datum['finishdate']);
-                                        $finishdate = gregorian_to_jalali($finishdate[0], $finishdate[1], $finishdate[2]);
-                                        if ($finishdate[2] >= 10) {
-                                            $finishday = $finishdate[2];
-                                        } else {
-                                            $finishday = '0' . $finishdate[2];
-                                        }
-                                        if ($finishdate[1] >= 10) {
-                                            $finishmon = $finishdate[1];
-                                        } else {
-                                            $finishmon = '0' . $finishdate[1];
-                                        }
-                                        $finishdate = $finishday . '-' . $finishmon . '-' . $finishdate[0];
-                                    } else {
-                                        $finishdate = '';
+                                    else{
+                                        $startdate=$datum['startdate'];
+                                        $finishdate = $datum['finishdate'];
                                     }
-                                }
-                                else{
-                                    $startdate=$datum['startdate'];
-                                    $finishdate = $datum['finishdate'];
-                                }
-
+                                    if(!empty($datum['customer_user']))
+                                    {
+                                        $customer_user=$datum['customer_user'];
+                                    }
+                                    else
+                                    {
+                                        $customer_user='Admin';
+                                    }
                                     ?>
                                     <tr>
                                         <td><?php echo $uid; ?></td>
+                                        <?php if(permis=='admin'){echo "<td>". $customer_user."</td>";}?>
                                         <td><?php echo $datum['username']; ?></td>
                                         <td><?php echo $datum['password']; ?></td>
                                         <td><?php echo $traffic; ?>
@@ -162,7 +177,7 @@
                                                 <?php echo traffic_usage_lang.": ". $to;?>
                                             </small></td>
                                         <td><?php echo $datum['multiuser']; ?><br>
-                                        <small><?php if($ststus_multiuser=='on'){ echo Connection_tab_lang." ". $u ." ".userto_tb_lang." " .$datum['multiuser']." ".user_tb_lang; } ?></small></td>
+                                            <small><?php if($ststus_multiuser=='on'){ echo Connection_tab_lang." ". $u ." ".userto_tb_lang." " .$datum['multiuser']." ".user_tb_lang; } ?></small></td>
                                         <td><?php echo $datum['mobile']; ?><br>
                                             <small><?php echo $datum['email']; ?></small></td>
                                         <td><small>
@@ -174,13 +189,13 @@
                                         <td class="text-center">
                                             <ul class="list-inline me-auto mb-0">
                                                 <li class="list-inline-item align-bottom" >
-                                                        <button class="avtar avtar-xs btn-link-success btn-pc-default" style="border:none" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-adjustments f-18"></i></button>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="users&active=<?php echo $datum['username']; ?>"><?php echo active_u_act_tb_lang;?></a>
-                                                            <a class="dropdown-item" href="users&deactive=<?php echo $datum['username']; ?>"><?php echo deactive_u_act_tb_lang;?></a>
-                                                            <a class="dropdown-item" href="users&reset-traffic=<?php echo $datum['username']; ?>"><?php echo reset_u_act_tb_lang;?></a>
-                                                            <a class="dropdown-item" href="users&delete=<?php echo $datum['username']; ?>"><?php echo delete_u_act_tb_lang;?></a>
-                                                        </div>
+                                                    <button class="avtar avtar-xs btn-link-success btn-pc-default" style="border:none" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-adjustments f-18"></i></button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="users&active=<?php echo $datum['username']; ?>"><?php echo active_u_act_tb_lang;?></a>
+                                                        <a class="dropdown-item" href="users&deactive=<?php echo $datum['username']; ?>"><?php echo deactive_u_act_tb_lang;?></a>
+                                                        <a class="dropdown-item" href="users&reset-traffic=<?php echo $datum['username']; ?>"><?php echo reset_u_act_tb_lang;?></a>
+                                                        <a class="dropdown-item" href="users&delete=<?php echo $datum['username']; ?>"><?php echo delete_u_act_tb_lang;?></a>
+                                                    </div>
                                                 </li>
                                                 <li class="list-inline-item align-bottom" data-bs-toggle="tooltip"
                                                     title="<?php echo edit_tooltip_tb_lang;?>">
@@ -190,14 +205,14 @@
                                                 </li>
                                                 <li class="list-inline-item align-bottom" data-bs-toggle="tooltip"
                                                     title="<?php echo share_tooltip_tb_lang;?>">
-                                        <button class="avtar avtar-xs btn-link-success btn-pc-default" style="border:none" data-clipboard="true" data-clipboard-text="Host:<?php echo $_SERVER["SERVER_NAME"];?>&nbsp;
+                                                    <button class="avtar avtar-xs btn-link-success btn-pc-default" style="border:none" data-clipboard="true" data-clipboard-text="Host:<?php echo $_SERVER["SERVER_NAME"];?>&nbsp;
 Port:<?php echo PORT ;?>&nbsp;
 Username:<?php echo $datum['username'];?>&nbsp;
 Password:<?php echo $datum['password'];?>&nbsp;
 StartTime:<?php echo $datum['startdate'];?>&nbsp;
 EndTime:<?php echo $datum['finishdate'];?>">
-                                            <i class="ti ti-copy f-18"></i>
-                                        </button>
+                                                        <i class="ti ti-copy f-18"></i>
+                                                    </button>
                                                 </li>
                                             </ul>
                                         </td>
@@ -216,7 +231,7 @@ EndTime:<?php echo $datum['finishdate'];?>">
 </div>
 <div class="modal fade" id="customer_add-modal" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-            <form class="modal-content" action="" method="post" enctype="multipart/form-data" onsubmit="return confirm('<?php echo confirm_ac_lang;?>');">
+        <form class="modal-content" action="" method="post" enctype="multipart/form-data" onsubmit="return confirm('<?php echo confirm_ac_lang;?>');">
 
             <div class="modal-header">
                 <h5 class="mb-0"><?php echo new_user_lang;?></h5>
@@ -322,7 +337,7 @@ EndTime:<?php echo $datum['finishdate'];?>">
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="ti ti-calendar-time"></i></span>
                                             <?php if(LANG=='fa-ir') { ?>
-                                            <input type="text" name="expdate" class="form-control example1" />
+                                                <input type="text" name="expdate" class="form-control example1" />
                                             <?php  } else {?>
                                                 <input type="date" class="form-control" name="expdate" id="date" data-gtm-form-interact-field-id="0">
                                             <?php }?>
@@ -347,7 +362,7 @@ EndTime:<?php echo $datum['finishdate'];?>">
                     <button type="submit" class="btn btn-primary" value="submit" name="submit"><?php echo modal_submit_lang;?></button>
                 </div>
             </div>
-            </form>
+        </form>
     </div>
 </div>
 
@@ -396,8 +411,8 @@ EndTime:<?php echo $datum['finishdate'];?>">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="input-group">
-                                        <span class="input-group-text"><i class="feather icon-lock"></i></span>
-                                        <input type="text" name="password" class="form-control" placeholder="<?php echo modal_b_password_lang;?>">
+                                            <span class="input-group-text"><i class="feather icon-lock"></i></span>
+                                            <input type="text" name="password" class="form-control" placeholder="<?php echo modal_b_password_lang;?>">
                                         </div>
                                         <small class="form-text text-muted"><?php echo modal_b_password_lable_lang;?></small>
                                         <br>
@@ -473,7 +488,7 @@ EndTime:<?php echo $datum['finishdate'];?>">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="alert alert-warning" role="alert">
-                                        <?php echo modal_b_alert_lang;?>
+                                            <?php echo modal_b_alert_lang;?>
                                         </div>
                                     </div>
                                 </div>

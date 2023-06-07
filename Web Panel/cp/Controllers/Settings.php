@@ -3,16 +3,17 @@ include_once("Models/Settings_Model.php");
 
 class Settings extends Controller
 {
-	function __construct()
-	{
-		parent::__construct();
-       
+    function __construct()
+    {
+        parent::__construct();
+
         $this->model = new Settings_Model();
         $settings=$this->model->Get_settings();
-
-		//echo "<br>Page Index ";
+        $api_index=$this->model->index_api();
+        //echo "<br>Page Index ";
         $data = array(
-            "for" => $settings
+            "for" => $settings,
+            "api" => $api_index
         );
         if(isset($_GET['pos']))
         {
@@ -27,9 +28,9 @@ class Settings extends Controller
             $sort = htmlentities($_GET['sort']);
             define("sort", $sort);
         }
-		else {
-		define("sort", 'chengepass');
-		}
+        else {
+            define("sort", 'chengepass');
+        }
         if(isset($_GET['delete-backup']))
         {
             $delete_backup= htmlentities($_GET['delete-backup']);
@@ -40,8 +41,8 @@ class Settings extends Controller
         }
 
         $this->update_settings();
-		$this->view->Render("Settings/index",$data);
-	}
+        $this->view->Render("Settings/index",$data);
+    }
 
     function update_settings()
     {
@@ -55,7 +56,7 @@ class Settings extends Controller
                 'password' => $password,
                 'password_old' => $password_old
             );
-           $this->model->submit_pass($data_sybmit);
+            $this->model->submit_pass($data_sybmit);
         }
 
         if (isset($_POST['changeport'])) {
@@ -67,6 +68,25 @@ class Settings extends Controller
             );
             $this->model->submit_port($data_sybmit);
         }
+        if (isset($_POST['addapi'])) {
+            $desc = htmlentities($_POST['desc']);
+            $allowip = htmlentities($_POST['allowip']);
+            $data_sybmit = array(
+                'desc' => $desc,
+                'allowip' => $allowip
+            );
+            $this->model->submit_api($data_sybmit);
+        }
+
+        if ($_GET['sort']=='api' and !empty($_GET['delete'])) {
+            $token = htmlentities($_GET['delete']);
+            $this->model->delete_api($token);
+        }
+        if ($_GET['sort']=='api' and !empty($_GET['renew'])) {
+            $renew = htmlentities($_GET['renew']);
+            $this->model->renew_api($renew);
+        }
+
         if (isset($_POST['fakeurl'])) {
             $fake_address = htmlentities($_POST['fake_address']);
             $fake_address_old = htmlentities($_POST['fake_address_old']);
@@ -90,10 +110,19 @@ class Settings extends Controller
         if (isset($_POST['off_status_user'])) {
             $this->model->submit_status_multiuser_off($data_sybmit);
         }
+        if (isset($_POST['submitbot'])) {
 
+            $tokenbot = htmlentities($_POST['tokenbot']);
+            $idtelegram = htmlentities($_POST['idtelegram']);
+            $data_sybmit = array(
+                'tokenbot' => $tokenbot,
+                'idtelegram' => $idtelegram
+            );
+            $this->model->submit_bot($data_sybmit);
+        }
         if (isset($_POST['savebackup'])) {
             $date = date("Y-m-d---h-i-s");
-           shell_exec("mysqldump -u '".DB_USER."' --password='".DB_PASS."' XPanel > /var/www/html/cp/storage/backup/XPanel-".$date.".sql");
+            shell_exec("mysqldump -u '".DB_USER."' --password='".DB_PASS."' XPanel > /var/www/html/cp/storage/backup/XPanel-".$date.".sql");
         }
 
         if (isset($_POST['upbackup'])) {
@@ -150,6 +179,6 @@ class Settings extends Controller
             shell_exec("sudo iptables -F");
         }
 
-       
+
     }
 }

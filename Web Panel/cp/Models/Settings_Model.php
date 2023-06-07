@@ -55,6 +55,44 @@ class Settings_Model extends Model
         header("Location: Settings&sort=port");
     }
 
+    public function submit_bot($data_sybmit)
+    {
+        $tokenbot = $data_sybmit['tokenbot'];
+        $idtelegram = $data_sybmit['idtelegram'];
+        $sql = "UPDATE setting SET tgtoken=?,tgid=? WHERE id=?";
+        $this->db->prepare($sql)->execute([$tokenbot, $idtelegram, '1']);
+        header("Location: Settings&sort=telegram");
+    }
+    public function index_api()
+    {
+        $query = $this->db->prepare("select * from ApiToken");
+        $query->execute();
+        $queryCount = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $queryCount;
+    }
+    public function submit_api($data_sybmit)
+    {
+        $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        $token = substr( str_shuffle( $chars ), 0, 15 );
+        $sql1 = "INSERT INTO `ApiToken` (`Token`, `Description`, `Allowips`, `enable` ) VALUES (?,?,?,?)";
+        $stmt1 = $this->db->prepare($sql1);
+        $stmt1->execute(array(time().$token, $data_sybmit['desc'], $data_sybmit['allowip'], 'true'));
+        header("Location: Settings&sort=api");
+    }
+
+    public function renew_api($data)
+    {
+        $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        $token = substr( str_shuffle( $chars ), 0, 15 );
+        $sql = "UPDATE ApiToken SET Token=? WHERE Token=?";
+        $this->db->prepare($sql)->execute([time().$token, $data]);
+        header("Location: Settings&sort=api");
+    }
+    public function delete_api($data)
+    {
+        $this->db->prepare("DELETE FROM ApiToken WHERE Token=?")->execute([$data]);
+        header("Location: Settings&sort=api");
+    }
     public function submit_multiuser_on_limit($data_sybmit)
     {
         $sql = "UPDATE setting SET multiuser=? WHERE id=?";

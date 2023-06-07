@@ -63,7 +63,7 @@ class Fixer_Model extends Model
             $userarray = explode(" ",$user);
             $onlinelist[] = $userarray[2];
         }
-echo "success";
+        echo "success";
         $onlinecount = array_count_values($onlinelist);
         foreach($queryCount as $row){
             $limitation = $row['multiuser'];
@@ -99,17 +99,16 @@ echo "success";
     public function synstraffic()
     {
 
-        $pid = shell_exec("nethogs");
+        $pid = shell_exec("pgrep nethogs");
         $pid = preg_replace("/\\s+/", "", $pid);
         // print_r($pid);
-        if (!is_numeric($pid)) {
-            $out = shell_exec("cat /var/www/html/cp/storage/log/out.json");
-            $usertraffic = [];
+        if (is_numeric($pid)) {
+            $out = file_get_contents("/var/www/html/cp/storage/log/out.json");
             $trafficlog = preg_split("/\r\n|\n|\r/", $out);
             $trafficlog = array_filter($trafficlog);
             $lastdata = end($trafficlog);
             $json = json_decode($lastdata, true);
-            print_r($json);
+            //print_r($json);
             $newarray = [];
             foreach ($json as $value) {
                 $TX = round($value["TX"], 0);
@@ -158,7 +157,7 @@ echo "success";
                     }
                 }
             }
-            echo json_encode($newarray);
+            //echo json_encode($newarray);
             foreach ($newarray as $username => $usr) {
                 $stmt = $this->db->prepare("SELECT * FROM Traffic WHERE user=:user");
                 $stmt->execute(['user' => $username]);
@@ -230,22 +229,11 @@ echo "success";
                     }
                 }
                 //header("Refresh:1");
-
-                if(file_exists("storage/log/out.json"))
-                {
-                    unlink("storage/log/out.json");
-                }
             }
             shell_exec("sudo kill -9 " . $pid);
             shell_exec("sudo killall -9 nethogs");
+            shell_exec("sudo rm -rf /var/www/html/cp/storage/log/out.json");
             shell_exec("sudo nethogs -j -d 19 -v 3 > /var/www/html/cp/storage/log/out.json &");
-        } else {
-            if(file_exists("storage/log/out.json"))
-            {
-                unlink("storage/log/out.json");
-            }
-            shell_exec("sudo nethogs -j -d 19 -v 3 > /var/www/html/cp/storage/log/out.json &");
-            header("Refresh:1");
         }
 
     }

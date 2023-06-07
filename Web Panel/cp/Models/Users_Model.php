@@ -6,6 +6,7 @@ class Users_Model extends Model
     {
         // Call the Model constructor
         parent::__construct();
+
         if (isset($_COOKIE["xpkey"])) {
             $key_login = explode(':', $_COOKIE["xpkey"]);
             $Ukey=$key_login[0];
@@ -16,6 +17,12 @@ class Users_Model extends Model
             $query_ress = $this->db->prepare("select * from admins where username_u='" . $Ukey . "' and login_key='" . $_COOKIE["xpkey"] . "'");
             $query_ress->execute();
             $queryCount_ress = $query_ress->rowCount();
+            if ($queryCount >0) {
+                define(permis,'admin');
+            }
+            if ($queryCount_ress >0) {
+                define(permis,'reseller');
+            }
             if ($queryCount == 0 && $queryCount_ress == 0) {
                 header("location: login");
             }
@@ -26,7 +33,12 @@ class Users_Model extends Model
 
     public function users()
     {
-        $query = $this->db->prepare("select * from users,Traffic where users.username=Traffic.user ORDER BY users.id DESC");
+        if (isset($_COOKIE["xpkey"])) {
+            $key_login = explode(':', $_COOKIE["xpkey"]);
+            $Ukey = $key_login[0];
+        }
+        if(permis=='admin'){$where='';} else{$where=" and users.customer_user='$Ukey' ";}
+        $query = $this->db->prepare("select * from users,Traffic where users.username=Traffic.user $where ORDER BY users.id DESC");
         $query->execute();
         $queryCount = $query->fetchAll();
         return $queryCount;
@@ -61,7 +73,11 @@ class Users_Model extends Model
     }
     public function submit_index($data_sybmit)
     {
-        //print_r($data_sybmit);
+        if (isset($_COOKIE["xpkey"])) {
+            $key_login = explode(':', $_COOKIE["xpkey"]);
+            $Ukey = $key_login[0];
+        }
+        print_r($Ukey);
         if(empty($data_sybmit['password']))
         {
             if($data_sybmit['pass_rand']=='number')
@@ -86,6 +102,13 @@ class Users_Model extends Model
                 if (!empty($data_sybmit['finishdate'])) {
                     $finishdate = explode('/', $data_sybmit['finishdate']);
                     $finishdate = jalali_to_gregorian($finishdate[0], $finishdate[1], $finishdate[2], '-');
+                    $finishdate = explode('-', $finishdate);
+                    if($finishdate[1]<10)
+                    {$m='0'.$finishdate[1];} else { $m=$finishdate[1];}
+                    if($finishdate[2]<10)
+                    {$d='0'.$finishdate[2];} else { $d=$finishdate[2];}
+                    $finishdate=$finishdate[0].'-'.$m.'-'.$d;
+
                 } else {
                     $finishdate = '';
                 }
@@ -93,9 +116,10 @@ class Users_Model extends Model
             else{
                 $finishdate = $data_sybmit['finishdate'];
             }
-            $sql = "INSERT INTO `users` (`username`, `password`, `email`, `mobile`, `multiuser`, `startdate`, `finishdate`, `finishdate_one_connect`, `enable`, `traffic`, `referral`, `info`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+            echo $finishdate;
+            $sql = "INSERT INTO `users` (`username`, `password`, `email`, `mobile`, `multiuser`, `startdate`, `finishdate`, `finishdate_one_connect`,`customer_user`, `enable`, `traffic`, `referral`, `info`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             $stmt = $this->db->prepare($sql);
-            $stmt->execute(array($data_sybmit['username'], $password, $data_sybmit['email'], $data_sybmit['mobile'], $data_sybmit['multiuser'], $data_sybmit['startdate'], $finishdate, $data_sybmit['finishdate_one_connect'], $data_sybmit['enable'], $data_sybmit['traffic'], $data_sybmit['referral'], $data_sybmit['info']));
+            $stmt->execute(array($data_sybmit['username'], $password, $data_sybmit['email'], $data_sybmit['mobile'], $data_sybmit['multiuser'], $data_sybmit['startdate'], $finishdate, $data_sybmit['finishdate_one_connect'],$Ukey, $data_sybmit['enable'], $data_sybmit['traffic'], $data_sybmit['referral'], $data_sybmit['info']));
             if ($stmt) {
                 $sql = "INSERT INTO `Traffic` (`id`,`user`, `download`, `upload`, `total` ) VALUES (NULL,?,?,?,?)";
                 $stmt = $this->db->prepare($sql);
@@ -110,7 +134,7 @@ class Users_Model extends Model
                     $stmt1->execute(array($use_traffic, '0', '0', '0'));
                 }
                 shell_exec("bash Libs/sh/adduser " . strtolower($data_sybmit['username']) . " " . $password);
-                header("Location: users");
+                //header("Location: users");
                 return true;
             } else {
                 return false;

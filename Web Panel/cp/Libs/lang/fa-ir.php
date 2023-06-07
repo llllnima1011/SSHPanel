@@ -38,6 +38,7 @@ define('mib_lang','مگابایت');
 //users
 define('new_user_lang','کاربر جدید');
 define('multi_user_new_lang','کاربر عمده');
+define('customer_tb_lang','نماینده');
 define('username_tb_lang','نام کاربری');
 define('password_tb_lang','کلمه عبور');
 define('traffic_tb_lang','ترافیک');
@@ -178,6 +179,3 @@ define('setting_wordpress_install_lang','آغاز نصب وردپرس');
 
 //settings multiuser
 define('setting_multiuser_dec_lang','به دلیل ایجاد کندی در صفحه لود گزینه نمایش تعداد کاربران متصل در صفحه کاربران انتخابی می باشد');
-
-
-

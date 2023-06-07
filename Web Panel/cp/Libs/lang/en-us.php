@@ -39,6 +39,7 @@ define('mib_lang','MB');
 //users
 define('new_user_lang','New User');
 define('multi_user_new_lang','Bulk User');
+define('customer_tb_lang','Agent');
 define('username_tb_lang','Username');
 define('password_tb_lang','Password');
 define('traffic_tb_lang','Traffic');

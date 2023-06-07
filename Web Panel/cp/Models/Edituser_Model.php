@@ -16,6 +16,12 @@ class Edituser_Model extends Model
             $query_ress = $this->db->prepare("select * from admins where username_u='" . $Ukey . "' and login_key='" . $_COOKIE["xpkey"] . "'");
             $query_ress->execute();
             $queryCount_ress = $query_ress->rowCount();
+            if ($queryCount >0) {
+                define(permis,'admin');
+            }
+            if ($queryCount_ress >0) {
+                define(permis,'reseller');
+            }
             if ($queryCount == 0 && $queryCount_ress == 0) {
                 header("location: login");
             }
@@ -26,14 +32,23 @@ class Edituser_Model extends Model
 
     public function user($data_sybmit)
     {
-
-        $query = $this->db->prepare("select * from users  WHERE username='".$data_sybmit['username']."'");
+        if (isset($_COOKIE["xpkey"])) {
+            $key_login = explode(':', $_COOKIE["xpkey"]);
+            $Ukey = $key_login[0];
+        }
+        if(permis=='admin'){$where=''; } else{$where=" and customer_user='$Ukey' ";}
+        $query = $this->db->prepare("select * from users  WHERE username='".$data_sybmit['username']."' $where");
         $query->execute();
         $queryCount = $query->fetchAll();
         return $queryCount;
     }
     public function submit_update($data_sybmit)
     {
+        if (isset($_COOKIE["xpkey"])) {
+            $key_login = explode(':', $_COOKIE["xpkey"]);
+            $Ukey = $key_login[0];
+        }
+        if(permis=='admin'){$where='';} else{$where=" and customer_user=:customer";}
         function en_number($number)
         {
             if(!is_numeric($number) || empty($number))
@@ -52,8 +67,13 @@ class Edituser_Model extends Model
         if(LANG=='fa-ir') {
             if (!empty($data_sybmit['finishdate'])) {
                 $finishdate = explode('/', $data_sybmit['finishdate']);
-
                 $finishdate = en_number(jalali_to_gregorian($finishdate[0], $finishdate[1], $finishdate[2], '-'));
+                $finishdate = explode('-', $finishdate);
+                if($finishdate[1]<10)
+                {$m='0'.$finishdate[1];} else { $m=$finishdate[1];}
+                if($finishdate[2]<10)
+                {$d='0'.$finishdate[2];} else { $d=$finishdate[2];}
+                $finishdate=$finishdate[0].'-'.$m.'-'.$d;
             } else {
                 $finishdate = '';
             }
@@ -69,10 +89,11 @@ class Edituser_Model extends Model
             'finishdate' => $finishdate,
             'traffic' => $traffic,
             'info' => $info,
-            'username' => $username
+            'username' => $username,
+            'customer' => $Ukey
         ];
 
-        $sql = "UPDATE users SET password=:password, email=:email,mobile=:mobile,multiuser=:multiuser,finishdate=:finishdate,traffic=:traffic,info=:info WHERE username=:username";
+        $sql = "UPDATE users SET password=:password, email=:email,mobile=:mobile,multiuser=:multiuser,finishdate=:finishdate,traffic=:traffic,info=:info WHERE username=:username $where";
 
         $statement = $this->db->prepare($sql);
 
