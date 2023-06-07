@@ -499,12 +499,6 @@ fi
 (crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 sudo wget -O $protcohttp://${defdomain}:$sshttp/reinstall
 clear
-
-old_db_port=$(grep "DROPBEAR_PORT=" /etc/default/dropbear | sed 's/=/= /'  | awk '{print$2}')
-old_db_ssl=$(grep "accept =" /etc/stunnel/stunnel.conf | sed ':a;N;$!ba;s/\n/ /g' | sed 's/accept =//g' | awk '{print$1}')
-old_op_ssl=$(grep "accept =" /etc/stunnel/stunnel.conf | sed ':a;N;$!ba;s/\n/ /g' | sed 's/accept =//g' | awk '{print$2}')
-old_squid_port=$(sed /^#/d /etc/squid/squid.conf | grep "http_port" | awk '{print$2}')
-
 echo -e "${YELLOW}************ XPanel ************"
 echo -e "${RED}-----------------------------------\n"
 echo -e "${YELLOW}-------- Panel web Details -----------\n"
