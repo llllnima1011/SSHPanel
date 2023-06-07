@@ -53,10 +53,9 @@ https://t.me/Xpanelssh
 حمایت های شما برای ما دلگرمی بزرگی است<br> 
 <p align="left">
 	
-Tether(TRC20 USDT): `TYQraQ5JJXKyVD6BpTGoDYNhiLbFRfzVtV`<br>
-ETH: `0x6cc08b2057EfAe4d76Af531e145DeEd4B73c9D7e`<br>
-Litecoin(LTC): `ltc1q6gq4espx74lp6jvhmr0jmxlu4al0uwemmzwdv4`<br>
-Dogecoin(DOGE): `DPrKJJxFZH91b54Cb6A2xzTDz8bY1vKgXc`<br>
+|                    TRX                   |                       ETH                         |                    Litecoin                       |
+| ---------------------------------------- |:-------------------------------------------------:| -------------------------------------------------:|
+| ```TYQraQ5JJXKyVD6BpTGoDYNhiLbFRfzVtV``` |  ```0x6cc08b2057EfAe4d76Af531e145DeEd4B73c9D7e``` | ```ltc1q6gq4espx74lp6jvhmr0jmxlu4al0uwemmzwdv4``` |	
 
 </p>	
 
