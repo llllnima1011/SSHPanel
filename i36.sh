@@ -499,21 +499,13 @@ fi
 (crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 sudo wget -O $protcohttp://${defdomain}:$sshttp/reinstall
 clear
-
-old_db_port=$(grep "DROPBEAR_PORT=" /etc/default/dropbear | sed 's/=/= /'  | awk '{print$2}')
-old_db_ssl=$(grep "accept =" /etc/stunnel/stunnel.conf | sed ':a;N;$!ba;s/\n/ /g' | sed 's/accept =//g' | awk '{print$1}')
-old_op_ssl=$(grep "accept =" /etc/stunnel/stunnel.conf | sed ':a;N;$!ba;s/\n/ /g' | sed 's/accept =//g' | awk '{print$2}')
-old_squid_port=$(sed /^#/d /etc/squid/squid.conf | grep "http_port" | awk '{print$2}')
-
-echo -e "${YELLOW}************ XPanel ************"
-echo -e "${RED}-----------------------------------\n"
-echo -e "${YELLOW}-------- Panel web Details -----------\n"
+echo -e "${YELLOW}************ XPanel ************ \n"
 echo -e "XPanel Link : $protcohttp://${defdomain}:$sshttp/login \n"
 echo -e "Username : \e[31m${adminusername}\e[0m  \n"
 echo -e "Password : \e[31m${adminpassword}\e[0m \n"
-echo -e "${YELLOW}-------- Connection Details -----------\n"
-echo -e "${GREEN}IP : $ipv4"
+echo -e "${YELLOW}-------- Connection Details ----------- \n"
+echo -e "IP : $ipv4 \n"
 echo -e "SSH port : \e[31m${port}\e[0m \n"
-echo -e "SSH + TLS port : $sshtls_port \n"
-echo -e "Dropbear port : $dropbear_port \n"
-echo -e "Dropbear + TLS port : $dropbear_tls_port \n"
+echo -e "SSH + TLS port : ${sshtls_port} \n"
+echo -e "Dropbear port : ${dropbear_port} \n"
+echo -e "Dropbear + TLS port : ${dropbear_tls_port} \n"
