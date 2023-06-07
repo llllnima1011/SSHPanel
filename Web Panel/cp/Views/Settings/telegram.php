@@ -2,8 +2,6 @@
     <form class="validate-me" action="" method="post" enctype="multipart/form-data">
         <div class="form-group row">
             <div class="col-lg-12">
-                <div class="alert alert-warning" role="alert"><?php echo setting_telegram_alert_lang;?></div>
-
                 <?php echo setting_telegram_desc1_lang;?>
                 <BR>
                 <?php echo setting_telegram_desc2_lang;?>

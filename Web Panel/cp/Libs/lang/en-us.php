@@ -157,6 +157,9 @@ define('setting_multiserver_iptb_lang','Server IP');
 //settings sshport
 define('setting_sshport_alert_lang','After changing the port, the server will reboot');
 define('setting_sshport_lable_lang','Change server port');
+define('setting_sshtlsport_lable_lang','Change SSH/TLS port');
+define('setting_dropbearport_lable_lang','Change Dropbear port');
+define('setting_dropbeartlsport_lable_lang','Change Dropbear/TLS port');
 
 //settings telegram
 define('setting_telegram_alert_lang','This item is temporarily unavailable until the token communication problem is fixed');

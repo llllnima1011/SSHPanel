@@ -156,6 +156,9 @@ define('setting_multiserver_iptb_lang','IP سرور');
 //settings sshport
 define('setting_sshport_alert_lang',' بعد از تغییر پورت سرور ریبوت خواهد شد');
 define('setting_sshport_lable_lang','تغییر پورت سرور');
+define('setting_sshtlsport_lable_lang','تغییر پورت SSH/TLS');
+define('setting_dropbearport_lable_lang','تغییر پورت Dropbear');
+define('setting_dropbeartlsport_lable_lang','تغییر پورت Dropbear/TLS');
 
 //settings telegram
 define('setting_telegram_alert_lang','این مورد به صورت موقت تا رفع مشکل ارتباط توکن در دسترس نمی باشد');
