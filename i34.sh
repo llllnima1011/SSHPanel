@@ -482,6 +482,10 @@ chmod 777 /var/www/html/cp/Libs
 wait
 chmod 777 /var/www/html/cp/Libs/sh
 wait
+chmod 777 /var/www/html/cp/Libs/sh/stunnel.sh
+wait
+chmod 777 /etc/stunnel/stunnel.conf
+wait
 chmod 777 /var/www/html/cp/assets/js/config.js
 wait
 if [ "$xport" != "" ]; then
