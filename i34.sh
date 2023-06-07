@@ -50,6 +50,28 @@ xport=""
 dmp=""
 dmssl=""
 fi
+echo -e "${YELLOW}************ Select XPanel Version ************"
+echo -e "  1)XPanel v3.2"
+echo -e "  2)XPanel v3.1"
+echo -e "  3)XPanel v3.0"
+echo -e "  4)XPanel v2.9"
+echo -ne "${GREEN}\nSelect Version : ${ENDCOLOR}" ;read n
+if [ "$n" != "" ]; then
+if [ "$n" == "1" ]; then
+linkd=https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/tags/xpanelv32
+fi
+if [ "$n" == "2" ]; then
+linkd=https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/tags/xpanelv31
+fi
+if [ "$n" == "3" ]; then
+linkd=https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/tags/xpanelv30
+fi
+if [ "$n" == "4" ]; then
+linkd=https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/tags/xpanelv29
+fi
+else
+linkd=https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/tags/xpanelv32
+fi
 
 if [ "$dmp" != "" ]; then
 defdomain=$dmp
@@ -93,7 +115,7 @@ wait
 if command -v apt-get >/dev/null; then
 sudo NEETRESTART_MODE=a apt-get update --yes
 sudo apt-get -y install software-properties-common
-apt-get install -y dropbear && apt-get install -y stunnel4 && apt-get install -y squid && apt-get install -y cmake && apt-get install -y screenfetch && apt-get install -y openssl
+apt-get install -y dropbear && apt-get install -y stunnel4 && apt-get install -y cmake && apt-get install -y screenfetch && apt-get install -y openssl
 sudo add-apt-repository ppa:ondrej/php -y
 sudo DEBIAN_FRONTEND=noninteractive apt-get install postfix -y
 apt-get install apache2 php7.4 zip unzip net-tools curl mariadb-server -y
@@ -136,7 +158,7 @@ EOF
 echo "=================  XPanel OpenSSL ======================"
 country=ID
 state=Semarang
-locality=Jawa Tengah
+locality=XPanel
 organization=hidessh
 organizationalunit=HideSSH
 commonname=hidessh.com
@@ -154,7 +176,7 @@ touch /var/www/xpanelport
 fi
 chmod 777 /var/www/xpanelport
 
-link=$(sudo curl -Ls "https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
+link=$(sudo curl -Ls "$linkd" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
@@ -328,7 +350,7 @@ systemctl restart mariadb &
 wait
 systemctl enable mariadb &
 wait
-link=$(sudo curl -Ls "https://api.github.com/repos/Alirezad07/X-Panel-SSH-User-Management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
+link=$(sudo curl -Ls "$linkd" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
@@ -391,8 +413,6 @@ systemctl enable dropbear
 systemctl restart dropbear
 systemctl enable stunnel4
 systemctl restart stunnel4
-systemctl enable squid
-systemctl restart squid
 chown apache:apache /var/www/html/cp/* &
 wait
 chmod 644 /etc/ssh/sshd_config &
