@@ -500,13 +500,12 @@ fi
 sudo wget -O $protcohttp://${defdomain}:$sshttp/reinstall
 clear
 echo -e "${YELLOW}************ XPanel ************"
-echo -e "${RED}-----------------------------------\n"
 echo -e "${YELLOW}-------- Panel web Details -----------\n"
 echo -e "XPanel Link : $protcohttp://${defdomain}:$sshttp/login \n"
 echo -e "Username : \e[31m${adminusername}\e[0m  \n"
 echo -e "Password : \e[31m${adminpassword}\e[0m \n"
 echo -e "${YELLOW}-------- Connection Details -----------\n"
-echo -e "${GREEN}IP : $ipv4"
+echo -e "IP : $ipv4 \n"
 echo -e "SSH port : \e[31m${port}\e[0m \n"
 echo -e "SSH + TLS port : $sshtls_port \n"
 echo -e "Dropbear port : $dropbear_port \n"
