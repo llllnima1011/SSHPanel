@@ -43,18 +43,18 @@
                             $enable=$val['enable'];
                             ?>
                             <tr>
-                                <th>#</th>
-                                <th><?php echo $Token;?></th>
-                                <th><?php echo $Allowips;?><br><small><?php echo $Description;?></small></th>
-                                <th class="text-center">
+                                <td>#</td>
+                                <td><?php echo $Token;?></td>
+                                <td><?php echo $Allowips;?><br><small><?php echo $Description;?></small></td>
+                                <td class="text-center">
                                     <a href="Settings&sort=api&renew=<?php echo $Token;?>" class="avtar avtar-xs btn-link-success btn-pc-default">
                                         <i class="ti ti-refresh f-18"></i>
                                     </a>
-                                </th>
-                                <th class="text-center">
+                                </td>
+                                <td class="text-center">
                                     <a href="Settings&sort=api&delete=<?php echo $Token;?>" class="avtar avtar-xs btn-link-success btn-pc-default">
                                         <i class="ti ti-trash f-18"></i>
-                                    </a></th>
+                                    </a></td>
                             </tr>
                         <?php } ?>
                         </thead>
