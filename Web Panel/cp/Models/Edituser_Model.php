@@ -48,7 +48,6 @@ class Edituser_Model extends Model
             $key_login = explode(':', $_COOKIE["xpkey"]);
             $Ukey = $key_login[0];
         }
-        if(permis=='admin'){$where='';} else{$where=" and customer_user=:customer";}
         function en_number($number)
         {
             if(!is_numeric($number) || empty($number))
@@ -89,18 +88,17 @@ class Edituser_Model extends Model
             'finishdate' => $finishdate,
             'traffic' => $traffic,
             'info' => $info,
-            'username' => $username,
-            'customer' => $Ukey
+            'username' => $username
         ];
 
-        $sql = "UPDATE users SET password=:password, email=:email,mobile=:mobile,multiuser=:multiuser,finishdate=:finishdate,traffic=:traffic,info=:info WHERE username=:username $where";
+        $sql = "UPDATE users SET password=:password, email=:email,mobile=:mobile,multiuser=:multiuser,finishdate=:finishdate,traffic=:traffic,info=:info WHERE username=:username ";
 
         $statement = $this->db->prepare($sql);
 
         if($statement->execute($data)) {
             shell_exec("sudo killall -u " . $username);
             shell_exec("bash Libs/sh/changepass ".$username." ".$password);
-            //header("Location: users");
+            header("Location: users");
         }
         //header("Location: users");
     }
