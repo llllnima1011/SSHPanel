@@ -23,26 +23,27 @@ dropb_port=$(mysql -N -e "use XPanel; select dropb_port from setting where id='1
 dropb_tls_port=$(mysql -N -e "use XPanel; select dropb_tls_port from setting where id='1';")
 ssh_tls_port=$(mysql -N -e "use XPanel; select ssh_tls_port from setting where id='1';")
 clear
-if [ "$dropb_port" != "" ]; then
-dropbear_port=$dropb_port
-elif [ "$dropb_port" != NULL ]; then
-dropbear_port=$dropb_port
+if [ -z "$dropb_port" ]
+then
+     dropbear_port=222
 else
-dropbear_port=222
-fi
-if [ "$dropb_tls_port" != "" ]; then
-dropbear_tls_port=$dropb_tls_port
-elif [ "$dropb_tls_port" !=NULL ]; then
-dropbear_tls_port=$dropb_tls_port
-else
-dropbear_tls_port=2083
+     dropbear_port=$dropb_port
 fi
 
-if [ "$ssh_tls_port" != NULL ]; then
-sshtls_port=$ssh_tls_port
+if [ -z "$dropb_tls_port" ]
+then
+     dropbear_tls_port=2083
 else
-sshtls_port=444
+     dropbear_tls_port=$dropb_tls_port
 fi
+
+if [ -z "$ssh_tls_port" ]
+then
+     sshtls_port=444
+else
+     sshtls_port=$ssh_tls_port
+fi
+
 echo $sshtls_port
 if test -f "/var/www/xpanelport"; then
 domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
