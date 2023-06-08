@@ -69,6 +69,12 @@
                             $ststus_multiuser=$val['ststus_multiuser'];
                             $tgtoken=$val['tgtoken'];
                             $tgid=$val['tgid'];
+                            $dropb_port=$val['dropb_port'];
+                            if(empty($dropb_port) || $dropb_port=='NULL'){$dropb_port='222';}
+                            $dropb_tls_port=$val['dropb_tls_port'];
+                            if(empty($dropb_tls_port) || $dropb_tls_port=='NULL'){$dropb_tls_port='2083';}
+                            $ssh_tls_port=$val['ssh_tls_port'];
+                            if(empty($ssh_tls_port) || $ssh_tls_port=='NULL'){$ssh_tls_port='444';}
                         }
 
 
