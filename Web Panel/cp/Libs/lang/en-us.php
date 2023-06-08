@@ -156,6 +156,7 @@ define('setting_multiserver_iptb_lang','Server IP');
 
 //settings sshport
 define('setting_sshport_alert_lang','After changing the port, the server will reboot');
+define('setting_sshport_desc_lang','Never use duplicate ports for fields. Also, port 443 and 80 cannot be used');
 define('setting_sshport_lable_lang','Change server port');
 define('setting_sshtlsport_lable_lang','Change SSH/TLS port');
 define('setting_dropbearport_lable_lang','Change Dropbear port');

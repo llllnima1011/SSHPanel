@@ -155,6 +155,7 @@ define('setting_multiserver_iptb_lang','IP سرور');
 
 //settings sshport
 define('setting_sshport_alert_lang',' بعد از تغییر پورت سرور ریبوت خواهد شد');
+define('setting_sshport_desc_lang','به هیچ وجه از پورت های تکراری برای فیلد ها استفاده نکنید. همچنین پورت 443 و 80 قابل استفاده نمی باشد');
 define('setting_sshport_lable_lang','تغییر پورت سرور');
 define('setting_sshtlsport_lable_lang','تغییر پورت SSH/TLS');
 define('setting_dropbearport_lable_lang','تغییر پورت Dropbear');
