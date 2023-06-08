@@ -502,6 +502,14 @@ fi
 (crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=exp' > /dev/null 2>&1") | crontab -
 (crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 sudo wget -O $protcohttp://${defdomain}:$sshttp/reinstall
+systemctl enable dropbear &
+wait
+systemctl restart dropbear &
+wait
+systemctl enable stunnel4 &
+wait
+systemctl restart stunnel4 &
+wait
 clear
 echo -e "${YELLOW}************ XPanel ************ \n"
 echo -e "XPanel Link : $protcohttp://${defdomain}:$sshttp/login \n"
