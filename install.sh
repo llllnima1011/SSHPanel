@@ -147,16 +147,12 @@ EOF
 mkdir /etc/stunnel
 cat << EOF > /etc/stunnel/stunnel.conf
  cert = /etc/stunnel/stunnel.pem
- client = no
- socket = a:SO_REUSEADDR=1
- socket = l:TCP_NODELAY=1
- socket = r:TCP_NODELAY=1
  [dropbear]
  accept = $dropbear_tls_port
- connect = 127.0.0.1:$dropbear_port
+ connect = 0.0.0.0:$dropbear_port
  [openssh]
  accept = $sshtls_port
- connect = 127.0.0.1:$port
+ connect = 0.0.0.0:$port
 EOF
 
 echo "=================  XPanel OpenSSL ======================"
