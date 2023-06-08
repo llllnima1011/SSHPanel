@@ -25,24 +25,25 @@ ssh_tls_port=$(mysql -N -e "use XPanel; select ssh_tls_port from setting where i
 clear
 if [ "$dropb_port" != "" ]; then
 dropbear_port=$dropb_port
-elif [ "$dropb_port" != "NULL" ]; then
+elif [ "$dropb_port" != NULL ]; then
 dropbear_port=$dropb_port
 else
 dropbear_port=222
 fi
 if [ "$dropb_tls_port" != "" ]; then
 dropbear_tls_port=$dropb_tls_port
-elif [ "$dropb_tls_port" !="NULL" ]; then
+elif [ "$dropb_tls_port" !=NULL ]; then
 dropbear_tls_port=$dropb_tls_port
 else
 dropbear_tls_port=2083
 fi
 if [ "$ssh_tls_port" != "" ]; then
 sshtls_port=$ssh_tls_port
-elif [ "$ssh_tls_port" != "NULL" ]; then
+elif [ "$ssh_tls_port" != NULL ]; then
 sshtls_port=$ssh_tls_port
 else
 sshtls_port=444
+echo $sshtls_port
 fi
 if test -f "/var/www/xpanelport"; then
 domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
