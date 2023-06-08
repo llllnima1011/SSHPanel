@@ -14,7 +14,6 @@ fi
 sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
 sed -i 's/#Banner none/Banner \/root\/banner.txt/g' /etc/ssh/sshd_config
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
-sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 adminuser=$(mysql -N -e "use XPanel; select adminuser from setting where id='1';")
