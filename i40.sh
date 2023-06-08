@@ -43,8 +43,8 @@ elif [ "$ssh_tls_port" != NULL ]; then
 sshtls_port=$ssh_tls_port
 else
 sshtls_port=444
-echo $sshtls_port
 fi
+echo $sshtls_port
 if test -f "/var/www/xpanelport"; then
 domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
 sslp=$(cat /var/www/xpanelport | grep "^SSLPanel")
