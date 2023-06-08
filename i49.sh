@@ -37,7 +37,7 @@ else
      dropbear_tls_port=$dropb_tls_port
 fi
 
-if [ -n "$ssh_tls_port" -a "$ssh_tls_port" == "NULL" ]
+if [ -n "$ssh_tls_port" && "$ssh_tls_port" == "NULL" ]
 then
      sshtls_port=$ssh_tls_port
 else
