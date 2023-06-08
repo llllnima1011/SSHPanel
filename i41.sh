@@ -37,9 +37,8 @@ dropbear_tls_port=$dropb_tls_port
 else
 dropbear_tls_port=2083
 fi
-if [ "$ssh_tls_port" != "" ]; then
-sshtls_port=$ssh_tls_port
-elif [ "$ssh_tls_port" != NULL ]; then
+
+if [ "$ssh_tls_port" != NULL ]; then
 sshtls_port=$ssh_tls_port
 else
 sshtls_port=444
