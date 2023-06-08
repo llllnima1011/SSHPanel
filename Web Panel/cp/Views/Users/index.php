@@ -165,6 +165,16 @@
                                     {
                                         $customer_user='Admin';
                                     }
+
+                                    foreach($data['for'] as $val)
+                                    {
+                                        $dropb_port=$val['dropb_port'];
+                                        if(empty($dropb_port) || $dropb_port=='NULL'){$dropb_port='222';}
+                                        $dropb_tls_port=$val['dropb_tls_port'];
+                                        if(empty($dropb_tls_port) || $dropb_tls_port=='NULL'){$dropb_tls_port='2083';}
+                                        $ssh_tls_port=$val['ssh_tls_port'];
+                                        if(empty($ssh_tls_port) || $ssh_tls_port=='NULL'){$ssh_tls_port='444';}
+                                    }
                                     ?>
                                     <tr>
                                         <td><?php echo $uid; ?></td>
@@ -202,18 +212,33 @@
                                                     <a href="edituser&username=<?php echo $datum['username']; ?>" class="avtar avtar-xs btn-link-success btn-pc-default">
                                                         <i class="ti ti-edit-circle f-18"></i>
                                                     </a>
-                                                </li>
-                                                <li class="list-inline-item align-bottom" data-bs-toggle="tooltip"
-                                                    title="<?php echo share_tooltip_tb_lang;?>">
-                                                    <button class="avtar avtar-xs btn-link-success btn-pc-default" style="border:none" data-clipboard="true" data-clipboard-text="Host:<?php echo $_SERVER["SERVER_NAME"];?>&nbsp;
-Port:<?php echo PORT ;?>&nbsp;
+                                                </li>44
+                                                <li class="list-inline-item align-bottom" >
+                                                    <button class="avtar avtar-xs btn-link-success btn-pc-default" style="border:none" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-share f-18"></i></button>
+                                                    <div class="dropdown-menu">
+                                                        <button class="dropdown-item" style="border:none" data-clipboard="true" data-clipboard-text="Host:<?php echo $_SERVER["SERVER_NAME"];?>&nbsp;
+SSH Port:<?php echo PORT ;?>&nbsp;
+SSH TLS Port:<?php echo $ssh_tls_port ;?>&nbsp;
+Dropbear Port:<?php echo $dropb_port ;?>&nbsp;
+Dropbear TLS Port:<?php echo $dropb_tls_port ;?>&nbsp;
 Username:<?php echo $datum['username'];?>&nbsp;
 Password:<?php echo $datum['password'];?>&nbsp;
-StartTime:<?php echo $datum['startdate'];?>&nbsp;
-EndTime:<?php echo $datum['finishdate'];?>">
-                                                        <i class="ti ti-copy f-18"></i>
-                                                    </button>
+<?php if(!empty($startdate)){ echo "StartTime:".$startdate."&nbsp;";}?>
+<?php if(!empty($finishdate)){ echo "EndTime:".$finishdate;}?>"> <?php echo share_copyconfig_tb_lang;?></button>
+
+                                                        <button class="dropdown-item" style="border:none" data-clipboard="true" data-clipboard-text="SSH Direct&nbsp;
+ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php echo $_SERVER["SERVER_NAME"];?>:<?php echo PORT ;?>/#<?php echo $datum['username'];?>&nbsp;
+SSH TLS&nbsp;
+ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php echo $_SERVER["SERVER_NAME"];?>:<?php echo $ssh_tls_port ;?>/#<?php echo $datum['username'];?>&nbsp;
+Dropbear&nbsp;
+ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php echo $_SERVER["SERVER_NAME"];?>:<?php echo $dropb_port ;?>/#<?php echo $datum['username'];?>&nbsp;
+Dropbear TLS&nbsp;
+ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php echo $_SERVER["SERVER_NAME"];?>:<?php echo $dropb_tls_port ;?>/#<?php echo $datum['username'];?>&nbsp;
+
+"><?php echo share_copynetmod_tb_lang;?></button>
+                                                    </div>
                                                 </li>
+
                                             </ul>
                                         </td>
                                     </tr>

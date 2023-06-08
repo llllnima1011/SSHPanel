@@ -134,7 +134,7 @@ class Users_Model extends Model
                     $stmt1->execute(array($use_traffic, '0', '0', '0'));
                 }
                 shell_exec("bash Libs/sh/adduser " . strtolower($data_sybmit['username']) . " " . $password);
-                //header("Location: users");
+                header("Location: users");
                 return true;
             } else {
                 return false;

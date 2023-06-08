@@ -100,7 +100,7 @@ class Edituser_Model extends Model
         if($statement->execute($data)) {
             shell_exec("sudo killall -u " . $username);
             shell_exec("bash Libs/sh/changepass ".$username." ".$password);
-            header("Location: users");
+            //header("Location: users");
         }
         //header("Location: users");
     }
