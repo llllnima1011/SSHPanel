@@ -37,14 +37,14 @@ else
      dropbear_tls_port=$dropb_tls_port
 fi
 
-if [ -z "$ssh_tls_port" -a "$ssh_tls_port" == "" ]
+if [[ -n "$ssh_tls_port" ]]
 then
-     sshtls_port=444
-else
      sshtls_port=$ssh_tls_port
+else
+     sshtls_port=444
 fi
 
-echo $sshtls_port
+echo $ssh_tls_port
 if test -f "/var/www/xpanelport"; then
 domainp=$(cat /var/www/xpanelport | grep "^DomainPanel")
 sslp=$(cat /var/www/xpanelport | grep "^SSLPanel")
