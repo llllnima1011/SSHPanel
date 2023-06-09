@@ -111,6 +111,7 @@ class Index extends Controller
         $active_user = $this->model->active_user();
         $deactive_user = $this->model->deactive_user();
         $users_band = $this->model->user_band();
+        $traffic_total = formatBytes(($this->model->traffic_user()*1024)*1024);
 
         $data = array(
             "single" => array(
@@ -121,7 +122,8 @@ class Index extends Controller
                 'cpu_free' => $cpu_free,
                 'ram_free' => $ram_free,
                 'disk_free' => $disk_free,
-                'total' => $total
+                'total' => $total,
+                'traffic_total' => $traffic_total
             ),
 
             "for" => $users_band

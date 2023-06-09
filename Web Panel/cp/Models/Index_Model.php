@@ -42,6 +42,15 @@ class Index_Model extends Model
         $queryCount = $query->rowCount();
         return $queryCount;
     }
+    public function traffic_user()
+    {
+
+        $query_traffic = $this->db->prepare("SELECT SUM(total) AS total FROM Traffic");
+        $query_traffic->execute();
+        $row = $query_traffic->fetch(PDO::FETCH_ASSOC);
+        $queryCount_traffic = $row['total'];
+        return $queryCount_traffic;
+    }
     public function active_user()
     {
         if (isset($_COOKIE["xpkey"])) {

@@ -37,7 +37,7 @@ if($obj->last_version>32) {
 
         <!-- [ Main Content ] start -->
         <div class="row">
-            <div class="col-md-6 col-xxl-2">
+            <div class="col-6 col-md-3 col-xxl-2">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
@@ -52,7 +52,7 @@ if($obj->last_version>32) {
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-xxl-2">
+            <div class="col-6 col-md-3 col-xxl-2">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
@@ -68,7 +68,7 @@ if($obj->last_version>32) {
                 </div>
             </div>
 
-            <div class="col-md-6 col-xxl-2">
+            <div class="col-6 col-md-3 col-xxl-2">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
@@ -84,15 +84,16 @@ if($obj->last_version>32) {
                 </div>
             </div>
 
-            <div class="col-md-6 col-xxl-2">
+            <div class="col-6 col-md-3 col-xxl-2">
                 <div class="card">
-                    <div class="card-body" style="height: 170px;">
+                    <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="flex-shrink-0">
                                 <div class="my-n4" style="width: 130px">
-                                    <h4 style="margin-top: 50px; text-align: center;"><?php echo $data['single']['total'];?></h4>
+                                    <h5 style="margin-top: 10px; text-align: center;"><small>Server</small><br><?php echo $data['single']['total'];?></h5>
+                                    <h5 style="margin-top: 10px; text-align: center;"><small>Client</small><br><?php echo $data['single']['traffic_total'];?></h5>
                                 </div>
-                                <br><br>
+                                <br>
                                 <br>
                                 <h6 class="mb-1"><?php echo bandwidth_usage_lang;?></h6>
                             </div>
