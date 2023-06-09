@@ -42,8 +42,8 @@ X-Panel is a lightweight web application for SSH accounts management. With the h
 :green_circle: Setting optional port number for control panel access<br>
 :green_circle: Fake address (Evade Censorship)<br>
 :green_circle: IP blacklist (Blacklisting adult websites and …)<br>
+:green_circle: API support<br>
 :orange_circle: Multi-server support (Soon…)<br>
-:orange_circle: API support (Soon…)<br>
 
 
 ### Installation guide

@@ -147,16 +147,12 @@ EOF
 mkdir /etc/stunnel
 cat << EOF > /etc/stunnel/stunnel.conf
  cert = /etc/stunnel/stunnel.pem
- client = no
- socket = a:SO_REUSEADDR=1
- socket = l:TCP_NODELAY=1
- socket = r:TCP_NODELAY=1
  [dropbear]
  accept = $dropbear_tls_port
- connect = 127.0.0.1:$dropbear_port
+ connect = 0.0.0.0:$dropbear_port
  [openssh]
  accept = $sshtls_port
- connect = 127.0.0.1:$port
+ connect = 0.0.0.0:$port
 EOF
 
 echo "=================  XPanel OpenSSL ======================"
@@ -490,6 +486,8 @@ chmod 777 /var/www/html/cp/Libs/sh/stunnel.sh
 wait
 chmod 777 /etc/stunnel/stunnel.conf
 wait
+chmod 777 /var/log/auth.log
+wait
 chmod 777 /var/www/html/cp/assets/js/config.js
 wait
 if [ "$xport" != "" ]; then
@@ -502,6 +500,14 @@ fi
 (crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=exp' > /dev/null 2>&1") | crontab -
 (crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 sudo wget -O $protcohttp://${defdomain}:$sshttp/reinstall
+systemctl enable dropbear &
+wait
+systemctl restart dropbear &
+wait
+systemctl enable stunnel4 &
+wait
+systemctl restart stunnel4 &
+wait
 clear
 echo -e "${YELLOW}************ XPanel ************ \n"
 echo -e "XPanel Link : $protcohttp://${defdomain}:$sshttp/login \n"
