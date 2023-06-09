@@ -128,28 +128,56 @@
                                                             <label class="form-check-label" for="customCheckinl32"><?php echo gib_lang;?></label>
                                                         </div>
                                                         <small class="form-text text-muted"><?php echo modal_traffic_lable_lang;?></small>
+
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="input-group">
-                                                            <?php if(LANG=='fa-ir') { ?>
-                                                                <input type="text" name="expdate" value="<?php echo $finishdate;?>" class="form-control example1" />
-                                                            <?php  } else {?>
-                                                                <input type="date" class="form-control" value="<?php echo $finishdate;?>" name="expdate" id="date" data-gtm-form-interact-field-id="0">
-                                                            <?php }?>
-                                                        </div>
-                                                        <small class="form-text text-muted"><?php echo edit_exdate_lang;?></small>
 
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-lg-6">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="input-group">
+                                                                <?php if(LANG=='fa-ir') { ?>
+                                                                    <input type="text" name="expdate" value="<?php echo $finishdate;?>" class="form-control example1" />
+                                                                <?php  } else {?>
+                                                                    <input type="date" class="form-control" value="<?php echo $finishdate;?>" name="expdate" id="date" data-gtm-form-interact-field-id="0">
+                                                                <?php }?>
+                                                            </div>
+                                                            <small class="form-text text-muted"><?php echo edit_exdate_lang;?></small>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6" >
+                                                    <div class="row">
+                                                        <div class="col-lg-12" style="margin-right:2%">
+                                                            <br>
+                                                            <div class="form-check form-check-inline">
+                                                                <input type="radio" class="form-check-input input-primary" name="activate" value="true" <?php if($datum['enable']=='true'){echo 'checked="" ';}?>>
+                                                                <label class="form-check-label" for="customCheckinl311"><?php echo active_tb_lang;?></label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input type="radio" class="form-check-input input-primary" name="activate" value="false" <?php if($datum['enable']!='true'){echo 'checked="" ';}?>>
+                                                                <label class="form-check-label" for="customCheckinl32"><?php echo deactive_tb_lang;?></label>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="form-label"><?php echo modal_desc_lang;?></label>
-                                            <textarea class="form-control" rows="3" name="desc" placeholder="<?php echo modal_desc_lang;?>"><?php echo $datum['info'];?></textarea>
+
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <label class="form-label"><?php echo modal_desc_lang;?></label>
+                                                        <textarea class="form-control" rows="3" name="desc" placeholder="<?php echo modal_desc_lang;?>"><?php echo $datum['info'];?></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <button type="submit" class="btn btn-primary" value="submit" name="submit"><?php echo edit_submit_lang;?></button>                        </div>
                                 </form>

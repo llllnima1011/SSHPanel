@@ -19,6 +19,20 @@ class Fixer_Model extends Model
                 if ($expiredate < strtotime(date("Y-m-d")) || $expiredate == strtotime(date("Y-m-d"))) {
                     $sql = "UPDATE users SET enable=? WHERE username=?";
                     $this->db->prepare($sql)->execute(['expired', $us["username"]]);
+                    $dropbear = shell_exec("ps aux | grep -i dropbear | awk '{print $2}'");
+                    $dropbear = preg_split("/\r\n|\n|\r/", $dropbear);
+                    foreach ($dropbear as $pid) {
+
+                        $user_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $10}'");
+                        $user_drop=str_replace("'", "",$user_drop);
+                        $user_drop=str_replace("\n", "",$user_drop);
+                        $user_drop = htmlentities($user_drop);
+
+                        if ($user_drop==$us["username"]) {
+
+                            shell_exec("sudo kill -9 " . $pid);
+                        }
+                    }
                     shell_exec("sudo killall -u " . $us["username"]);
                     shell_exec("bash Libs/sh/deleteuser " . $us["username"]);
                 }
@@ -36,6 +50,20 @@ class Fixer_Model extends Model
                 if ($us["traffic"] < $total && !empty($us["traffic"])) {
                     $sql = "UPDATE users SET enable=? WHERE username=?";
                     $this->db->prepare($sql)->execute(['traffic', $us["username"]]);
+                    $dropbear = shell_exec("ps aux | grep -i dropbear | awk '{print $2}'");
+                    $dropbear = preg_split("/\r\n|\n|\r/", $dropbear);
+                    foreach ($dropbear as $pid) {
+
+                        $user_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $10}'");
+                        $user_drop=str_replace("'", "",$user_drop);
+                        $user_drop=str_replace("\n", "",$user_drop);
+                        $user_drop = htmlentities($user_drop);
+
+                        if ($user_drop==$us["username"]) {
+
+                            shell_exec("sudo kill -9 " . $pid);
+                        }
+                    }
                     shell_exec("sudo killall -u " . $us["username"]);
                     shell_exec("bash Libs/sh/deleteuser " . $us["username"]);
                 }
