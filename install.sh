@@ -488,6 +488,8 @@ chmod 777 /etc/stunnel/stunnel.conf
 wait
 chmod 777 /var/log/auth.log
 wait
+chmod 777 /var/www/html/cp/Libs/sh/droptraffic.sh 
+wait
 chmod 777 /var/www/html/cp/assets/js/config.js
 wait
 if [ "$xport" != "" ]; then
