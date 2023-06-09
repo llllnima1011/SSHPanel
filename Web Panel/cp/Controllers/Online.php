@@ -25,7 +25,6 @@ class Online extends Controller
 
                     $num_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | wc -l");
                     $user_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $10}'");
-                    $ip_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $12}'");
                     $user_drop=str_replace("'", "",$user_drop);
                     $user_drop=str_replace("\n", "",$user_drop);
                     $user_drop = htmlentities($user_drop);
