@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="Fix New Version 3.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/adduser" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/adduser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/changepass" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/changepass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Edituser_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Edituser_Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Controllers/Online.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Online.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/stunnel.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/stunnel.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Online/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Online/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +68,7 @@
       <workItem from="1685660101165" duration="1168000" />
       <workItem from="1685862743562" duration="592000" />
       <workItem from="1685994314765" duration="23702000" />
-      <workItem from="2064859571877" duration="12929000" />
+      <workItem from="2064859571877" duration="15483000" />
     </task>
     <task id="LOCAL-00001" summary="ADD web panel open source">
       <created>1684882940503</created>
@@ -224,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686213022093</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Fix New Version 3.2">
+      <created>1686217821881</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1686217821881</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
