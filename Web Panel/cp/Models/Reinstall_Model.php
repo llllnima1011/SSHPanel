@@ -122,5 +122,6 @@ class Reinstall_Model extends Model
         $sql = "UPDATE setting SET multiuser=? WHERE id=?";
         $this->db->prepare($sql)->execute(['on', '1']);
 
+        echo "success";
     }
 }
