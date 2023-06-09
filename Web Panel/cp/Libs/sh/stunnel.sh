@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "cert = /etc/stunnel/stunnel.pem
- [dropbear]
+[dropbear]
  accept = $1
  connect = 0.0.0.0:$2
  [openssh]
