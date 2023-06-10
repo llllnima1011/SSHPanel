@@ -170,22 +170,25 @@
                                     foreach($data['for'] as $val)
                                     { if(isset($val['dropb_port'])) {
                                         $dropb_port = $val['dropb_port'];
+                                    }
                                         if (empty($dropb_port) || $dropb_port == 'NULL') {
                                             $dropb_port = '222';
                                         }
-                                    }
+
                                         if(isset($val['dropb_tls_port'])) {
                                             $dropb_tls_port = $val['dropb_tls_port'];
-                                            if (empty($dropb_tls_port) || $dropb_tls_port == 'NULL') {
-                                                $dropb_tls_port = '2083';
-                                            }
                                         }
+                                        if (empty($dropb_tls_port) || $dropb_tls_port == 'NULL') {
+                                            $dropb_tls_port = '2083';
+                                        }
+
                                         if(isset($val['ssh_tls_port'])) {
                                             $ssh_tls_port = $val['ssh_tls_port'];
-                                            if (empty($ssh_tls_port) || $ssh_tls_port == 'NULL') {
-                                                $ssh_tls_port = '444';
-                                            }
                                         }
+                                        if (empty($ssh_tls_port) || $ssh_tls_port == 'NULL') {
+                                            $ssh_tls_port = '444';
+                                        }
+
 
                                     }
                                     ?>
