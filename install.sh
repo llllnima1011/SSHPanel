@@ -121,7 +121,7 @@ sudo NEETRESTART_MODE=a apt-get update --yes
 sudo apt-get -y install software-properties-common
 apt-get install -y dropbear && apt-get install -y stunnel4 && apt-get install -y cmake && apt-get install -y screenfetch && apt-get install -y openssl
 sudo add-apt-repository ppa:ondrej/php -y
-sudo DEBIAN_FRONTEND=noninteractive apt-get install postfix -y
+#sudo DEBIAN_FRONTEND=noninteractive apt-get install postfix -y
 apt-get install apache2 php7.4 zip unzip net-tools curl mariadb-server -y
 apt-get install php7.4-mysql php7.4-xml php7.4-curl -y
 
@@ -502,6 +502,8 @@ fi
 (crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=exp' > /dev/null 2>&1") | crontab -
 (crontab -l ; echo "* * * * * wget -q -O /dev/null '$protcohttp://${defdomain}:$sshttp/fixer&jub=synstraffic' > /dev/null 2>&1") | crontab -
 sudo wget -O $protcohttp://${defdomain}:$sshttp/reinstall
+wait
+curl $protcohttp://${defdomain}:$sshttp/reinstall
 systemctl enable dropbear &
 wait
 systemctl restart dropbear &
