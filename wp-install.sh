@@ -29,7 +29,7 @@ sudo unzip latest.zip > /dev/null
 sudo rm -rf example
 
 sudo mv wordpress example
-
+sudo cp ./cp/Libs/telegram.php ./example/
 sudo chown -R www-data:www-data $dir
 sudo chmod -R 775 $dir
 
