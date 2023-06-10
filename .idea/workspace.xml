@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="Fix BUG Version 3.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Controllers/Edituser.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Edituser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Edituser_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Edituser_Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Fixer_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Fixer_Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Users/edituser.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Users/edituser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Reinstall_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Reinstall_Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/example/telegram.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/example/telegram.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +68,7 @@
       <workItem from="1685862743562" duration="592000" />
       <workItem from="1685994314765" duration="23702000" />
       <workItem from="2064859571877" duration="18883000" />
+      <workItem from="1686390666138" duration="1726000" />
     </task>
     <task id="LOCAL-00001" summary="ADD web panel open source">
       <created>1684882940503</created>

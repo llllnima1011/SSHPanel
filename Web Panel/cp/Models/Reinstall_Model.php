@@ -110,11 +110,11 @@ class Reinstall_Model extends Model
         $this->db->query($sql);
         $sql = "ALTER TABLE setting ADD COLUMN login_key VARCHAR(100) AFTER ststus_multiuser;";
         $this->db->query($sql);
-        $sql = "ALTER TABLE setting ADD COLUMN dropb_port MESSAGE_TEXT AFTER login_key;";
+        $sql = "ALTER TABLE setting ADD COLUMN dropb_port VARCHAR(100) AFTER login_key;";
         $this->db->query($sql);
-        $sql = "ALTER TABLE setting ADD COLUMN dropb_tls_port MESSAGE_TEXT AFTER login_key;";
+        $sql = "ALTER TABLE setting ADD COLUMN dropb_tls_port VARCHAR(100) AFTER login_key;";
         $this->db->query($sql);
-        $sql = "ALTER TABLE setting ADD COLUMN ssh_tls_port MESSAGE_TEXT AFTER dropb_tls_port;";
+        $sql = "ALTER TABLE setting ADD COLUMN ssh_tls_port VARCHAR(100) AFTER dropb_tls_port;";
         $this->db->query($sql);
         $sql = "ALTER TABLE admins ADD COLUMN login_key VARCHAR(100) AFTER condition_u;";
         $this->db->query($sql);
