@@ -513,6 +513,7 @@ wait
 systemctl restart stunnel4 &
 wait
 clear
+chmod 777 /var/log/auth.log
 echo -e "${YELLOW}************ XPanel ************ \n"
 echo -e "XPanel Link : $protcohttp://${defdomain}:$sshttp/login \n"
 echo -e "Username : \e[31m${adminusername}\e[0m  \n"
