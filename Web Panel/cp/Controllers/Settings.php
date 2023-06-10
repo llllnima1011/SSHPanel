@@ -86,11 +86,11 @@ class Settings extends Controller
             $this->model->submit_api($data_sybmit);
         }
 
-        if ($_GET['sort']=='api' and !empty($_GET['delete'])) {
+        if (isset($_GET['sort']) and $_GET['sort']=='api' and !empty($_GET['delete'])) {
             $token = htmlentities($_GET['delete']);
             $this->model->delete_api($token);
         }
-        if ($_GET['sort']=='api' and !empty($_GET['renew'])) {
+        if (isset($_GET['sort']) and $_GET['sort']=='api' and !empty($_GET['renew'])) {
             $renew = htmlentities($_GET['renew']);
             $this->model->renew_api($renew);
         }

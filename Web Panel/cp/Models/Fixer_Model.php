@@ -74,15 +74,12 @@ class Fixer_Model extends Model
     }
     public function multiuser()
     {
-        $query = $this->db->prepare("select * from users");
-        $query->execute();
-        $queryCount = $query->fetchAll();
+
         $query_setting = $this->db->prepare("select * from setting");
         $query_setting->execute();
         $queryCount_setting = $query_setting->fetchAll();
-        foreach($queryCount_setting as $val)
-        {
-            $multiuser=$val['multiuser'];
+        foreach ($queryCount_setting as $val) {
+            $multiuser = $val['multiuser'];
         }
         $dropbear = shell_exec("ps aux | grep -i dropbear | awk '{print $2}'");
         $dropbear = preg_split("/\r\n|\n|\r/", $dropbear);
@@ -91,65 +88,75 @@ class Fixer_Model extends Model
             $num_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | wc -l");
             $user_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $10}'");
             $ip_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $12}'");
-            $user_drop=str_replace("'", "",$user_drop);
-            $user_drop=str_replace("\n", "",$user_drop);
+            $user_drop = str_replace("'", "", $user_drop);
+            $user_drop = str_replace("\n", "", $user_drop);
             if ($num_drop > 0) {
                 $onlinelist[] = $user_drop;
             }
         }
-        $list = shell_exec("sudo lsof -i :".PORT." -n | grep -v root | grep ESTABLISHED");
+        $list = shell_exec("sudo lsof -i :" . PORT . " -n | grep -v root | grep ESTABLISHED");
         $onlineuserlist = preg_split("/\r\n|\n|\r/", $list);
-        foreach($onlineuserlist as $user){
+        foreach ($onlineuserlist as $user) {
             $user = preg_replace('/\s+/', ' ', $user);
-            $userarray = explode(" ",$user);
+            $userarray = explode(" ", $user);
+            if (!isset($userarray[2])) {
+                $userarray[2] = null;
+            }
             $onlinelist[] = $userarray[2];
         }
         echo "success";
+        $onlinelist = array_replace($onlinelist, array_fill_keys(array_keys($onlinelist, null), ''));
         $onlinecount = array_count_values($onlinelist);
-        foreach($queryCount as $row){
-            $limitation = $row['multiuser'];
-            $username = $row['username'];
-            $startdate = $row['startdate'];
-            $finishdate_one_connect = $row['finishdate_one_connect'];
-            if (empty($limitation)){$limitation= "0";}
-            $userlist[$username] =  $limitation;
-            if(empty($startdate))
-            {
-                $use_active= $username."|".$onlinecount[$username];
-                $act_explode= explode("|",$use_active);
-                if($act_explode[1]>0)
-                {
-                    $start_inp=date("Y-m-d");
-                    $end_inp=date('Y-m-d', strtotime($start_inp. " + $finishdate_one_connect days"));
-                    $sql = "UPDATE users SET startdate=?,finishdate=? WHERE username=?";
-                    $this->db->prepare($sql)->execute([$start_inp,$end_inp, $act_explode[0]]);
+
+        foreach ($onlinelist as $useron) {
+            $query = $this->db->prepare("select * from users where username='$useron'");
+            $query->execute();
+            $queryCount = $query->fetchAll();
+            foreach ($queryCount as $row) {
+                $limitation = $row['multiuser'];
+                $username = $row['username'];
+                $startdate = $row['startdate'];
+                $finishdate_one_connect = $row['finishdate_one_connect'];
+                if (empty($limitation)) {
+                    $limitation = "0";
                 }
+                $userlist[$username] = $limitation;
+                if (empty($startdate)) {
+                    $use_active = $username . "|" . $onlinecount[$username];
+                    $act_explode = explode("|", $use_active);
+                    if ($act_explode[1] > 0) {
+                        $start_inp = date("Y-m-d");
+                        $end_inp = date('Y-m-d', strtotime($start_inp . " + $finishdate_one_connect days"));
+                        $sql = "UPDATE users SET startdate=?,finishdate=? WHERE username=?";
+                        $this->db->prepare($sql)->execute([$start_inp, $end_inp, $act_explode[0]]);
+                    }
 
-            }
-            foreach ($dropbear as $pid) {
+                }
+                foreach ($dropbear as $pid) {
 
-                $num_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | wc -l");
-                $user_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $10}'");
-                $ip_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $12}'");
-                $user_drop=str_replace("'", "",$user_drop);
-                $user_drop=str_replace("\n", "",$user_drop);
-                $user_drop = htmlentities($user_drop);
+                    $num_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | wc -l");
+                    $user_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $10}'");
+                    $ip_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $12}'");
+                    $user_drop = str_replace("'", "", $user_drop);
+                    $user_drop = str_replace("\n", "", $user_drop);
+                    $user_drop = htmlentities($user_drop);
 
-                if ($num_drop > 0 && $user_drop==$username && $limitation !== "0" && $onlinecount[$username] > $limitation) {
-                    if ($multiuser=='on') {
-                        shell_exec("sudo kill -9 " . $pid);
+                    if ($num_drop > 0 && $user_drop == $username && $limitation !== "0" && $onlinecount[$username] > $limitation) {
+                        if ($multiuser == 'on') {
+                            shell_exec("sudo kill -9 " . $pid);
+                        }
                     }
                 }
-            }
-            if ($limitation !== "0" && $onlinecount[$username] > $limitation){
+                if ($limitation !== "0" && $onlinecount[$username] > $limitation){
 
-                if ($multiuser=='on') {
-                    shell_exec('sudo killall -u ' . $username);
+                    if ($multiuser == 'on') {
+                        shell_exec('sudo killall -u ' . $username);
+                    }
                 }
+
+
+                //header("Refresh:1");
             }
-
-
-            //header("Refresh:1");
         }
     }
 
@@ -226,7 +233,7 @@ class Fixer_Model extends Model
                     }
                 }
             }
-            //echo json_encode($newarray);
+            $newarray= json_encode($newarray);
             foreach ($newarray as $username => $usr) {
                 $stmt = $this->db->prepare("SELECT * FROM Traffic WHERE user=:user");
                 $stmt->execute(['user' => $username]);
@@ -234,13 +241,13 @@ class Fixer_Model extends Model
                 $userdownload = $user["download"];
                 $userupload = $user["upload"];
                 $usertotal = $user["total"];
-                $rx=round($usr["RX"]/1.70);
-                $tx=round($usr["TX"]/1.70);
-                $tot=round($usr["Total"]/1.70);
+                $rx = round($usr["RX"] / 1.70);
+                $tx = round($usr["TX"] / 1.70);
+                $tot = round($usr["Total"] / 1.70);
                 $lastdownload = $userdownload + $rx;
                 $lastupload = $userupload + $tx;
                 $lasttotal = $usertotal + $tot;
-                $query = $this->db->prepare("select * from Traffic where user='".$username."'");
+                $query = $this->db->prepare("select * from Traffic where user='" . $username . "'");
                 $query->execute();
                 $queryCount = $query->rowCount();
                 if ($queryCount < 1) {
@@ -249,65 +256,71 @@ class Fixer_Model extends Model
                     $stmt->execute(array($username, $lastdownload, $lastupload, $lasttotal));
                     shell_exec("sudo rm -rf /var/www/html/cp/storage/log/out.json");
 
-                }
-                else
-                {
+                } else {
                     $sql = "UPDATE Traffic SET upload=?,download=?,total=? WHERE user=?";
-                    $this->db->prepare($sql)->execute([$lastupload,$lastdownload,$lasttotal, $username]);
+                    $this->db->prepare($sql)->execute([$lastupload, $lastdownload, $lasttotal, $username]);
                     shell_exec("sudo rm -rf /var/www/html/cp/storage/log/out.json");
                 }
             }
-            $query = $this->db->prepare("select * from users");
-            $query->execute();
-            $queryCount = $query->fetchAll();
+
             $query_setting = $this->db->prepare("select * from setting");
             $query_setting->execute();
             $queryCount_setting = $query_setting->fetchAll();
-            foreach($queryCount_setting as $val)
-            {
-                $multiuser=$val['multiuser'];
+            foreach ($queryCount_setting as $val) {
+                $multiuser = $val['multiuser'];
             }
-            $list = shell_exec("sudo lsof -i :".PORT." -n | grep -v root | grep ESTABLISHED");
+            $list = shell_exec("sudo lsof -i :" . PORT . " -n | grep -v root | grep ESTABLISHED");
             $onlineuserlist = preg_split("/\r\n|\n|\r/", $list);
-            foreach($onlineuserlist as $user){
+            foreach ($onlineuserlist as $user) {
                 $user = preg_replace('/\s+/', ' ', $user);
-                $userarray = explode(" ",$user);
+                $userarray = explode(" ", $user);
+                if (!isset($userarray[2])) {
+                    $userarray[2] = null;
+                }
+
                 $onlinelist[] = $userarray[2];
             }
 
+            $onlinelist = array_replace($onlinelist, array_fill_keys(array_keys($onlinelist, null), ''));
             $onlinecount = array_count_values($onlinelist);
-            foreach($queryCount as $row){
-                $limitation = $row['multiuser'];
-                $username = $row['username'];
-                $startdate = $row['startdate'];
-                $finishdate_one_connect = $row['finishdate_one_connect'];
-                if (empty($limitation)){$limitation= "0";}
-                $userlist[$username] =  $limitation;
-                if(empty($startdate))
-                {
 
-                    $use_active= $username."|".$onlinecount[$username];
-                    $act_explode= explode("|",$use_active);
-                    if($act_explode[1]>0)
-                    {
-                        $start_inp=date("Y-m-d");
-                        $end_inp=date('Y-m-d', strtotime($start_inp. " + $finishdate_one_connect days"));
-                        $sql = "UPDATE users SET startdate=?,finishdate=? WHERE username=?";
-                        $this->db->prepare($sql)->execute([$start_inp,$end_inp, $act_explode[0]]);
+            foreach ($onlinelist as $useron) {
+                $query = $this->db->prepare("select * from users where username='$useron'");
+                $query->execute();
+                $queryCount = $query->fetchAll();
+                foreach ($queryCount as $row) {
+                    $limitation = $row['multiuser'];
+                    $username = $row['username'];
+                    $startdate = $row['startdate'];
+                    $finishdate_one_connect = $row['finishdate_one_connect'];
+                    if (empty($limitation)) {
+                        $limitation = "0";
                     }
+                    $userlist[$username] = $limitation;
+                    if (empty($startdate)) {
 
-                }
-                if ($limitation !== "0" && $onlinecount[$username] > $limitation){
-                    if ($multiuser=='on') {
-                        shell_exec('sudo killall -u ' . $username);
+                        $use_active = $username . "|" . $onlinecount[$username];
+                        $act_explode = explode("|", $use_active);
+                        if ($act_explode[1] > 0) {
+                            $start_inp = date("Y-m-d");
+                            $end_inp = date('Y-m-d', strtotime($start_inp . " + $finishdate_one_connect days"));
+                            $sql = "UPDATE users SET startdate=?,finishdate=? WHERE username=?";
+                            $this->db->prepare($sql)->execute([$start_inp, $end_inp, $act_explode[0]]);
+                        }
+
                     }
+                    if ($limitation !== "0" && $onlinecount[$username] > $limitation) {
+                        if ($multiuser == 'on') {
+                            shell_exec('sudo killall -u ' . $username);
+                        }
+                    }
+                    //header("Refresh:1");
                 }
-                //header("Refresh:1");
+                shell_exec("sudo kill -9 " . $pid);
+                shell_exec("sudo killall -9 nethogs");
+                shell_exec("sudo rm -rf /var/www/html/cp/storage/log/out.json");
+                shell_exec("sudo nethogs -j -d 19 -v 3 > /var/www/html/cp/storage/log/out.json &");
             }
-            shell_exec("sudo kill -9 " . $pid);
-            shell_exec("sudo killall -9 nethogs");
-            shell_exec("sudo rm -rf /var/www/html/cp/storage/log/out.json");
-            shell_exec("sudo nethogs -j -d 19 -v 3 > /var/www/html/cp/storage/log/out.json &");
         }
 
 
@@ -320,6 +333,7 @@ class Fixer_Model extends Model
             $lastdata_drop = end($trafficlog_drop);
             $json_drop = json_decode($lastdata_drop, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             $newarray_drop=[];
+            $newarray=[];
             foreach ($json_drop as $value) {
                 $TX = round($value["TX"], 0);
                 $RX = round($value["RX"], 0);
@@ -331,6 +345,7 @@ class Fixer_Model extends Model
                     $user_drop=str_replace("\n", "",$user_drop);
                     $user_drop = htmlentities($user_drop);
                     $name=$user_drop;
+                    echo $name;
                     if ($value["RX"] < 1 && $value["TX"] < 1) {
                         $name = "";
                     }

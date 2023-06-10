@@ -32,6 +32,7 @@
                                 </thead>
                                 <tbody>
                                 <?php
+                                shell_exec("chmod 777 /var/log/auth.log");
                                 $duplicate = [];
                                 $m = 1;
                                 $dropb = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"for 'ttes'\" | awk '{print $5}'");
@@ -48,12 +49,18 @@
                                     } else {
                                         $userarray = explode(" ", $user);
                                     }
+                                    if (!isset($userarray[8])) {
+                                        $userarray[8] = null;
+                                    }
                                     if (strpos($userarray[8], "->") !== false) {
                                         $userarray[8] = strstr($userarray[8], "->");
                                         $userarray[8] = str_replace("->", "", $userarray[8]);
                                         $userip = substr($userarray[8], 0, strpos($userarray[8], ":"));
                                     } else {
                                         $userip = $userarray[8];
+                                    }
+                                    if (!isset($userarray[2])) {
+                                        $userarray[2] = null;
                                     }
                                     $color = "#dc2626";
                                     if (!in_array($userarray[2], $duplicate)) {

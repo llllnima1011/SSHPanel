@@ -80,15 +80,24 @@ class Index extends Controller
         $traffic_rx = shell_exec("netstat -e -n -i |  grep \"RX packets\" | grep -v \"RX packets 0\" | grep -v \" B)\"");
         $traffic_tx = shell_exec("netstat -e -n -i |  grep \"TX packets\" | grep -v \"TX packets 0\" | grep -v \" B)\"");
         $res = preg_split("/\r\n|\n|\r/", $traffic_rx);
+        $upload="0"; $download="0";
         foreach ($res as $resline) {
             $resarray = explode(" ", $resline);
-            $download += $resarray[13];
+            if (!isset($resarray[13])) {
+                $resarray[13] = null;
+            }
+            if (is_numeric($resarray[13])) {
+                $download += $resarray[13];
+            }
 
         }
 
         $res = preg_split("/\r\n|\n|\r/", $traffic_tx);
         foreach ($res as $resline) {
             $resarray = explode(" ", $resline);
+            if (!isset($resarray[13])) {
+                $resarray[13] = null;
+            }
             $upload += $resarray[13];
         }
         function formatBytes($bytes)
