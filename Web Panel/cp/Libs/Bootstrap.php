@@ -26,7 +26,7 @@ class Bootstrap
             require_once("Models/Permission_Model.php");
             $this->model = new Permission_Model();
 			$file = "Controllers/".ucfirst($url[0]).".php";
-			require($file);
+            require_once($file);
 			$controller = new $url[0]();
 			//$controller->loadModel($url[0]);
 
