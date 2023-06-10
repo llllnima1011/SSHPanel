@@ -17,10 +17,10 @@ class Edituser_Model extends Model
             $query_ress->execute();
             $queryCount_ress = $query_ress->rowCount();
             if ($queryCount >0) {
-                define(permis,'admin');
+                define('permis','admin');
             }
             if ($queryCount_ress >0) {
-                define(permis,'reseller');
+                define('permis','reseller');
             }
             if ($queryCount == 0 && $queryCount_ress == 0) {
                 header("location: login");

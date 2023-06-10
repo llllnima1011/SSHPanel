@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="Fix BUG Version 3.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Config/define.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Config/define.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/Database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Edituser_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Edituser_Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Index_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Index_Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Users_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Users_Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +70,7 @@
       <workItem from="1685862743562" duration="592000" />
       <workItem from="1685994314765" duration="23702000" />
       <workItem from="2064859571877" duration="18883000" />
-      <workItem from="1686390666138" duration="3262000" />
+      <workItem from="1686390666138" duration="4921000" />
     </task>
     <task id="LOCAL-00001" summary="ADD web panel open source">
       <created>1684882940503</created>
@@ -267,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686392578979</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Fix BUG Version 3.2">
+      <created>1686397166112</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1686397166112</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
