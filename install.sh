@@ -121,7 +121,7 @@ sudo NEETRESTART_MODE=a apt-get update --yes
 sudo apt-get -y install software-properties-common
 apt-get install -y dropbear && apt-get install -y stunnel4 && apt-get install -y cmake && apt-get install -y screenfetch && apt-get install -y openssl
 sudo add-apt-repository ppa:ondrej/php -y
-sudo DEBIAN_FRONTEND=noninteractive apt-get install postfix -y
+#sudo DEBIAN_FRONTEND=noninteractive apt-get install postfix -y
 apt-get install apache2 php7.4 zip unzip net-tools curl mariadb-server -y
 apt-get install php7.4-mysql php7.4-xml php7.4-curl -y
 
