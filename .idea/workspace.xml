@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="Fix BUG Version 3.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Controllers/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Controllers/Settings.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Settings.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Fixer_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Fixer_Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Online/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Online/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Index/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/assets/js/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +69,7 @@
       <workItem from="1685994314765" duration="23702000" />
       <workItem from="2064859571877" duration="18883000" />
       <workItem from="1686390666138" duration="5579000" />
-      <workItem from="1686400937947" duration="2522000" />
+      <workItem from="1686400937947" duration="2638000" />
     </task>
     <task id="LOCAL-00001" summary="ADD web panel open source">
       <created>1684882940503</created>
@@ -284,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686398799149</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Fix BUG Version 3.2">
+      <created>1686408194326</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1686408194326</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
