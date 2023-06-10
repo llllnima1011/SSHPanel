@@ -1,5 +1,6 @@
 <?php
 $protocol = isset($_SERVER['HTTPS']) ? 'https' : 'http';
-define('path', $protocol.'://'.$_SERVER[HTTP_HOST].'/');
+$http_host=$_SERVER['HTTP_HOST'];
+define('path', $protocol.'://'.$http_host.'/');
 $fakeurl = "https://google.com";
 define('fakeurl', $fakeurl);

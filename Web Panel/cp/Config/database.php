@@ -6,7 +6,7 @@ $dbname = "XPanel";
 $lang = "fa-ir";
 
 define("DB_TYPE", "mysql");
-define("DB_HOST", "localhost");
+define("DB_HOST", "127.0.0.1");
 define("DB_NAME", $dbname);
 define("DB_USER", $username);
 define("DB_PASS", $password);
