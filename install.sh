@@ -452,7 +452,7 @@ multiin=$(echo "$protcohttp://${defdomain}:$sshttp/fixer&jub=multi")
 cat > /var/www/html/cp/Libs/sh/kill.sh << ENDOFFILE
 #!/bin/bash
 #By Alireza
-
+chmod 777 /var/log/auth.log
 i=0
 while [ 1i -lt 20 ]; do
 cmd=(bbh '$multiin')
