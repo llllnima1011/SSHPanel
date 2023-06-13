@@ -63,6 +63,7 @@ else
         file_get_contents($API . "sendMessage?chat_id=" . $chatID . "&text=".$message);
 
     }
+    //end
 
 
 }
