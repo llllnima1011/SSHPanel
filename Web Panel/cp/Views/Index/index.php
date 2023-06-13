@@ -4,7 +4,7 @@ $json = file_get_contents('https://raw.githubusercontent.com/Alirezad07/X-Panel-
 $obj = json_decode($json);
 if(LANG=='fa-ir'){$github='https://github.com/Alirezad07/X-Panel-SSH-User-Management#%D9%86%D8%B5%D8%A8';}
 else {$github='https://github.com/Alirezad07/X-Panel-SSH-User-Management/blob/main/README-EN.md#installation-guide';}
-if($obj->last_version>32.1) {
+if($obj->last_version>32.2) {
     echo '
             <div class="p-4 mb-2" style="position: fixed;z-index: 9999;left: 0;">
               <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
