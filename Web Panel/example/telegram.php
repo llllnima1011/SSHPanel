@@ -45,12 +45,12 @@ else
         $expdate=$user['finishdate'];
         $expdate=explode('-',$expdate);
         if($expdate[1]<10) {
-            $m = '0' . $expdate[1];
+            $m = $expdate[1];
         }else{
             $m=$expdate[1];
         }
         if($expdate[2]<10) {
-            $d = '0' . $expdate[2];
+            $d =$expdate[2];
         }else{
             $d=$expdate[2];
         }
