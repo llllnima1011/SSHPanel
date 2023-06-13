@@ -299,7 +299,7 @@ ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php ec
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="feather icon-lock"></i></span>
                                             <input type="text" name="password" class="form-control"
-                                                   placeholder="<?php echo modal_pass_lang;?>" autocomplete="off" onkeyup="if (/[^|a-z0-9]+/g.test(this.value)) this.value = this.value.replace(/[^|a-z0-9]+/g,'')" required>
+                                                   placeholder="<?php echo modal_pass_lang;?>" autocomplete="off" required>
                                         </div>
                                         <small class="form-text text-muted"><?php echo modal_pass_lable_lang;?></small>
                                     </div>
