@@ -117,7 +117,6 @@ class Edituser_Model extends Model
             header("Refresh:0");
 
         }
-        //header("Location: users");
     }
 
     function en_number($number)
