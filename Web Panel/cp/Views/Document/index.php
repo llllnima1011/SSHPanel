@@ -43,7 +43,7 @@
                                 <a href="<?php echo path;?>Settings&sort=api" target="_blank">List API</a><br>
                                 {APIKEY}=Token<br>
                                 <span class="pc-collapse">Method GET</span><br>
-                                <code><?php echo path;?>api&key={APIKEY}&method=userlist</code><br>
+                                <code><?php echo path;?>api&key={APIKEY}&method=listuser</code><br>
                                 Result
                                 <div class="p-3 color-block bg-gray-200">
                                     <code>
