@@ -55,7 +55,7 @@ class Edituser_Model extends Model
         if(LANG=='fa-ir') {
             if (!empty($data_sybmit['finishdate'])) {
                 $finishdate = explode('/', $data_sybmit['finishdate']);
-                $finishdate = en_number(jalali_to_gregorian($finishdate[0], $finishdate[1], $finishdate[2], '-'));
+                $finishdate = jalali_to_gregorian($finishdate[0], $finishdate[1], $finishdate[2], '-');
                 $finishdate = explode('-', $finishdate);
                 if($finishdate[1]<10)
                 {$m='0'.$finishdate[1];} else { $m=$finishdate[1];}
@@ -122,9 +122,8 @@ class Edituser_Model extends Model
 
     function en_number($number)
     {
-        if(!is_numeric($number) || empty($number))
-            //return '۰';
-            $en = array("0","1","2","3","4","5","6","7","8","9");
+
+        $en = array("0","1","2","3","4","5","6","7","8","9");
         $fa = array("۰","۱","۲","۳","۴","۵","۶","۷","۸","۹");
         return str_replace($fa,$en, $number);
     }
