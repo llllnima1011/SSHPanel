@@ -160,7 +160,7 @@ class Fixer_Model extends Model
 
     public function synstraffic()
     {
-        echo"tt";
+        echo"suucess";
 
         $pid = shell_exec("pgrep nethogs");
         $pid = preg_replace("/\\s+/", "", $pid);
@@ -232,7 +232,7 @@ class Fixer_Model extends Model
                     }
                 }
             }
-            $newarray= json_encode($newarray);
+            //$newarray= json_encode($newarray);
             foreach ($newarray as $username => $usr) {
                 $stmt = $this->db->prepare("SELECT * FROM Traffic WHERE user=:user");
                 $stmt->execute(['user' => $username]);
