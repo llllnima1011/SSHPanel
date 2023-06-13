@@ -36,7 +36,7 @@ else
     $check_user = $conn->query("SELECT * FROM users where username='$username' and password='$password'")->rowCount();
     if($check_user>0) {
 
-        $user = $conn->query("select * from users,Traffic where users.username='$username'")->fetch();
+        $user = $conn->query("select * from users,Traffic where users.username='$username' and Traffic.user='$username'")->fetch();
         if (1024 < $user["total"]) {
             $to = round($user["total"] / 1024, 2) . " گیگابایت";
         } else {
