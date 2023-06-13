@@ -85,14 +85,12 @@ class Fixer_Model extends Model
         $dropbear = preg_split("/\r\n|\n|\r/", $dropbear);
         foreach ($dropbear as $pid) {
 
-            $num_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | wc -l");
             $user_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $10}'");
-            $ip_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $12}'");
             $user_drop = str_replace("'", "", $user_drop);
             $user_drop = str_replace("\n", "", $user_drop);
-            if ($num_drop > 0) {
-                $onlinelist[] = $user_drop;
-            }
+
+            $onlinelist[] = $user_drop;
+
         }
         $list = shell_exec("sudo lsof -i :" . PORT . " -n | grep -v root | grep ESTABLISHED");
         $onlineuserlist = preg_split("/\r\n|\n|\r/", $list);
@@ -105,6 +103,7 @@ class Fixer_Model extends Model
             $onlinelist[] = $userarray[2];
         }
         echo "success";
+        print_r($onlinelist);
         $onlinelist = array_replace($onlinelist, array_fill_keys(array_keys($onlinelist, null), ''));
         $onlinecount = array_count_values($onlinelist);
 
@@ -136,7 +135,6 @@ class Fixer_Model extends Model
 
                     $num_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | wc -l");
                     $user_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $10}'");
-                    $ip_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $12}'");
                     $user_drop = str_replace("'", "", $user_drop);
                     $user_drop = str_replace("\n", "", $user_drop);
                     $user_drop = htmlentities($user_drop);
@@ -162,6 +160,7 @@ class Fixer_Model extends Model
 
     public function synstraffic()
     {
+        echo"tt";
 
         $pid = shell_exec("pgrep nethogs");
         $pid = preg_replace("/\\s+/", "", $pid);
@@ -254,12 +253,12 @@ class Fixer_Model extends Model
                     $sql = "INSERT INTO `Traffic` (`id`,`user`, `download`, `upload`, `total` ) VALUES (NULL,?,?,?,?)";
                     $stmt = $this->db->prepare($sql);
                     $stmt->execute(array($username, $lastdownload, $lastupload, $lasttotal));
-                    shell_exec("sudo rm -rf /var/www/html/cp/storage/log/out.json");
+                    //shell_exec("sudo rm -rf /var/www/html/cp/storage/log/out.json");
 
                 } else {
                     $sql = "UPDATE Traffic SET upload=?,download=?,total=? WHERE user=?";
                     $this->db->prepare($sql)->execute([$lastupload, $lastdownload, $lasttotal, $username]);
-                    shell_exec("sudo rm -rf /var/www/html/cp/storage/log/out.json");
+                    //shell_exec("sudo rm -rf /var/www/html/cp/storage/log/out.json");
                 }
             }
 
@@ -318,16 +317,10 @@ class Fixer_Model extends Model
                 }
                 shell_exec("sudo kill -9 " . $pid);
                 shell_exec("sudo killall -9 nethogs");
-                shell_exec("sudo rm -rf /var/www/html/cp/storage/log/out.json");
-                shell_exec("sudo nethogs -j -d 19 -v 3 > /var/www/html/cp/storage/log/out.json &");
+
             }
-        }
 
-
-        $dropbear = shell_exec("ps aux | grep -i dropbear | awk '{print $2}'");
-        $dropbear = preg_split("/\r\n|\n|\r/", $dropbear);
-        foreach ($dropbear as $pid) {
-            $out_drop = file_get_contents("/var/www/html/cp/storage/log/dropout.json");
+            $out_drop = file_get_contents("/var/www/html/cp/storage/log/out.json");
             $trafficlog_drop = preg_split("/\r\n|\n|\r/", $out_drop);
             $trafficlog_drop = array_filter($trafficlog_drop);
             $lastdata_drop = end($trafficlog_drop);
@@ -386,21 +379,18 @@ class Fixer_Model extends Model
                     $sql = "INSERT INTO `Traffic` (`id`,`user`, `download`, `upload`, `total` ) VALUES (NULL,?,?,?,?)";
                     $stmt = $this->db->prepare($sql);
                     $stmt->execute(array($username, $lastdownload, $lastupload, $lasttotal));
-                    shell_exec("sudo rm -rf /var/www/html/cp/storage/log/dropout.json");
+                    // shell_exec("sudo rm -rf /var/www/html/cp/storage/log/dropout.json");
 
                 }
                 else
                 {
                     $sql = "UPDATE Traffic SET upload=?,download=?,total=? WHERE user=?";
                     $this->db->prepare($sql)->execute([$lastupload,$lastdownload,$lasttotal, $username]);
-                    shell_exec("sudo rm -rf /var/www/html/cp/storage/log/dropout.json");
+                    //shell_exec("sudo rm -rf /var/www/html/cp/storage/log/dropout.json");
                 }
             }
-            $num_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | wc -l");
-            if ($num_drop > 0) {
-                shell_exec("bash Libs/sh/droptraffic.sh");
-            }
         }
-
+        shell_exec("sudo rm -rf /var/www/html/cp/storage/log/out.json");
+        shell_exec("sudo nethogs -j -d 10 -v 3 > /var/www/html/cp/storage/log/out.json");
     }
 }
