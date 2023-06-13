@@ -55,7 +55,7 @@ dmp=""
 dmssl=""
 fi
 echo -e "${YELLOW}************ Select XPanel Version ************"
-echo -e "${GREEN} 1)XPanel v3.2.1"
+echo -e "${GREEN}  1)XPanel v3.2.2"
 echo -e "  2)XPanel v3.1"
 echo -e "  3)XPanel v3.0"
 echo -e "  4)XPanel v2.9"
