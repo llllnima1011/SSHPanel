@@ -123,23 +123,12 @@ wait
 if command -v apt-get >/dev/null; then
 sudo NEETRESTART_MODE=a apt-get update --yes
 sudo apt-get -y install software-properties-common
-apt-get install -y dropbear && apt-get install -y stunnel4 && apt-get install -y cmake && apt-get install -y screenfetch && apt-get install -y openssl
+apt-get install -y stunnel4 && apt-get install -y cmake && apt-get install -y screenfetch && apt-get install -y openssl
 sudo add-apt-repository ppa:ondrej/php -y
 #sudo DEBIAN_FRONTEND=noninteractive apt-get install postfix -y
 apt-get install apache2 php7.4 zip unzip net-tools curl mariadb-server -y
 apt-get install php7.4-mysql php7.4-xml php7.4-curl -y
 
-#configuring dropbear
-mv /etc/default/dropbear /etc/default/dropbear.backup
-cat << EOF > /etc/default/dropbear
-NO_START=0
-DROPBEAR_PORT=$dropbear_port
-DROPBEAR_EXTRA_ARGS="-p 110"
-DROPBEAR_RSAKEY="/etc/dropbear/dropbear_rsa_host_key"
-DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
-DROPBEAR_ECDSAKEY="/etc/dropbear/dropbear_ecdsa_host_key"
-DROPBEAR_RECEIVE_WINDOW=65536
-EOF
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
     
@@ -151,9 +140,6 @@ EOF
 mkdir /etc/stunnel
 cat << EOF > /etc/stunnel/stunnel.conf
  cert = /etc/stunnel/stunnel.pem
- [dropbear]
- accept = $dropbear_tls_port
- connect = 0.0.0.0:$dropbear_port
  [openssh]
  accept = $sshtls_port
  connect = 0.0.0.0:$port
@@ -413,8 +399,6 @@ port=$(echo "$po" | sed "s/Port //g")
 
 systemctl restart httpd
 systemctl enable httpd
-systemctl enable dropbear
-systemctl restart dropbear
 systemctl enable stunnel4
 systemctl restart stunnel4
 chown apache:apache /var/www/html/cp/* &
@@ -490,10 +474,6 @@ chmod 777 /var/www/html/cp/Libs/sh/stunnel.sh
 wait
 chmod 777 /etc/stunnel/stunnel.conf
 wait
-chmod 777 /var/log/auth.log
-wait
-chmod 777 /var/www/html/cp/Libs/sh/droptraffic.sh 
-wait
 chmod 777 /var/www/html/cp/assets/js/config.js
 wait
 if [ "$xport" != "" ]; then
@@ -508,16 +488,12 @@ fi
 sudo wget -O $protcohttp://${defdomain}:$sshttp/reinstall
 wait
 curl $protcohttp://${defdomain}:$sshttp/reinstall
-systemctl enable dropbear &
-wait
-systemctl restart dropbear &
-wait
 systemctl enable stunnel4 &
 wait
 systemctl restart stunnel4 &
 wait
 clear
-chmod 777 /var/log/auth.log
+
 echo -e "${YELLOW}************ XPanel ************ \n"
 echo -e "XPanel Link : $protcohttp://${defdomain}:$sshttp/login \n"
 echo -e "Username : \e[31m${adminusername}\e[0m  \n"
@@ -526,5 +502,3 @@ echo -e "${YELLOW}-------- Connection Details ----------- \n"
 echo -e "IP : $ipv4 \n"
 echo -e "SSH port : \e[31m${port}\e[0m \n"
 echo -e "SSH + TLS port : ${sshtls_port} \n"
-echo -e "Dropbear port : ${dropbear_port} \n"
-echo -e "Dropbear + TLS port : ${dropbear_tls_port} \n"
