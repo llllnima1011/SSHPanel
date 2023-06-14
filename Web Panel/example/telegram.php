@@ -39,10 +39,10 @@ else
     if($check_user>0) {
 
         $user = $conn->query("select * from users,Traffic where users.username='$username' and Traffic.user='$username'")->fetch();
-        if (1024 < $user["total"]) {
-            $to = round($user["total"] / 1024, 2) . " گیگابایت";
+        if (1024 < $user["download"]) {
+            $to = round($user["download"] / 1024, 2) . " گیگابایت";
         } else {
-            $to = $user["total"] . " مگابایت";
+            $to = $user["download"] . " مگابایت";
         }
         $expdate=$user['finishdate'];
         $expdate=explode('-',$expdate);
