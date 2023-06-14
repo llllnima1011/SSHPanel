@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="Fix BUG Version 3.2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Fixer_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Fixer_Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Index/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/assets/js/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/example/telegram.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/example/telegram.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Header.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +68,7 @@
       <workItem from="2064859571877" duration="18883000" />
       <workItem from="1686390666138" duration="5579000" />
       <workItem from="1686400937947" duration="13755000" />
-      <workItem from="1686728134874" duration="3394000" />
+      <workItem from="1686728134874" duration="4193000" />
     </task>
     <task id="LOCAL-00001" summary="ADD web panel open source">
       <created>1684882940503</created>
@@ -384,7 +378,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686665551459</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Fix BUG Version 3.2">
+      <created>1686741323610</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1686741323610</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

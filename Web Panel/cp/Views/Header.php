@@ -87,7 +87,7 @@
 
             <ul class="pc-navbar">
                 <li class="pc-item pc-caption">
-                    <label>SSH Direct + TLS / Dropbear + TLS</label>
+                    <label>SSH Direct + TLS</label>
                     <i class="ti ti-dashboard"></i>
                 </li>
                 <li class="pc-item">
