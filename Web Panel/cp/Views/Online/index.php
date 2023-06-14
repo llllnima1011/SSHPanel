@@ -32,14 +32,9 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                shell_exec("chmod 777 /var/log/auth.log");
                                 $duplicate = [];
                                 $m = 1;
-                                $dropb = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"for 'ttes'\" | awk '{print $5}'");
-                                //print_r($dropb);
-                                $dropbear = shell_exec("ps aux | grep -i dropbear | awk '{print $2}'");
-                                $dropbear = preg_split("/\r\n|\n|\r/", $dropbear);
-                                $drop_dup=[];
+
                                 $list = shell_exec("sudo lsof -i :" . PORT . " -n | grep -v root | grep ESTABLISHED");
                                 $onlineuserlist = preg_split("/\r\n|\n|\r/", $list);
                                 foreach ($onlineuserlist as $user) {
@@ -98,51 +93,6 @@
 
                                     }
 
-                                }
-                                foreach ($dropbear as $pid) {
-
-                                    $num_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | wc -l");
-                                    $user_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $10}'");
-                                    $ip_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $12}'");
-                                    $user_drop=str_replace("'", "",$user_drop);
-                                    if ($num_drop > 0 ) {
-
-
-                                        $color = "#dc2626";
-                                        if(!array_search($user_drop, $drop_dup) !== false){
-                                            $color = "#269393";
-                                            array_push($drop_dup, $user_drop);
-                                        }
-                                        $onlinecount = count($drop_dup, COUNT_RECURSIVE);
-                                        if($onlinecount>1){
-                                            $color = "#dc2626";
-                                        }
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $user_drop; ?> <i
-                                                        style="color:<?php echo $color; ?>!important;"
-                                                        class="ti ti-live-photo"></i></td>
-                                            <td><?php echo $ip_drop; ?><br><small>Protocol:Dropbaer</small></td>
-                                            <td class="text-center">
-                                                <ul class="list-inline me-auto mb-0">
-                                                    <li class="list-inline-item align-bottom">
-                                                        <a href="online&kill-id=<?php echo $pid; ?>"
-                                                           class="btn btn-light-primary">
-                                                            Kill ID
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-inline-item align-bottom">
-                                                        <a href="online&kill-user=<?php echo $user_drop; ?>"
-                                                           class="btn btn-light-danger">
-                                                            Kill USER
-                                                        </a>
-                                                    </li>
-
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    }
                                 }
 
                                 ?>

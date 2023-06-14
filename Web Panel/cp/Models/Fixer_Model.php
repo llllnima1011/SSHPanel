@@ -31,7 +31,7 @@ class Fixer_Model extends Model
             $user = $stmt->fetchAll();
             foreach ($user as $usernamet)
             {
-                $total=$usernamet["total"];
+                $total=$usernamet["download"];
                 echo $total."-".$us['username']."<br>";
                 if ($us["traffic"] < $total && !empty($us["traffic"])) {
                     $sql = "UPDATE users SET enable=? WHERE username=?";
@@ -188,9 +188,9 @@ class Fixer_Model extends Model
                 $userdownload = $user["download"];
                 $userupload = $user["upload"];
                 $usertotal = $user["total"];
-                $rx = round($usr["RX"] / 1.70);
-                $tx = round($usr["TX"] / 1.70);
-                $tot = round($usr["Total"] / 1.70);
+                $rx = round($usr["RX"]);
+                $tx = round($usr["TX"]);
+                $tot = round($usr["Total"]);
                 $lastdownload = $userdownload + $rx;
                 $lastupload = $userupload + $tx;
                 $lasttotal = $usertotal + $tot;
@@ -268,38 +268,6 @@ class Fixer_Model extends Model
 
             }
 
-
-            $newarray=[];
-            foreach ($newarray as $username => $usr) {
-                $stmt = $this->db->prepare("SELECT * FROM Traffic WHERE user=:user");
-                $stmt->execute(['user' => $username]);
-                $user = $stmt->fetch();
-                $userdownload = $user["download"];
-                $userupload = $user["upload"];
-                $usertotal = $user["total"];
-                $rx=round($usr["RX"]/1.70);
-                $tx=round($usr["TX"]/1.70);
-                $tot=round($usr["Total"]/1.70);
-                $lastdownload = $userdownload + $rx;
-                $lastupload = $userupload + $tx;
-                $lasttotal = $usertotal + $tot;
-                $query = $this->db->prepare("select * from Traffic where user='".$username."'");
-                $query->execute();
-                $queryCount = $query->rowCount();
-                if ($queryCount < 1) {
-                    $sql = "INSERT INTO `Traffic` (`id`,`user`, `download`, `upload`, `total` ) VALUES (NULL,?,?,?,?)";
-                    $stmt = $this->db->prepare($sql);
-                    $stmt->execute(array($username, $lastdownload, $lastupload, $lasttotal));
-                    // shell_exec("sudo rm -rf /var/www/html/cp/storage/log/dropout.json");
-
-                }
-                else
-                {
-                    $sql = "UPDATE Traffic SET upload=?,download=?,total=? WHERE user=?";
-                    $this->db->prepare($sql)->execute([$lastupload,$lastdownload,$lasttotal, $username]);
-                    //shell_exec("sudo rm -rf /var/www/html/cp/storage/log/dropout.json");
-                }
-            }
         }
         shell_exec("sudo rm -rf /var/www/html/cp/storage/log/out.json");
         shell_exec("sudo nethogs -j -d 10 -v 3 > /var/www/html/cp/storage/log/out.json");

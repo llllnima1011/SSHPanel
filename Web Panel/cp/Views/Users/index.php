@@ -68,10 +68,16 @@
                                         $traffic = unlimited_tb_lang;
                                     }
 
-                                    if (1024 < $datum["total"]) {
-                                        $to = round($datum["total"] / 1024, 2) .' '.gib_lang;
+                                    if (1024 < $datum["download"]) {
+                                        $dl = round($datum["download"] / 1024, 2) .' GB';
                                     } else {
-                                        $to = $datum["total"] .' '.mib_lang;
+                                        $dl = $datum["download"] .' MB';
+                                    }
+
+                                    if (1024 < $datum["upload"]) {
+                                        $up = round($datum["upload"] / 1024, 2) .' GB';
+                                    } else {
+                                        $up = $datum["upload"] .' MB';
                                     }
 
                                     if ($datum["enable"] == "true") {
@@ -200,7 +206,7 @@
                                         <td><?php echo $traffic; ?>
                                             <br>
                                             <small>
-                                                <?php echo traffic_usage_lang.": ". $to;?>
+                                                <span style="background: #fe9e4a; padding: 2px; color: #fff; border-radius: 5px;"><i class="ti ti-cloud-upload"></i> <?php echo $up;?></span>  &nbsp;<span style="background: #4a9afe; padding: 2px; color: #fff; border-radius: 5px;"><i class="ti ti-cloud-download"></i> <?php echo $dl;?></span>
                                             </small></td>
                                         <td><?php echo $datum['multiuser']; ?><br>
                                             <small><?php if($ststus_multiuser=='on'){ echo Connection_tab_lang." ". $u ." ".userto_tb_lang." " .$datum['multiuser']." ".user_tb_lang; } ?></small></td>
@@ -245,7 +251,7 @@ ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php ec
 ">Link SSH</button>
                                                         <button class="dropdown-item" style="border:none" data-clipboard="true" data-clipboard-text="SSH TLS&nbsp;
 ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php echo $_SERVER["SERVER_NAME"];?>:<?php echo $ssh_tls_port ;?>/#<?php echo $datum['username'];?>&nbsp;
-">Link SSH</button>
+">Link SSH TLS</button>
                                                     </div>
                                                 </li>
 
