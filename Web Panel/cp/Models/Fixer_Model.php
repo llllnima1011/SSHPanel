@@ -19,20 +19,6 @@ class Fixer_Model extends Model
                 if ($expiredate < strtotime(date("Y-m-d")) || $expiredate == strtotime(date("Y-m-d"))) {
                     $sql = "UPDATE users SET enable=? WHERE username=?";
                     $this->db->prepare($sql)->execute(['expired', $us["username"]]);
-                    $dropbear = shell_exec("ps aux | grep -i dropbear | awk '{print $2}'");
-                    $dropbear = preg_split("/\r\n|\n|\r/", $dropbear);
-                    foreach ($dropbear as $pid) {
-
-                        $user_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $10}'");
-                        $user_drop=str_replace("'", "",$user_drop);
-                        $user_drop=str_replace("\n", "",$user_drop);
-                        $user_drop = htmlentities($user_drop);
-
-                        if ($user_drop==$us["username"]) {
-
-                            shell_exec("sudo kill -9 " . $pid);
-                        }
-                    }
                     shell_exec("sudo killall -u " . $us["username"]);
                     shell_exec("bash Libs/sh/deleteuser " . $us["username"]);
                 }
@@ -50,20 +36,6 @@ class Fixer_Model extends Model
                 if ($us["traffic"] < $total && !empty($us["traffic"])) {
                     $sql = "UPDATE users SET enable=? WHERE username=?";
                     $this->db->prepare($sql)->execute(['traffic', $us["username"]]);
-                    $dropbear = shell_exec("ps aux | grep -i dropbear | awk '{print $2}'");
-                    $dropbear = preg_split("/\r\n|\n|\r/", $dropbear);
-                    foreach ($dropbear as $pid) {
-
-                        $user_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $10}'");
-                        $user_drop=str_replace("'", "",$user_drop);
-                        $user_drop=str_replace("\n", "",$user_drop);
-                        $user_drop = htmlentities($user_drop);
-
-                        if ($user_drop==$us["username"]) {
-
-                            shell_exec("sudo kill -9 " . $pid);
-                        }
-                    }
                     shell_exec("sudo killall -u " . $us["username"]);
                     shell_exec("bash Libs/sh/deleteuser " . $us["username"]);
                 }
@@ -81,17 +53,7 @@ class Fixer_Model extends Model
         foreach ($queryCount_setting as $val) {
             $multiuser = $val['multiuser'];
         }
-        $dropbear = shell_exec("ps aux | grep -i dropbear | awk '{print $2}'");
-        $dropbear = preg_split("/\r\n|\n|\r/", $dropbear);
-        foreach ($dropbear as $pid) {
 
-            $user_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $10}'");
-            $user_drop = str_replace("'", "", $user_drop);
-            $user_drop = str_replace("\n", "", $user_drop);
-
-            $onlinelist[] = $user_drop;
-
-        }
         $list = shell_exec("sudo lsof -i :" . PORT . " -n | grep -v root | grep ESTABLISHED");
         $onlineuserlist = preg_split("/\r\n|\n|\r/", $list);
         foreach ($onlineuserlist as $user) {
@@ -130,20 +92,6 @@ class Fixer_Model extends Model
                         $this->db->prepare($sql)->execute([$start_inp, $end_inp, $act_explode[0]]);
                     }
 
-                }
-                foreach ($dropbear as $pid) {
-
-                    $num_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | wc -l");
-                    $user_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$pid\]\" | awk '{print $10}'");
-                    $user_drop = str_replace("'", "", $user_drop);
-                    $user_drop = str_replace("\n", "", $user_drop);
-                    $user_drop = htmlentities($user_drop);
-
-                    if ($num_drop > 0 && $user_drop == $username && $limitation !== "0" && $onlinecount[$username] > $limitation) {
-                        if ($multiuser == 'on') {
-                            shell_exec("sudo kill -9 " . $pid);
-                        }
-                    }
                 }
                 if ($limitation !== "0" && $onlinecount[$username] > $limitation){
 
@@ -320,45 +268,8 @@ class Fixer_Model extends Model
 
             }
 
-            $out_drop = file_get_contents("/var/www/html/cp/storage/log/out.json");
-            $trafficlog_drop = preg_split("/\r\n|\n|\r/", $out_drop);
-            $trafficlog_drop = array_filter($trafficlog_drop);
-            $lastdata_drop = end($trafficlog_drop);
-            $json_drop = json_decode($lastdata_drop, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-            $newarray_drop=[];
+
             $newarray=[];
-            foreach ($json_drop as $value) {
-                $TX = round($value["TX"], 0);
-                $RX = round($value["RX"], 0);
-                $name = preg_replace("/\\s+/", "", $value["name"]);
-                if ($name == "/usr/sbin/dropbear") {
-                    $PID_USER=$value["PID"];
-                    $user_drop = shell_exec("cat /var/log/auth.log | grep -i dropbear | grep -i \"Password auth succeeded\" | grep \"dropbear\[$PID_USER\]\" | awk '{print $10}'");
-                    $user_drop=str_replace("'", "",$user_drop);
-                    $user_drop=str_replace("\n", "",$user_drop);
-                    $user_drop = htmlentities($user_drop);
-                    $name=$user_drop;
-                    echo $name;
-                    if ($value["RX"] < 1 && $value["TX"] < 1) {
-                        $name = "";
-                    }
-
-                    if (!empty($name)) {
-                        if (isset($newarray[$name])) {
-                            $newarray[$name]["TX"] + $TX;
-                            $newarray[$name]["RX"] + $RX;
-
-                        } else {
-                            $newarray[$name] = ["RX" => $RX, "TX" => $TX, "Total" => $RX + $TX];
-                        }
-                    }
-                }
-                else
-                {
-                    $name="";
-                }
-
-            }
             foreach ($newarray as $username => $usr) {
                 $stmt = $this->db->prepare("SELECT * FROM Traffic WHERE user=:user");
                 $stmt->execute(['user' => $username]);

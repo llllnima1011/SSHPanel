@@ -163,7 +163,7 @@
                                     }
                                     else
                                     {
-                                        $customer_user='Admin';
+                                        $customer_user=DB_USER;
                                     }
                                     $dropb_port=""; $dropb_tls_port=""; $ssh_tls_port="";
 
@@ -233,25 +233,19 @@
                                                     <button class="avtar avtar-xs btn-link-success btn-pc-default" style="border:none" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-share f-18"></i></button>
                                                     <div class="dropdown-menu">
                                                         <button class="dropdown-item" style="border:none" data-clipboard="true" data-clipboard-text="Host:<?php echo $_SERVER["SERVER_NAME"];?>&nbsp;
-SSH Port:<?php echo PORT ;?>&nbsp;
-SSH TLS Port:<?php echo $ssh_tls_port ;?>&nbsp;
-Dropbear Port:<?php echo $dropb_port ;?>&nbsp;
-Dropbear TLS Port:<?php echo $dropb_tls_port ;?>&nbsp;
+Port:<?php echo PORT ;?>&nbsp;
+TLS Port:<?php echo $ssh_tls_port ;?>&nbsp;
 Username:<?php echo $datum['username'];?>&nbsp;
 Password:<?php echo $datum['password'];?>&nbsp;
 <?php if(!empty($startdate)){ echo "StartTime:".$startdate."&nbsp;";}?>
 <?php if(!empty($finishdate)){ echo "EndTime:".$finishdate;}?>"> <?php echo share_copyconfig_tb_lang;?></button>
 
                                                         <button class="dropdown-item" style="border:none" data-clipboard="true" data-clipboard-text="SSH Direct&nbsp;
-ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php echo $_SERVER["SERVER_NAME"];?>:<?php echo PORT ;?>/#<?php echo $datum['username'];?>&nbsp;
-SSH TLS&nbsp;
 ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php echo $_SERVER["SERVER_NAME"];?>:<?php echo $ssh_tls_port ;?>/#<?php echo $datum['username'];?>&nbsp;
-Dropbear&nbsp;
-ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php echo $_SERVER["SERVER_NAME"];?>:<?php echo $dropb_port ;?>/#<?php echo $datum['username'];?>&nbsp;
-Dropbear TLS&nbsp;
-ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php echo $_SERVER["SERVER_NAME"];?>:<?php echo $dropb_tls_port ;?>/#<?php echo $datum['username'];?>&nbsp;
-
-"><?php echo share_copynetmod_tb_lang;?></button>
+">Link SSH</button>
+                                                        <button class="dropdown-item" style="border:none" data-clipboard="true" data-clipboard-text="SSH TLS&nbsp;
+ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php echo $_SERVER["SERVER_NAME"];?>:<?php echo $ssh_tls_port ;?>/#<?php echo $datum['username'];?>&nbsp;
+">Link SSH</button>
                                                     </div>
                                                 </li>
 

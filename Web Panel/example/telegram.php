@@ -1,5 +1,7 @@
 <?php
 include_once("../cp/Config/database.php");
+include_once("../cp/Libs/jdf.php");
+
 header("Content-Type: text/html; charset=utf-8");
 try {
     $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASS);
@@ -54,7 +56,29 @@ else
         }else{
             $d=$expdate[2];
         }
-        $expdate=$expdate[0].'/'.$m.'/'.$d;
+        if(LANG=='fa-ir') {
+            if (!empty($user['finishdate'])) {
+                $finishdate = explode('-', $user['finishdate']);
+                $finishdate = gregorian_to_jalali($finishdate[0], $finishdate[1], $finishdate[2]);
+                if ($finishdate[2] >= 10) {
+                    $finishday = $finishdate[2];
+                } else {
+                    $finishday = '0' . $finishdate[2];
+                }
+                if ($finishdate[1] >= 10) {
+                    $finishmon = $finishdate[1];
+                } else {
+                    $finishmon = '0' . $finishdate[1];
+                }
+                $expdate = $finishday . '-' . $finishmon . '-' . $finishdate[0];
+            } else {
+                $expdate = '';
+            }
+        }
+        else
+        {
+            $expdate=$expdate[0].'/'.$m.'/'.$d;
+        }
         $message="نام کاربری: $username $newline کلمه عبور:$password $newline ترافیک مصرف شده: $to $newline انقضا: $expdate";
         file_get_contents($API . "sendMessage?chat_id=" . $chatID . "&text=".$message);
     }
