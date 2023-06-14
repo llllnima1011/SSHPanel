@@ -14,18 +14,7 @@
                 <small class="form-text text-muted"><?php echo setting_sshtlsport_lable_lang;?></small>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-lg-6">
-                <input class="form-control" type="text" name="dropbearport" id="text_min_max" value="<?php echo $dropb_port;?>" required="">
-                <input class="form-control" type="hidden" name="dropbearport_old" id="text_min_max" value="<?php echo $dropb_port;?>" required="">
-                <small class="form-text text-muted"><?php echo setting_dropbearport_lable_lang;?></small>
-            </div>
 
-            <div class="col-lg-6">
-                <input class="form-control" type="text" name="dropbeartlsport" id="text_min_max" value="<?php echo $dropb_tls_port;?>" required="">
-                <small class="form-text text-muted"><?php echo setting_dropbeartlsport_lable_lang;?></small>
-            </div>
-        </div>
         <div class="form-group row">
             <div class="col-lg-4 col-form-label"></div>
             <div class="col-lg-6">

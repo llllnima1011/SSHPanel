@@ -63,16 +63,10 @@ class Settings extends Controller
             $ssh_port = htmlentities($_POST['ssh_port']);
             $ssh_port_old = htmlentities($_POST['ssh_port_old']);
             $sshtlsport = htmlentities($_POST['sshtlsport']);
-            $dropbearport = htmlentities($_POST['dropbearport']);
-            $dropbeartlsport = htmlentities($_POST['dropbeartlsport']);
-            $dropbearport_old = htmlentities($_POST['dropbearport_old']);
             $data_sybmit = array(
                 'sshport' => $ssh_port,
                 'sshport_old' => $ssh_port_old,
-                'sshtlsport' => $sshtlsport,
-                'dropbearport' => $dropbearport,
-                'dropbeartlsport' => $dropbeartlsport,
-                'dropbearport_old' => $dropbearport_old
+                'sshtlsport' => $sshtlsport
             );
             $this->model->submit_port($data_sybmit);
         }

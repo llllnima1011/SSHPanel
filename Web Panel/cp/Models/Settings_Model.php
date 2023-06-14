@@ -53,13 +53,9 @@ class Settings_Model extends Model
         //shell_exec("sudo sed -i \"s/".$data_sybmit['sshport_old']."/".$data_sybmit['sshport']."/g\" /var/www/html/cp/Config/database.php &");
         shell_exec("sudo sed -i 's/port = \"" . $data_sybmit['sshport_old'] . "\"/port = \"" . $data_sybmit['sshport'] . "\"/' /var/www/html/cp/Config/database.php");
         shell_exec("sudo sed -i 's/Port " . $data_sybmit['sshport_old'] . "/Port " . $data_sybmit['sshport'] . "/' /etc/ssh/sshd_config");
-        shell_exec("sudo sed -i 's/DROPBEAR_PORT=" . $data_sybmit['dropbearport_old'] . "/DROPBEAR_PORT=" . $data_sybmit['dropbearport'] . "/' /etc/default/dropbear");
-        $com = $data_sybmit['dropbeartlsport'] . ' ' . $data_sybmit['dropbearport'] . ' ' . $data_sybmit['sshtlsport'] . ' ' . $data_sybmit['sshport'];
+       $com = $data_sybmit['sshtlsport'] . ' ' . $data_sybmit['sshport'];
         shell_exec("bash Libs/sh/stunnel.sh $com");
-        $sql = "UPDATE setting SET dropb_port=?,dropb_tls_port=?,ssh_tls_port=? WHERE id=?";
-        $this->db->prepare($sql)->execute([$data_sybmit['dropbearport'], $data_sybmit['dropbeartlsport'],$data_sybmit['sshtlsport'], '1']);
-        shell_exec("sudo systemctl enable dropbear");
-        shell_exec("sudo systemctl restart dropbear");
+        $sql = "UPDATE setting SET ssh_tls_port=? WHERE id=?";
         shell_exec("sudo systemctl enable stunnel4");
         shell_exec("sudo systemctl restart stunnel4");
         shell_exec("sudo reboot");
