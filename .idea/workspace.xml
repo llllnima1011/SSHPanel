@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="Fix Version 3.4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Controllers/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/en-us.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/en-us.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/fa-ir.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/fa-ir.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/stunnel.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/stunnel.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Settings_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Settings_Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Users_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Users_Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/adduser" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/adduser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,14 +72,7 @@
       <workItem from="1686400937947" duration="13755000" />
       <workItem from="1686728134874" duration="7530000" />
       <workItem from="1686827378337" duration="591000" />
-      <workItem from="1686908341776" duration="31493000" />
-    </task>
-    <task id="LOCAL-00008" summary="fix bug">
-      <created>1684956291553</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1684956291553</updated>
+      <workItem from="1686908341776" duration="32838000" />
     </task>
     <task id="LOCAL-00009" summary="fix bug">
       <created>1684956625819</created>
@@ -422,7 +410,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686945829515</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Fix Version 3.4">
+      <created>1686953410441</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1686953410441</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
