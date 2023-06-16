@@ -17,7 +17,7 @@ class Users extends Controller
         //  echo "<pre>";
         // print_r($users);
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-$password = substr( str_shuffle( $chars ), 0, 8 );
+        $password = substr( str_shuffle( $chars ), 0, 8 );
         $data = array(
             "for" => $users,
             "setting" => $setting,
@@ -64,6 +64,7 @@ $password = substr( str_shuffle( $chars ), 0, 8 );
         $this->submit_index();
         $this->submit_index_bulk();
         $this->bulk_delete();
+        $this->renewal_date();
         $this->view->Render("Users/index",$data);
     }
     function bulk_delete(){
@@ -78,6 +79,24 @@ $password = substr( str_shuffle( $chars ), 0, 8 );
                 $this->model->delete_user($data_sybmit);
             }
         }
+    }
+    function renewal_date(){
+
+        if (isset($_POST['renewal_date'])) {
+            $username_re = htmlentities($_POST['username_re']);
+            $day_date = htmlentities($_POST['day_date']);
+            $renewal_date = htmlentities($_POST['re_date']);
+
+            $data_sybmit = array(
+                'username' => $username_re,
+                'day_date' => $day_date,
+                'renewal_date' => $renewal_date
+            );
+
+            //shell_exec("bash adduser " . $username . " " . $password);
+            $this->model->renewal_update($data_sybmit);
+        }
+
     }
     function submit_index(){
 

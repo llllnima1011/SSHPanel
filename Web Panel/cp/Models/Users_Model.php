@@ -175,4 +175,38 @@ class Users_Model extends Model
         header("Location: users");
 
     }
+
+    public function renewal_update($data_sybmit)
+    {
+        $day_date=$data_sybmit['day_date'];
+        $username=$data_sybmit['username'];
+        $renewal_date=$data_sybmit['renewal_date'];
+        $start_inp = date("Y-m-d");
+        $end_inp = date('Y-m-d', strtotime($start_inp . " + $day_date days"));
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE username=:username");
+        $stmt->execute(['username' => $username]);
+        $user = $stmt->fetchAll();
+        echo $renewal_date;
+        foreach ($user as $val) {
+            echo $renewal_date;
+            if ($renewal_date == 'yes') {
+                $sql = "UPDATE users SET enable=?,startdate=?,finishdate=? WHERE username=?";
+                $this->db->prepare($sql)->execute(['true',$start_inp, $end_inp, $username]);
+                echo "kk";
+            } else {
+                $sql = "UPDATE users SET enable=?,finishdate=? WHERE username=?";
+                $this->db->prepare($sql)->execute(['true',$end_inp, $username]);
+            }
+
+
+            if ($val->enable != 'true') {
+                shell_exec("sudo killall -u " . $username);
+                shell_exec("bash Libs/sh/adduser " . $username . " " . $val->password);
+            }
+        }
+        header("Location: users");
+
+    }
+
+
 }

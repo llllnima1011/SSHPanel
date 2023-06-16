@@ -262,6 +262,14 @@
                                                             <i class="ti ti-edit-circle f-18"></i>
                                                         </a>
                                                     </li>
+                                                    <li class="list-inline-item align-bottom" data-bs-toggle="tooltip"
+                                                        title="<?php echo multi_user_renewal_lang; ?>">
+                                                        <a href="#" data-user="<?php echo $datum['username']; ?>" data-bs-toggle="modal"
+                                                           data-bs-target="#renewal-modal"
+                                                           class="re_user avtar avtar-xs btn-link-success btn-pc-default">
+                                                            <i class="ti ti-calendar-plus f-18"></i>
+                                                        </a>
+                                                    </li>
                                                     <li class="list-inline-item align-bottom">
                                                         <button class="avtar avtar-xs btn-link-success btn-pc-default"
                                                                 style="border:none" type="button"
@@ -269,7 +277,7 @@
                                                                 aria-expanded="false"><i class="ti ti-share f-18"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item" style="border:none"
+                                                            <button class="dropdown-item" style="border:none"
                                                                     data-clipboard="true"
                                                                     data-clipboard-text="Host:<?php echo $_SERVER["SERVER_NAME"]; ?>&nbsp;
 Port:<?php echo PORT; ?>&nbsp;
@@ -281,20 +289,20 @@ Password:<?php echo $datum['password']; ?>&nbsp;
                                                                     } ?>
 <?php if (!empty($finishdate)) {
                                                                         echo "EndTime:" . $finishdate;
-                                                                    } ?>"> <?php echo share_copyconfig_tb_lang; ?></a>
+                                                                    } ?>"> <?php echo share_copyconfig_tb_lang; ?></button>
 
-                                                            <a class="dropdown-item" style="border:none"
+                                                            <button class="dropdown-item" style="border:none"
                                                                     data-clipboard="true"
                                                                     data-clipboard-text="SSH Direct&nbsp;
 ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo PORT; ?>/#<?php echo $datum['username']; ?>&nbsp;
 ">Link SSH
-                                                            </a>
-                                                            <a class="dropdown-item" style="border:none"
+                                                            </button>
+                                                            <button class="dropdown-item" style="border:none"
                                                                     data-clipboard="true"
                                                                     data-clipboard-text="SSH TLS&nbsp;
 ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo $ssh_tls_port; ?>/#<?php echo $datum['username']; ?>&nbsp;
 ">Link SSH TLS
-                                                            </a>
+                                                            </button>
                                                             <a href="#" class="qrs dropdown-item"
                                                                data-tls="ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo $ssh_tls_port; ?>/#<?php echo $datum['username']; ?>"
                                                                data-id="ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo PORT; ?>/#<?php echo $datum['username']; ?>"
@@ -334,6 +342,61 @@ ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php 
                 SSH TLS<br><span id="idHolderTLS"></span>
             </div>
         </div>
+    </div>
+</div>
+<!-- renewal -->
+<div class="modal fade" id="renewal-modal" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <form class="modal-content" action="" method="post" enctype="multipart/form-data">
+            <div class="modal-header">
+                <h5 class="mb-0"><?php echo multi_user_renewal_lang; ?></h5>
+                <a href="#" class="avtar avtar-s btn-link-danger btn-pc-default" data-bs-dismiss="modal">
+                    <i class="ti ti-x f-20"></i>
+                </a>
+            </div>
+            <div class="modal-body" >
+                <div class="form-group row">
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="input-group">
+                                    <input type="text" name="day_date" class="form-control" placeholder="30">
+                                    <input type="hidden" name="username_re" id="input_user" value="" class="input_user form-control" placeholder="30">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p><?php echo multi_user_renewal_desc_lang;?></p>
+                                <div class="input-group">
+
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="re_date" value="yes" class="form-check-input input-primary" checked>
+                                        <label class="form-check-label" for="customCheckinl311"><?php echo multi_user_renewal_yes_lang; ?></label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="re_date" value="no" class="form-check-input input-primary" >
+                                        <label class="form-check-label" for="customCheckinl311"><?php echo multi_user_renewal_no_lang; ?></label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div class="flex-grow-1 text-end">
+                    <button type="button" class="btn btn-link-danger btn-pc-default"
+                            data-bs-dismiss="modal"><?php echo modal_cancell_lang; ?>
+                    </button>
+                    <button type="submit" class="btn btn-primary" value="submit"
+                            name="renewal_date"><?php echo register_date_tb_lang; ?></button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -653,6 +716,13 @@ ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php 
         var qrtls = "<img src=\"https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=" + eventIdtls + "&choe=UTF-8\" title=" + eventIdtls + " />";
         $('#idHolderSSH').html(qr);
         $('#idHolderTLS').html(qrtls);
+    });
+</script>
+<script type="text/javascript">
+    $(document).on("click", ".re_user", function () {
+        var username = $(this).data('user');
+        $('input[name=username_re]').val(username);
+
     });
 </script>
 <script>
