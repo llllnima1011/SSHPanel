@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="Fix Version 3.4">
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/adduser" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/adduser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,21 +70,7 @@
       <workItem from="1686400937947" duration="13755000" />
       <workItem from="1686728134874" duration="7530000" />
       <workItem from="1686827378337" duration="591000" />
-      <workItem from="1686908341776" duration="32861000" />
-    </task>
-    <task id="LOCAL-00010" summary="fix bug">
-      <created>1684959650757</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1684959650757</updated>
-    </task>
-    <task id="LOCAL-00011" summary="fix bug">
-      <created>1685087721643</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1685087721643</updated>
+      <workItem from="1686908341776" duration="33160000" />
     </task>
     <task id="LOCAL-00012" summary="Fix Alert New Version">
       <created>1685090825753</created>
@@ -415,7 +401,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686957209981</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Fix Version 3.4">
+      <created>1686957229156</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1686957229156</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Fix Version 3.4">
+      <created>1686957247421</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1686957247421</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

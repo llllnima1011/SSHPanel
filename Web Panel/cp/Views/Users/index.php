@@ -293,15 +293,11 @@ Password:<?php echo $datum['password']; ?>&nbsp;
 
                                                             <a href="#" class="dropdown-item" style="border:none"
                                                                     data-clipboard="true"
-                                                                    data-clipboard-text="SSH Direct&nbsp;
-ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo PORT; ?>/#<?php echo $datum['username']; ?>&nbsp;
-">Link SSH
+                                                                    data-clipboard-text="ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo PORT; ?>/#<?php echo $datum['username']; ?>">Link SSH
                                                             </a>
                                                             <a href="#" class="dropdown-item" style="border:none"
                                                                     data-clipboard="true"
-                                                                    data-clipboard-text="SSH TLS&nbsp;
-ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo $ssh_tls_port; ?>/#<?php echo $datum['username']; ?>&nbsp;
-">Link SSH TLS
+                                                                    data-clipboard-text="ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo $ssh_tls_port; ?>/#<?php echo $datum['username']; ?>">Link SSH TLS
                                                             </a>
                                                             <a href="#" class="qrs dropdown-item"
                                                                data-tls="ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo $ssh_tls_port; ?>/#<?php echo $datum['username']; ?>"
