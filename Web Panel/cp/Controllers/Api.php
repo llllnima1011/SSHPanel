@@ -103,7 +103,7 @@ class Api extends Controller
             } else {
                 $traffic = $traffic;
             }
-            if(!empty($usernme) && !empty($password)) {
+            if(!empty($username) && !empty($password)) {
                 $data_sybmit = array(
                     'username' => $username,
                     'password' => $password,
