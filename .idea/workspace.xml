@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="Fix Version 3.3">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Controllers/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Controllers/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/en-us.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/en-us.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/fa-ir.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/fa-ir.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Index/index.php" afterDir="false" />
+    <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="Fix Version 3.4">
       <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/assets/js/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/assets/js/config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,21 +70,7 @@
       <workItem from="1686400937947" duration="13755000" />
       <workItem from="1686728134874" duration="7530000" />
       <workItem from="1686827378337" duration="591000" />
-      <workItem from="1686908341776" duration="20645000" />
-    </task>
-    <task id="LOCAL-00002" summary="ADD web panel open source">
-      <created>1684883375953</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1684883375953</updated>
-    </task>
-    <task id="LOCAL-00003" summary="ADD web panel open source">
-      <created>1684884675989</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1684884675989</updated>
+      <workItem from="1686908341776" duration="20834000" />
     </task>
     <task id="LOCAL-00004" summary="ADD web panel open source">
       <created>1684885159013</created>
@@ -423,7 +401,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686922288666</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Fix Version 3.4">
+      <created>1686932719934</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1686932719934</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Fix Version 3.4">
+      <created>1686932835152</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1686932835152</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,6 +451,7 @@
     <MESSAGE value="Fix New Version 3.2" />
     <MESSAGE value="Fix BUG Version 3.2" />
     <MESSAGE value="Fix Version 3.3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix Version 3.3" />
+    <MESSAGE value="Fix Version 3.4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Version 3.4" />
   </component>
 </project>

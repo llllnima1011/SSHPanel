@@ -38,7 +38,7 @@
                                     <i class="ti ti-plus f-18"></i> <?php echo multi_user_new_lang; ?>
                                 </a>
                                 <button type="submit" id="btndl" class="btn btn-danger d-inline-flex align-items-center"
-                                        value="delete" name="delete">Delete
+                                        value="delete" name="delete"><?php echo multi_user_bulk_delete_lang;?>
                                 </button>
                             </div>
                             <div class="table-responsive">
