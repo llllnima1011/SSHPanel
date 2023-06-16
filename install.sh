@@ -11,6 +11,7 @@ if [ "$EUID" -ne 0 ]
 then echo "Please run as root"
 exit
 fi
+rm -rf /error.log
 sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
 sed -i 's/#Banner none/Banner \/root\/banner.txt/g' /etc/ssh/sshd_config
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
