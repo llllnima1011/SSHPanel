@@ -15,7 +15,7 @@ class Permission_Model extends Model
             $query->execute();
             $queryCount = $query->rowCount();
             if ($queryCount > 0) {
-                if (ucfirst($url[0]) == 'Managers' || ucfirst($url[0]) == 'Settings') {
+                if (ucfirst($url[0]) == 'Managers' || ucfirst($url[0]) == 'Settings' || ucfirst($url[0]) == 'online') {
                     die('<h4 style="color: red">INACCESSIBILITY</h4>');
                 }
             }
