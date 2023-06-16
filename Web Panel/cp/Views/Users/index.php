@@ -269,7 +269,7 @@
                                                                 aria-expanded="false"><i class="ti ti-share f-18"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <button class="dropdown-item" style="border:none"
+                                                            <a class="dropdown-item" style="border:none"
                                                                     data-clipboard="true"
                                                                     data-clipboard-text="Host:<?php echo $_SERVER["SERVER_NAME"]; ?>&nbsp;
 Port:<?php echo PORT; ?>&nbsp;
@@ -281,20 +281,20 @@ Password:<?php echo $datum['password']; ?>&nbsp;
                                                                     } ?>
 <?php if (!empty($finishdate)) {
                                                                         echo "EndTime:" . $finishdate;
-                                                                    } ?>"> <?php echo share_copyconfig_tb_lang; ?></button>
+                                                                    } ?>"> <?php echo share_copyconfig_tb_lang; ?></a>
 
-                                                            <button class="dropdown-item" style="border:none"
+                                                            <a class="dropdown-item" style="border:none"
                                                                     data-clipboard="true"
                                                                     data-clipboard-text="SSH Direct&nbsp;
 ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo PORT; ?>/#<?php echo $datum['username']; ?>&nbsp;
 ">Link SSH
-                                                            </button>
-                                                            <button class="dropdown-item" style="border:none"
+                                                            </a>
+                                                            <a class="dropdown-item" style="border:none"
                                                                     data-clipboard="true"
                                                                     data-clipboard-text="SSH TLS&nbsp;
 ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo $ssh_tls_port; ?>/#<?php echo $datum['username']; ?>&nbsp;
 ">Link SSH TLS
-                                                            </button>
+                                                            </a>
                                                             <a href="#" class="qrs dropdown-item"
                                                                data-tls="ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo $ssh_tls_port; ?>/#<?php echo $datum['username']; ?>"
                                                                data-id="ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo PORT; ?>/#<?php echo $datum['username']; ?>"
