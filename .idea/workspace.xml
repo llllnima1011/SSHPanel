@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="Fix Version 3.3">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07-Jun-23_19_05__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Controllers/Settings.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Settings.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/stunnel.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/sh/stunnel.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Settings_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Settings_Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Settings/sshport.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Settings/sshport.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Api_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Api_Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +71,9 @@
       <workItem from="2064859571877" duration="18883000" />
       <workItem from="1686390666138" duration="5579000" />
       <workItem from="1686400937947" duration="13755000" />
-      <workItem from="1686728134874" duration="6849000" />
+      <workItem from="1686728134874" duration="7530000" />
+      <workItem from="1686827378337" duration="591000" />
+      <workItem from="1686908341776" duration="10805000" />
     </task>
     <task id="LOCAL-00001" summary="ADD web panel open source">
       <created>1684882940503</created>
@@ -410,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686746276985</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Fix Version 3.3">
+      <created>1686746732230</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1686746732230</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

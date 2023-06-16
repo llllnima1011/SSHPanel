@@ -247,7 +247,7 @@ Password:<?php echo $datum['password'];?>&nbsp;
 <?php if(!empty($finishdate)){ echo "EndTime:".$finishdate;}?>"> <?php echo share_copyconfig_tb_lang;?></button>
 
                                                         <button class="dropdown-item" style="border:none" data-clipboard="true" data-clipboard-text="SSH Direct&nbsp;
-ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php echo $_SERVER["SERVER_NAME"];?>:<?php echo $ssh_tls_port ;?>/#<?php echo $datum['username'];?>&nbsp;
+ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php echo $_SERVER["SERVER_NAME"];?>:<?php echo PORT ;?>/#<?php echo $datum['username'];?>&nbsp;
 ">Link SSH</button>
                                                         <button class="dropdown-item" style="border:none" data-clipboard="true" data-clipboard-text="SSH TLS&nbsp;
 ssh://<?php echo $datum['username'];?>:<?php echo $datum['password'];?>@<?php echo $_SERVER["SERVER_NAME"];?>:<?php echo $ssh_tls_port ;?>/#<?php echo $datum['username'];?>&nbsp;
