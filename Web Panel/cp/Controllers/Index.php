@@ -111,7 +111,7 @@ class Index extends Controller
             }
         }
 
-        $total = $download + $upload;
+        $total = $download;
         $total = formatBytes($total);
         $cpu_free = round($cpu);
         $ram_free = round($usedperc);

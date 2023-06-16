@@ -38,6 +38,7 @@ define('mib_lang','مگابایت');
 //users
 define('new_user_lang','کاربر جدید');
 define('multi_user_new_lang','کاربر عمده');
+define('multi_user_bulk_delete_lang','حذف');
 define('customer_tb_lang','نماینده');
 define('username_tb_lang','نام کاربری');
 define('password_tb_lang','کلمه عبور');

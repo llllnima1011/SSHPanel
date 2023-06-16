@@ -2,23 +2,26 @@
 include_once("Models/Users_Model.php");
 class Users extends Controller
 {
-	public function __construct()
-	{
-		parent::__construct();
-        
-		$this->model = new Users_Model();
-		$this->index();
-	}
-	public function index()
-	{
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->model = new Users_Model();
+        $this->index();
+    }
+    public function index()
+    {
         $users=$this->model->users();
         $setting=$this->model->Get_settings();
 
         //  echo "<pre>";
-       // print_r($users);
+        // print_r($users);
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+$password = substr( str_shuffle( $chars ), 0, 8 );
         $data = array(
             "for" => $users,
-            "setting" => $setting
+            "setting" => $setting,
+            "password" => $password
         );
         if(isset($_GET['active'])) {
             if (!empty($_GET["active"])) {
@@ -60,8 +63,22 @@ class Users extends Controller
 
         $this->submit_index();
         $this->submit_index_bulk();
-		$this->view->Render("Users/index",$data);
-	}
+        $this->bulk_delete();
+        $this->view->Render("Users/index",$data);
+    }
+    function bulk_delete(){
+
+        if (isset($_POST['delete'])) {
+            $checkbox = $_POST['usernamed'];
+            foreach ($checkbox as $val) {
+                $data_sybmit = array(
+                    'username' => $val
+                );
+                //shell_exec("bash adduser " . $username . " " . $password);
+                $this->model->delete_user($data_sybmit);
+            }
+        }
+    }
     function submit_index(){
 
         if (isset($_POST['submit']))
