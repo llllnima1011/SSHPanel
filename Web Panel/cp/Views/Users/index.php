@@ -295,13 +295,13 @@ ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php 
 ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo $ssh_tls_port; ?>/#<?php echo $datum['username']; ?>&nbsp;
 ">Link SSH TLS
                                                             </button>
-                                                            <button class="qrs dropdown-item"
-                                                                    data-tls="ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo $ssh_tls_port; ?>/#<?php echo $datum['username']; ?>"
-                                                                    data-id="ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo PORT; ?>/#<?php echo $datum['username']; ?>"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#qr-modal">
+                                                            <a href="#" class="qrs dropdown-item"
+                                                               data-tls="ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo $ssh_tls_port; ?>/#<?php echo $datum['username']; ?>"
+                                                               data-id="ssh://<?php echo $datum['username']; ?>:<?php echo $datum['password']; ?>@<?php echo $_SERVER["SERVER_NAME"]; ?>:<?php echo PORT; ?>/#<?php echo $datum['username']; ?>"
+                                                               data-bs-toggle="modal"
+                                                               data-bs-target="#qr-modal">
                                                                 QR
-                                                            </button>
+                                                            </a>
 
                                                         </div>
                                                     </li>
