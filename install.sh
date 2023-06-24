@@ -495,11 +495,11 @@ systemctl restart stunnel4 &
 wait
 clear
 
-echo -e "${YELLOW}************ XPanel ************ \n"
-echo -e "XPanel Link : $protcohttp://${defdomain}:$sshttp/login \n"
-echo -e "Username : \e[31m${adminusername}\e[0m  \n"
-echo -e "Password : \e[31m${adminpassword}\e[0m \n"
-echo -e "${YELLOW}-------- Connection Details ----------- \n"
-echo -e "IP : $ipv4 \n"
-echo -e "SSH port : \e[31m${port}\e[0m \n"
-echo -e "SSH + TLS port : ${sshtls_port} \n"
+echo -e "************ XPanel ************ \n"
+echo -e "XPanel Link : $protcohttp://${defdomain}:$sshttp/login"
+echo -e "Username : ${adminusername}"
+echo -e "Password : ${adminpassword}"
+echo -e "-------- Connection Details ----------- \n"
+echo -e "IP : $ipv4 "
+echo -e "SSH port : ${port} "
+echo -e "SSH + TLS port : ${sshtls_port} "
