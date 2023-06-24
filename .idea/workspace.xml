@@ -4,13 +4,6 @@
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="Fix Version 3.4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web Panel/cp/Controllers/Api.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Controllers/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/en-us.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/en-us.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/fa-ir.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/fa-ir.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Api_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Api_Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Users_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Users_Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Document/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Document/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,14 +79,7 @@
       <workItem from="1687433106873" duration="298000" />
       <workItem from="1687468524940" duration="9356000" />
       <workItem from="1687528107128" duration="2424000" />
-      <workItem from="1687599714300" duration="3738000" />
-    </task>
-    <task id="LOCAL-00013" summary="Fix New Version 3.2">
-      <created>1686133483013</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1686133483066</updated>
+      <workItem from="1687599714300" duration="3973000" />
     </task>
     <task id="LOCAL-00014" summary="Fix New Version 3.2">
       <created>1686148602590</created>
@@ -431,7 +417,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686957538710</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Fix Version 3.4">
+      <created>1687603561641</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1687603561641</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
