@@ -32,7 +32,7 @@ class Fixer_Model extends Model
             foreach ($user as $usernamet)
             {
                 $total=$usernamet["download"];
-                echo $total."-".$us['username']."<br>";
+
                 if ($us["traffic"] < $total && !empty($us["traffic"])) {
                     $sql = "UPDATE users SET enable=? WHERE username=?";
                     $this->db->prepare($sql)->execute(['traffic', $us["username"]]);

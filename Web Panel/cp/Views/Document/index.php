@@ -281,12 +281,12 @@
                     </div>
 
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingSix">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        <h2 class="accordion-header" id="headingSeven">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSeven">
                                 Active user
                             </button>
                         </h2>
-                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                        <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
                             <div class="accordion-body" dir="ltr">
                                 <a href="<?php echo path;?>Settings&sort=api" target="_blank">List API</a><br>
                                 {APIKEY}=Token<br>
@@ -303,12 +303,12 @@
                     </div>
 
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingSix">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        <h2 class="accordion-header" id="headingEight">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                                 Dective user
                             </button>
                         </h2>
-                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                        <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
                             <div class="accordion-body" dir="ltr">
                                 <a href="<?php echo path;?>Settings&sort=api" target="_blank">List API</a><br>
                                 {APIKEY}=Token<br>
@@ -325,12 +325,12 @@
                     </div>
 
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingSix">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        <h2 class="accordion-header" id="headingNine">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseNine">
                                 Reset Traffic user
                             </button>
                         </h2>
-                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                        <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
                             <div class="accordion-body" dir="ltr">
                                 <a href="<?php echo path;?>Settings&sort=api" target="_blank">List API</a><br>
                                 {APIKEY}=Token<br>
@@ -347,12 +347,12 @@
                     </div>
 
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingSix">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        <h2 class="accordion-header" id="headingTen">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
                                 Renewal Date and Expire date and traffic user
                             </button>
                         </h2>
-                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                        <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#accordionExample">
                             <div class="accordion-body" dir="ltr">
                                 <a href="<?php echo path;?>Settings&sort=api" target="_blank">List API</a><br>
                                 {APIKEY}=Token<br>
