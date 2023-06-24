@@ -145,5 +145,77 @@ class Api_Model extends Model
             echo json_encode(['ststus' => 200 , 'data'=>'User Deleted' ]);
         }
     }
+    public function active_user($data_sybmit)
+    {
+        $username=$data_sybmit['username'];
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE username=:user");
+        $stmt->execute(['user' => $username]);
+        $user = $stmt->fetch();
+        $sql = "UPDATE users SET enable=? WHERE username=?";
+        $query=$this->db->prepare($sql)->execute(['true', $username]);
+        if($query)
+        {
+            shell_exec("bash Libs/sh/adduser " . $username . " " . $user["password"]);
+            echo json_encode(['ststus' => 200 , 'data'=>'User Actived' ]);
+        }
+    }
+    public function deactive_user($data_sybmit)
+    {
+        $username=$data_sybmit['username'];
+        $sql = "UPDATE users SET enable=? WHERE username=?";
+        $query=$this->db->prepare($sql)->execute(['false', $username]);
+        if($query)
+        {
+            shell_exec("sudo killall -u " . $username);
+            shell_exec("sudo userdel -r " . $username);
+            echo json_encode(['ststus' => 200 , 'data'=>'User Deactived' ]);
+        }
+    }
+
+    public function reset_user($data_sybmit)
+    {
+        $username=$data_sybmit['username'];
+        $sql = "UPDATE Traffic SET upload=?,download=?,total=? WHERE user=?";
+        $query=$this->db->prepare($sql)->execute(['0','0','0', $username]);
+        if($query)
+        {
+            echo json_encode(['ststus' => 200 , 'data'=>'User Reset Traffic souccess' ]);
+        }
+    }
+
+    public function renewal_update($data_sybmit)
+    {
+        $day_date=$data_sybmit['day_date'];
+        $username=$data_sybmit['username'];
+        $renewal_date=$data_sybmit['renewal_date'];
+        $renewal_traffic=$data_sybmit['renewal_traffic'];
+        $start_inp = date("Y-m-d");
+        $end_inp = date('Y-m-d', strtotime($start_inp . " + $day_date days"));
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE username=:username");
+        $stmt->execute(['username' => $username]);
+        $user = $stmt->fetchAll();
+        foreach ($user as $val) {
+            if ($renewal_date == 'yes') {
+                $sql = "UPDATE users SET enable=?,startdate=?,finishdate=? WHERE username=?";
+                $this->db->prepare($sql)->execute(['true',$start_inp, $end_inp, $username]);
+            } else {
+                $sql = "UPDATE users SET enable=?,finishdate=? WHERE username=?";
+                $this->db->prepare($sql)->execute(['true',$end_inp, $username]);
+            }
+
+            if($renewal_traffic=='yes')
+            {
+                $sql = "UPDATE Traffic SET upload=?,download=?,total=? WHERE user=?";
+                $this->db->prepare($sql)->execute(['0','0','0', $username]);
+            }
+
+            if ($val->enable != 'true') {
+                shell_exec("sudo killall -u " . $username);
+                shell_exec("bash Libs/sh/adduser " . $username . " " . $val->password);
+            }
+        }
+        header("Location: users");
+
+    }
 
 }

@@ -364,8 +364,8 @@ Password:<?php echo $datum['password']; ?>&nbsp;
                     </div>
                     <div class="col-lg-6">
                         <div class="row">
-                            <div class="col-lg-12">
-                                <p><?php echo multi_user_renewal_desc_lang;?></p>
+                            <div class="col-lg-6">
+                                <small><?php echo renewal_date_desc_lang;?></small>
                                 <div class="input-group">
 
                                     <div class="form-check form-check-inline">
@@ -374,6 +374,22 @@ Password:<?php echo $datum['password']; ?>&nbsp;
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input type="radio" name="re_date" value="no" class="form-check-input input-primary" >
+                                        <label class="form-check-label" for="customCheckinl311"><?php echo multi_user_renewal_no_lang; ?></label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <small><?php echo renewal_traffic_desc_lang;?></small>
+                                <div class="input-group">
+
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="re_traffic" value="yes" class="form-check-input input-primary" checked>
+                                        <label class="form-check-label" for="customCheckinl311"><?php echo multi_user_renewal_yes_lang; ?></label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="re_traffic" value="no" class="form-check-input input-primary" >
                                         <label class="form-check-label" for="customCheckinl311"><?php echo multi_user_renewal_no_lang; ?></label>
                                     </div>
 

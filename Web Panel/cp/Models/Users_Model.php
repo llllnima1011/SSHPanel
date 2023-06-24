@@ -181,21 +181,25 @@ class Users_Model extends Model
         $day_date=$data_sybmit['day_date'];
         $username=$data_sybmit['username'];
         $renewal_date=$data_sybmit['renewal_date'];
+        $renewal_traffic=$data_sybmit['renewal_traffic'];
         $start_inp = date("Y-m-d");
         $end_inp = date('Y-m-d', strtotime($start_inp . " + $day_date days"));
         $stmt = $this->db->prepare("SELECT * FROM users WHERE username=:username");
         $stmt->execute(['username' => $username]);
         $user = $stmt->fetchAll();
-        echo $renewal_date;
         foreach ($user as $val) {
-            echo $renewal_date;
             if ($renewal_date == 'yes') {
                 $sql = "UPDATE users SET enable=?,startdate=?,finishdate=? WHERE username=?";
                 $this->db->prepare($sql)->execute(['true',$start_inp, $end_inp, $username]);
-                echo "kk";
             } else {
                 $sql = "UPDATE users SET enable=?,finishdate=? WHERE username=?";
                 $this->db->prepare($sql)->execute(['true',$end_inp, $username]);
+            }
+
+            if($renewal_traffic=='yes')
+            {
+                $sql = "UPDATE Traffic SET upload=?,download=?,total=? WHERE user=?";
+                $this->db->prepare($sql)->execute(['0','0','0', $username]);
             }
 
 

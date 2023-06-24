@@ -280,6 +280,100 @@
                         </div>
                     </div>
 
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                Active user
+                            </button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                            <div class="accordion-body" dir="ltr">
+                                <a href="<?php echo path;?>Settings&sort=api" target="_blank">List API</a><br>
+                                {APIKEY}=Token<br>
+                                <span class="pc-collapse">Method POST</span><br>
+                                <code><?php echo path;?>api&key={APIKEY}method=activeuser</code><br>
+                                Send Data Post
+                                <div class="p-3 color-block bg-green-100">
+                                    <code>
+                                        <b>username</b> Required<br>
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                Dective user
+                            </button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                            <div class="accordion-body" dir="ltr">
+                                <a href="<?php echo path;?>Settings&sort=api" target="_blank">List API</a><br>
+                                {APIKEY}=Token<br>
+                                <span class="pc-collapse">Method POST</span><br>
+                                <code><?php echo path;?>api&key={APIKEY}method=deactiveuser</code><br>
+                                Send Data Post
+                                <div class="p-3 color-block bg-green-100">
+                                    <code>
+                                        <b>username</b> Required<br>
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                Reset Traffic user
+                            </button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                            <div class="accordion-body" dir="ltr">
+                                <a href="<?php echo path;?>Settings&sort=api" target="_blank">List API</a><br>
+                                {APIKEY}=Token<br>
+                                <span class="pc-collapse">Method POST</span><br>
+                                <code><?php echo path;?>api&key={APIKEY}method=resetuser</code><br>
+                                Send Data Post
+                                <div class="p-3 color-block bg-green-100">
+                                    <code>
+                                        <b>username</b> Required<br>
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                Renewal Date and Expire date and traffic user
+                            </button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                            <div class="accordion-body" dir="ltr">
+                                <a href="<?php echo path;?>Settings&sort=api" target="_blank">List API</a><br>
+                                {APIKEY}=Token<br>
+                                <span class="pc-collapse">Method POST</span><br>
+                                <code><?php echo path;?>api&key={APIKEY}method=renewal</code><br>
+                                Send Data Post
+                                <div class="p-3 color-block bg-green-100">
+                                    <code>
+                                        <b>username</b> Required<br>
+                                        <b>day_date</b> Required<br>
+                                        <small>Credit in the form of days</small><br>
+                                        <b>re_date</b> Required(yes or no)<br>
+                                        <small>Update the registration date to today</small><br>
+                                        <b>re_traffic</b> Required(yes or no)<br>
+                                        <small>Reset the traffic</small><br>
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

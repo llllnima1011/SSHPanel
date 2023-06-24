@@ -32,6 +32,70 @@ class Api extends Controller
             $this->response($status_user) ;
         }
 
+        //active user
+        if(isset($_GET['method']) && $_GET['method'] == "activeuser"){
+            $username = htmlentities($_POST['username']);
+            if(!empty($username)) {
+                $data_sybmit = array(
+                    'username' => $username
+                );
+                $this->model->active_user($data_sybmit);
+            }
+            else
+            {
+                echo "invalid empty username";
+            }
+        }
+        //deactive user
+        if(isset($_GET['method']) && $_GET['method'] == "deactiveuser"){
+            $username = htmlentities($_POST['username']);
+            if(!empty($username)) {
+                $data_sybmit = array(
+                    'username' => $username
+                );
+                $this->model->deactive_user($data_sybmit);
+            }
+            else
+            {
+                echo "invalid empty username";
+            }
+        }
+        //reset traffic user
+        if(isset($_GET['method']) && $_GET['method'] == "resetuser"){
+            $username = htmlentities($_POST['username']);
+            if(!empty($username)) {
+                $data_sybmit = array(
+                    'username' => $username
+                );
+                $this->model->reset_user($data_sybmit);
+            }
+            else
+            {
+                echo "invalid empty username";
+            }
+        }
+        //renewal user
+        if(isset($_GET['method']) && $_GET['method'] == "renewal"){
+            $username = htmlentities($_POST['username']);
+            $day_date = htmlentities($_POST['day_date']);
+
+            $renewal_date = htmlentities($_POST['re_date']);
+            $renewal_traffic = htmlentities($_POST['re_traffic']);
+
+            if(!empty($username) and !empty($day_date) and !empty($renewal_date) and !empty($renewal_traffic)) {
+                $data_sybmit = array(
+                    'username' => $username,
+                    'day_date' => $day_date,
+                    'renewal_date' => $renewal_date,
+                    'renewal_traffic' => $renewal_traffic
+                );
+                $this->model->renewal_update($data_sybmit);
+            }
+            else
+            {
+                echo "invalid empty username and date";
+            }
+        }
         //add user
         if(isset($_GET['method']) && $_GET['method'] == "adduser"){
             $username = htmlentities($_POST['username']);

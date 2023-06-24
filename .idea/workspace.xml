@@ -2,6 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="Fix Version 3.4">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Controllers/Api.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Controllers/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Controllers/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/en-us.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/en-us.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/fa-ir.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Libs/lang/fa-ir.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Api_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Api_Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Users_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Users_Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Document/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Document/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Views/Users/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +53,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/WebPanel" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Xcs-Multi-Management-XPanel" />
     <property name="two.files.diff.last.used.folder" value="$PROJECT_DIR$/WebPanel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -70,14 +78,15 @@
       <workItem from="1686400937947" duration="13755000" />
       <workItem from="1686728134874" duration="7530000" />
       <workItem from="1686827378337" duration="591000" />
-      <workItem from="1686908341776" duration="33160000" />
-    </task>
-    <task id="LOCAL-00012" summary="Fix Alert New Version">
-      <created>1685090825753</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1685090825753</updated>
+      <workItem from="1686908341776" duration="34384000" />
+      <workItem from="1687039579749" duration="1331000" />
+      <workItem from="1687253508273" duration="6597000" />
+      <workItem from="1687300536212" duration="1981000" />
+      <workItem from="1687330983910" duration="22526000" />
+      <workItem from="1687433106873" duration="298000" />
+      <workItem from="1687468524940" duration="9356000" />
+      <workItem from="1687528107128" duration="2424000" />
+      <workItem from="1687599714300" duration="3738000" />
     </task>
     <task id="LOCAL-00013" summary="Fix New Version 3.2">
       <created>1686133483013</created>
@@ -415,7 +424,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686957247421</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Fix Version 3.4">
+      <created>1686957538710</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1686957538710</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

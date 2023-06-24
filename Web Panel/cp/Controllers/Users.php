@@ -85,12 +85,15 @@ class Users extends Controller
         if (isset($_POST['renewal_date'])) {
             $username_re = htmlentities($_POST['username_re']);
             $day_date = htmlentities($_POST['day_date']);
+
             $renewal_date = htmlentities($_POST['re_date']);
+            $renewal_traffic = htmlentities($_POST['re_traffic']);
 
             $data_sybmit = array(
                 'username' => $username_re,
                 'day_date' => $day_date,
-                'renewal_date' => $renewal_date
+                'renewal_date' => $renewal_date,
+                'renewal_traffic' => $renewal_traffic
             );
 
             //shell_exec("bash adduser " . $username . " " . $password);
