@@ -213,9 +213,8 @@ class Api_Model extends Model
                 shell_exec("sudo killall -u " . $username);
                 shell_exec("bash Libs/sh/adduser " . $username . " " . $val->password);
             }
+            echo json_encode(['ststus' => 200 , 'data'=>'Renewal souccess' ]);
         }
-        header("Location: users");
-
     }
 
 }
