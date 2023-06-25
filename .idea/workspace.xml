@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d50d8e18-a0fd-450a-835d-0b5aea5e7d6b" name="Changes" comment="Fix Version 3.4">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web Panel/cp/Models/Api_Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web Panel/cp/Models/Api_Model.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,14 +79,7 @@
       <workItem from="1687468524940" duration="9356000" />
       <workItem from="1687528107128" duration="2424000" />
       <workItem from="1687599714300" duration="6975000" />
-      <workItem from="1687725963543" duration="693000" />
-    </task>
-    <task id="LOCAL-00017" summary="Fix New Version 3.2">
-      <created>1686149378092</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1686149378092</updated>
+      <workItem from="1687725963543" duration="999000" />
     </task>
     <task id="LOCAL-00018" summary="Fix New Version 3.2">
       <created>1686151223521</created>
@@ -425,7 +417,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687605155063</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Fix Version 3.4">
+      <created>1687726688486</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1687726688486</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

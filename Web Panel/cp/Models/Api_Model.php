@@ -10,17 +10,28 @@ class Api_Model extends Model
 
     public function check_token($data)
     {
-        $ipremote= $_SERVER['REMOTE_ADDR'];
-        $query = $this->db->prepare("select * from ApiToken where Token='$data' and enable='true' and Allowips='$ipremote'");
+        $query = $this->db->prepare("select * from ApiToken where Token='$data' and enable='true'");
         $query->execute();
-        $queryCount = $query->rowCount();
-        if($queryCount>0)
+        $check_token = $query->fetchAll(PDO::FETCH_ASSOC);
+        if($check_token[0]['Allowips']=='0.0.0.0/0')
         {
             $access='allowed';
         }
-        else{
-            $access='illegal';
+        else
+        {
+            $ipremote= $_SERVER['REMOTE_ADDR'];
+            $query = $this->db->prepare("select * from ApiToken where Token='$data' and enable='true' and Allowips='$ipremote'");
+            $query->execute();
+            $queryCount = $query->rowCount();
+            if($queryCount>0)
+            {
+                $access='allowed';
+            }
+            else{
+                $access='illegal';
+            }
         }
+
         return $access;
     }
     public function list_user()
