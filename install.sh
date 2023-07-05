@@ -423,10 +423,6 @@ sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/cp/Config/database.php 
 wait
 sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/cp/Config/database.php &
 wait
-sudo sed -i "s/SERVERUSER/$adminusername/g" /var/www/html/cp/Libs/sh/killusers.sh &
-wait
-sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/cp/Libs/sh/killusers.sh &
-wait
 curl -u "$adminusername:$adminpassword" "$protcohttp://${defdomain}:$sshttp/reinstall"
 wait
 crontab -r
